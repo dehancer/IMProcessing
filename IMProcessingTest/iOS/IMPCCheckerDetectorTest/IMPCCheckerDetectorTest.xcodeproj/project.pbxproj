@@ -1,0 +1,1033 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		316A7A7F1E97A6C600DFD31A /* IMPBitonicSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79F41E97A6C500DFD31A /* IMPBitonicSort.swift */; };
+		316A7A801E97A6C600DFD31A /* IMPLineSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79F71E97A6C500DFD31A /* IMPLineSegment.swift */; };
+		316A7A811E97A6C600DFD31A /* IMPPhotoPlate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79F81E97A6C500DFD31A /* IMPPhotoPlate.swift */; };
+		316A7A821E97A6C600DFD31A /* IMPPolarLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79F91E97A6C500DFD31A /* IMPPolarLine.swift */; };
+		316A7A831E97A6C600DFD31A /* IMPQuad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79FA1E97A6C500DFD31A /* IMPQuad.swift */; };
+		316A7A841E97A6C600DFD31A /* IMPTransformModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79FB1E97A6C500DFD31A /* IMPTransformModel.swift */; };
+		316A7A851E97A6C600DFD31A /* IMPTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79FC1E97A6C500DFD31A /* IMPTriangle.swift */; };
+		316A7A861E97A6C600DFD31A /* IMPVertices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79FD1E97A6C500DFD31A /* IMPVertices.swift */; };
+		316A7A871E97A6C600DFD31A /* IMPFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79FE1E97A6C500DFD31A /* IMPFilter.swift */; };
+		316A7A881E97A6C600DFD31A /* IMPFilterOperations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A79FF1E97A6C500DFD31A /* IMPFilterOperations.swift */; };
+		316A7A891E97A6C600DFD31A /* IMPFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A001E97A6C500DFD31A /* IMPFunction.swift */; };
+		316A7A8A1E97A6C600DFD31A /* IMPResampler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A011E97A6C500DFD31A /* IMPResampler.swift */; };
+		316A7A8B1E97A6C600DFD31A /* IMPShader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A021E97A6C500DFD31A /* IMPShader.swift */; };
+		316A7A8C1E97A6C600DFD31A /* IMPTwoPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A031E97A6C500DFD31A /* IMPTwoPass.swift */; };
+		316A7A8D1E97A6C600DFD31A /* IMPCIFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A051E97A6C500DFD31A /* IMPCIFilter.swift */; };
+		316A7A8E1E97A6C600DFD31A /* MPSProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A061E97A6C500DFD31A /* MPSProcessor.swift */; };
+		316A7A8F1E97A6C600DFD31A /* MTLProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A071E97A6C500DFD31A /* MTLProcessor.swift */; };
+		316A7A901E97A6C600DFD31A /* MTLShader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A081E97A6C500DFD31A /* MTLShader.swift */; };
+		316A7A911E97A6C600DFD31A /* IMPColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A111E97A6C500DFD31A /* IMPColor.swift */; };
+		316A7A921E97A6C600DFD31A /* IMPContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A121E97A6C500DFD31A /* IMPContext.swift */; };
+		316A7A931E97A6C600DFD31A /* IMPNumericTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A131E97A6C500DFD31A /* IMPNumericTypes.swift */; };
+		316A7A941E97A6C600DFD31A /* IMPRgbHsv.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A141E97A6C500DFD31A /* IMPRgbHsv.swift */; };
+		316A7A951E97A6C600DFD31A /* IMPRgbLab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A151E97A6C500DFD31A /* IMPRgbLab.swift */; };
+		316A7A961E97A6C600DFD31A /* IMPRgbXyz.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A161E97A6C500DFD31A /* IMPRgbXyz.swift */; };
+		316A7A971E97A6C600DFD31A /* IMProcessing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A171E97A6C500DFD31A /* IMProcessing.swift */; };
+		316A7A981E97A6C600DFD31A /* IMPSimd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A181E97A6C500DFD31A /* IMPSimd.swift */; };
+		316A7A991E97A6C600DFD31A /* IMPTypeAliases .swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A191E97A6C500DFD31A /* IMPTypeAliases .swift */; };
+		316A7A9A1E97A6C600DFD31A /* IMPCChekers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A1C1E97A6C500DFD31A /* IMPCChekers.swift */; };
+		316A7A9B1E97A6C600DFD31A /* IMPPatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A1D1E97A6C500DFD31A /* IMPPatch.swift */; };
+		316A7A9C1E97A6C600DFD31A /* IMPPatchesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A1E1E97A6C500DFD31A /* IMPPatchesGrid.swift */; };
+		316A7A9D1E97A6C600DFD31A /* IMPCCheckerDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A1F1E97A6C500DFD31A /* IMPCCheckerDetector.swift */; };
+		316A7A9E1E97A6C600DFD31A /* IMPDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A201E97A6C500DFD31A /* IMPDetector.swift */; };
+		316A7A9F1E97A6C600DFD31A /* IMPHarrisCornerDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A211E97A6C500DFD31A /* IMPHarrisCornerDetector.swift */; };
+		316A7AA01E97A6C600DFD31A /* IMPHoughLinesDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A221E97A6C500DFD31A /* IMPHoughLinesDetector.swift */; };
+		316A7AA11E97A6C600DFD31A /* IMPHoughSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A231E97A6C500DFD31A /* IMPHoughSpace.swift */; };
+		316A7AA21E97A6C600DFD31A /* IMPHoughSpaceDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A241E97A6C500DFD31A /* IMPHoughSpaceDetector.swift */; };
+		316A7AA31E97A6C600DFD31A /* IMPOrientedLinesDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A251E97A6C500DFD31A /* IMPOrientedLinesDetector.swift */; };
+		316A7AA41E97A6C600DFD31A /* IMPCameraExposure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A281E97A6C500DFD31A /* IMPCameraExposure.swift */; };
+		316A7AA51E97A6C600DFD31A /* IMPCameraExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A291E97A6C500DFD31A /* IMPCameraExtentions.swift */; };
+		316A7AA61E97A6C600DFD31A /* IMPCameraFocus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A2A1E97A6C500DFD31A /* IMPCameraFocus.swift */; };
+		316A7AA71E97A6C600DFD31A /* IMPCameraManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A2B1E97A6C500DFD31A /* IMPCameraManager.swift */; };
+		316A7AA81E97A6C600DFD31A /* IMPMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A2C1E97A6C500DFD31A /* IMPMotionManager.swift */; };
+		316A7AA91E97A6C600DFD31A /* IMPAVSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A2E1E97A6C500DFD31A /* IMPAVSession.swift */; };
+		316A7AAA1E97A6C600DFD31A /* IMPCameraSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A2F1E97A6C500DFD31A /* IMPCameraSession.swift */; };
+		316A7AAB1E97A6C600DFD31A /* IMPPosterize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A311E97A6C500DFD31A /* IMPPosterize.swift */; };
+		316A7AAC1E97A6C600DFD31A /* IMPDisplayLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A331E97A6C500DFD31A /* IMPDisplayLink.swift */; };
+		316A7AAD1E97A6C600DFD31A /* IMPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A341E97A6C500DFD31A /* IMPView.swift */; };
+		316A7AAE1E97A6C600DFD31A /* IMPCrosshairsGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A371E97A6C500DFD31A /* IMPCrosshairsGenerator.swift */; };
+		316A7AAF1E97A6C600DFD31A /* IMPLinesGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A381E97A6C500DFD31A /* IMPLinesGenerator.swift */; };
+		316A7AB01E97A6C600DFD31A /* IMPDistribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A3A1E97A6C500DFD31A /* IMPDistribution.swift */; };
+		316A7AB11E97A6C600DFD31A /* IMPMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A3B1E97A6C500DFD31A /* IMPMatrix.swift */; };
+		316A7AB21E97A6C600DFD31A /* ColumnView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A3D1E97A6C500DFD31A /* ColumnView.swift */; };
+		316A7AB31E97A6C600DFD31A /* MatrixArithmetic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A3E1E97A6C500DFD31A /* MatrixArithmetic.swift */; };
+		316A7AB41E97A6C600DFD31A /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A3F1E97A6C500DFD31A /* RowView.swift */; };
+		316A7AB51E97A6C600DFD31A /* IMPClosing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A411E97A6C500DFD31A /* IMPClosing.swift */; };
+		316A7AB61E97A6C600DFD31A /* IMPDilation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A421E97A6C500DFD31A /* IMPDilation.swift */; };
+		316A7AB71E97A6C600DFD31A /* IMPErosion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A431E97A6C500DFD31A /* IMPErosion.swift */; };
+		316A7AB81E97A6C600DFD31A /* IMPMorphology.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A441E97A6C500DFD31A /* IMPMorphology.swift */; };
+		316A7AB91E97A6C600DFD31A /* IMPOpening.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A451E97A6C500DFD31A /* IMPOpening.swift */; };
+		316A7ABA1E97A6C600DFD31A /* IMPBaseBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A481E97A6C500DFD31A /* IMPBaseBlur.swift */; };
+		316A7ABB1E97A6C600DFD31A /* IMPBoxBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A491E97A6C500DFD31A /* IMPBoxBlur.swift */; };
+		316A7ABC1E97A6C600DFD31A /* IMPConvolution3x3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A4A1E97A6C500DFD31A /* IMPConvolution3x3.swift */; };
+		316A7ABD1E97A6C600DFD31A /* IMPGaussianBlur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A4B1E97A6C500DFD31A /* IMPGaussianBlur.swift */; };
+		316A7ABE1E97A6C600DFD31A /* IMPDerivative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A4D1E97A6C500DFD31A /* IMPDerivative.swift */; };
+		316A7ABF1E97A6C600DFD31A /* IMPXYDerivative.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A4E1E97A6C500DFD31A /* IMPXYDerivative.swift */; };
+		316A7AC01E97A6C600DFD31A /* IMPCannyEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A501E97A6C500DFD31A /* IMPCannyEdges.swift */; };
+		316A7AC11E97A6C600DFD31A /* IMPGaussianDerivativeEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A511E97A6C500DFD31A /* IMPGaussianDerivativeEdges.swift */; };
+		316A7AC21E97A6C600DFD31A /* IMPHarrisCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A521E97A6C500DFD31A /* IMPHarrisCorner.swift */; };
+		316A7AC31E97A6C600DFD31A /* IMPNonMaximumSuppression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A531E97A6C500DFD31A /* IMPNonMaximumSuppression.swift */; };
+		316A7AC41E97A6C600DFD31A /* IMPSobelEdges.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A541E97A6C500DFD31A /* IMPSobelEdges.swift */; };
+		316A7AC51E97A6C600DFD31A /* IMPMedian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A561E97A6C500DFD31A /* IMPMedian.swift */; };
+		316A7AC61E97A6C600DFD31A /* IMPAdaptiveThreshold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A581E97A6C500DFD31A /* IMPAdaptiveThreshold.swift */; };
+		316A7AC71E97A6C600DFD31A /* IMPImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A5A1E97A6C500DFD31A /* IMPImage.swift */; };
+		316A7AC81E97A6C600DFD31A /* IMPImageProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A5B1E97A6C500DFD31A /* IMPImageProvider.swift */; };
+		316A7AC91E97A6C600DFD31A /* IMPMTLDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A5C1E97A6C500DFD31A /* IMPMTLDevice.swift */; };
+		316A7ACA1E97A6C600DFD31A /* IMPMTLTexture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A5D1E97A6C500DFD31A /* IMPMTLTexture.swift */; };
+		316A7ACB1E97A6C600DFD31A /* IMPTextureCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A5E1E97A6C500DFD31A /* IMPTextureCache.swift */; };
+		316A7ACC1E97A6C600DFD31A /* IMPTextureDelayLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A5F1E97A6C500DFD31A /* IMPTextureDelayLine.swift */; };
+		316A7ACD1E97A6C600DFD31A /* IMPTextureProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A601E97A6C500DFD31A /* IMPTextureProvider.swift */; };
+		316A7ACE1E97A6C600DFD31A /* IMPVideoCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A611E97A6C500DFD31A /* IMPVideoCache.swift */; };
+		316A7ACF1E97A6C600DFD31A /* IMPDequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A7D1E97A6C600DFD31A /* IMPDequeue.swift */; };
+		316A7AD01E97A6C600DFD31A /* IMPQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 316A7A7E1E97A6C600DFD31A /* IMPQueue.swift */; };
+		3179E78A1E96A12D002F7561 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3179E7891E96A12D002F7561 /* AppDelegate.swift */; };
+		3179E78C1E96A12D002F7561 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3179E78B1E96A12D002F7561 /* ViewController.swift */; };
+		3179E78F1E96A12D002F7561 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3179E78D1E96A12D002F7561 /* Main.storyboard */; };
+		3179E7911E96A12D002F7561 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3179E7901E96A12D002F7561 /* Assets.xcassets */; };
+		3179E7941E96A12D002F7561 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3179E7921E96A12D002F7561 /* LaunchScreen.storyboard */; };
+		3179E79D1E96A18B002F7561 /* IMPCamera_main.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3179E79C1E96A18B002F7561 /* IMPCamera_main.metal */; };
+		3179E79F1E96A1DD002F7561 /* IMPCanvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3179E79E1E96A1DD002F7561 /* IMPCanvas.swift */; };
+		319347C21E9975A600CBCDFB /* IMPPatchesGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 319347C11E9975A600CBCDFB /* IMPPatchesGridView.swift */; };
+		D0E054D3CAA05F48BAF78361 /* Pods_IMPCCheckerDetectorTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 520B0CAF8C994FF16CA15B0F /* Pods_IMPCCheckerDetectorTest.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		147BF956D04B68C0B30849DA /* Pods-IMPCCheckerDetectorTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMPCCheckerDetectorTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMPCCheckerDetectorTest/Pods-IMPCCheckerDetectorTest.release.xcconfig"; sourceTree = "<group>"; };
+		316A79F41E97A6C500DFD31A /* IMPBitonicSort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPBitonicSort.swift; sourceTree = "<group>"; };
+		316A79F71E97A6C500DFD31A /* IMPLineSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPLineSegment.swift; sourceTree = "<group>"; };
+		316A79F81E97A6C500DFD31A /* IMPPhotoPlate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPPhotoPlate.swift; sourceTree = "<group>"; };
+		316A79F91E97A6C500DFD31A /* IMPPolarLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPPolarLine.swift; sourceTree = "<group>"; };
+		316A79FA1E97A6C500DFD31A /* IMPQuad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPQuad.swift; sourceTree = "<group>"; };
+		316A79FB1E97A6C500DFD31A /* IMPTransformModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPTransformModel.swift; sourceTree = "<group>"; };
+		316A79FC1E97A6C500DFD31A /* IMPTriangle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPTriangle.swift; sourceTree = "<group>"; };
+		316A79FD1E97A6C500DFD31A /* IMPVertices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPVertices.swift; sourceTree = "<group>"; };
+		316A79FE1E97A6C500DFD31A /* IMPFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPFilter.swift; sourceTree = "<group>"; };
+		316A79FF1E97A6C500DFD31A /* IMPFilterOperations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPFilterOperations.swift; sourceTree = "<group>"; };
+		316A7A001E97A6C500DFD31A /* IMPFunction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPFunction.swift; sourceTree = "<group>"; };
+		316A7A011E97A6C500DFD31A /* IMPResampler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPResampler.swift; sourceTree = "<group>"; };
+		316A7A021E97A6C500DFD31A /* IMPShader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPShader.swift; sourceTree = "<group>"; };
+		316A7A031E97A6C500DFD31A /* IMPTwoPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPTwoPass.swift; sourceTree = "<group>"; };
+		316A7A051E97A6C500DFD31A /* IMPCIFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCIFilter.swift; sourceTree = "<group>"; };
+		316A7A061E97A6C500DFD31A /* MPSProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MPSProcessor.swift; sourceTree = "<group>"; };
+		316A7A071E97A6C500DFD31A /* MTLProcessor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTLProcessor.swift; sourceTree = "<group>"; };
+		316A7A081E97A6C500DFD31A /* MTLShader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTLShader.swift; sourceTree = "<group>"; };
+		316A7A0A1E97A6C500DFD31A /* IMPConstants-Bridging-Metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMPConstants-Bridging-Metal.h"; sourceTree = "<group>"; };
+		316A7A0B1E97A6C500DFD31A /* IMPExif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPExif.h; sourceTree = "<group>"; };
+		316A7A0C1E97A6C500DFD31A /* IMPHistogramTypes-Bridging-Metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMPHistogramTypes-Bridging-Metal.h"; sourceTree = "<group>"; };
+		316A7A0D1E97A6C500DFD31A /* IMPOperations-Bridgin-Metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMPOperations-Bridgin-Metal.h"; sourceTree = "<group>"; };
+		316A7A0E1E97A6C500DFD31A /* IMProcessing-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMProcessing-Bridging-Header.h"; sourceTree = "<group>"; };
+		316A7A0F1E97A6C500DFD31A /* IMPTypes-Bridging-Metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMPTypes-Bridging-Metal.h"; sourceTree = "<group>"; };
+		316A7A111E97A6C500DFD31A /* IMPColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPColor.swift; sourceTree = "<group>"; };
+		316A7A121E97A6C500DFD31A /* IMPContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPContext.swift; sourceTree = "<group>"; };
+		316A7A131E97A6C500DFD31A /* IMPNumericTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPNumericTypes.swift; sourceTree = "<group>"; };
+		316A7A141E97A6C500DFD31A /* IMPRgbHsv.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPRgbHsv.swift; sourceTree = "<group>"; };
+		316A7A151E97A6C500DFD31A /* IMPRgbLab.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPRgbLab.swift; sourceTree = "<group>"; };
+		316A7A161E97A6C500DFD31A /* IMPRgbXyz.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPRgbXyz.swift; sourceTree = "<group>"; };
+		316A7A171E97A6C500DFD31A /* IMProcessing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMProcessing.swift; sourceTree = "<group>"; };
+		316A7A181E97A6C500DFD31A /* IMPSimd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPSimd.swift; sourceTree = "<group>"; };
+		316A7A191E97A6C500DFD31A /* IMPTypeAliases .swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "IMPTypeAliases .swift"; sourceTree = "<group>"; };
+		316A7A1C1E97A6C500DFD31A /* IMPCChekers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCChekers.swift; sourceTree = "<group>"; };
+		316A7A1D1E97A6C500DFD31A /* IMPPatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPPatch.swift; sourceTree = "<group>"; };
+		316A7A1E1E97A6C500DFD31A /* IMPPatchesGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPPatchesGrid.swift; sourceTree = "<group>"; };
+		316A7A1F1E97A6C500DFD31A /* IMPCCheckerDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCCheckerDetector.swift; sourceTree = "<group>"; };
+		316A7A201E97A6C500DFD31A /* IMPDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPDetector.swift; sourceTree = "<group>"; };
+		316A7A211E97A6C500DFD31A /* IMPHarrisCornerDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPHarrisCornerDetector.swift; sourceTree = "<group>"; };
+		316A7A221E97A6C500DFD31A /* IMPHoughLinesDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPHoughLinesDetector.swift; sourceTree = "<group>"; };
+		316A7A231E97A6C500DFD31A /* IMPHoughSpace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPHoughSpace.swift; sourceTree = "<group>"; };
+		316A7A241E97A6C500DFD31A /* IMPHoughSpaceDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPHoughSpaceDetector.swift; sourceTree = "<group>"; };
+		316A7A251E97A6C500DFD31A /* IMPOrientedLinesDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPOrientedLinesDetector.swift; sourceTree = "<group>"; };
+		316A7A281E97A6C500DFD31A /* IMPCameraExposure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCameraExposure.swift; sourceTree = "<group>"; };
+		316A7A291E97A6C500DFD31A /* IMPCameraExtentions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCameraExtentions.swift; sourceTree = "<group>"; };
+		316A7A2A1E97A6C500DFD31A /* IMPCameraFocus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCameraFocus.swift; sourceTree = "<group>"; };
+		316A7A2B1E97A6C500DFD31A /* IMPCameraManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCameraManager.swift; sourceTree = "<group>"; };
+		316A7A2C1E97A6C500DFD31A /* IMPMotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPMotionManager.swift; sourceTree = "<group>"; };
+		316A7A2E1E97A6C500DFD31A /* IMPAVSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPAVSession.swift; sourceTree = "<group>"; };
+		316A7A2F1E97A6C500DFD31A /* IMPCameraSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCameraSession.swift; sourceTree = "<group>"; };
+		316A7A311E97A6C500DFD31A /* IMPPosterize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPPosterize.swift; sourceTree = "<group>"; };
+		316A7A331E97A6C500DFD31A /* IMPDisplayLink.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPDisplayLink.swift; sourceTree = "<group>"; };
+		316A7A341E97A6C500DFD31A /* IMPView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPView.swift; sourceTree = "<group>"; };
+		316A7A371E97A6C500DFD31A /* IMPCrosshairsGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCrosshairsGenerator.swift; sourceTree = "<group>"; };
+		316A7A381E97A6C500DFD31A /* IMPLinesGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPLinesGenerator.swift; sourceTree = "<group>"; };
+		316A7A3A1E97A6C500DFD31A /* IMPDistribution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPDistribution.swift; sourceTree = "<group>"; };
+		316A7A3B1E97A6C500DFD31A /* IMPMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPMatrix.swift; sourceTree = "<group>"; };
+		316A7A3D1E97A6C500DFD31A /* ColumnView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColumnView.swift; sourceTree = "<group>"; };
+		316A7A3E1E97A6C500DFD31A /* MatrixArithmetic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatrixArithmetic.swift; sourceTree = "<group>"; };
+		316A7A3F1E97A6C500DFD31A /* RowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
+		316A7A411E97A6C500DFD31A /* IMPClosing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPClosing.swift; sourceTree = "<group>"; };
+		316A7A421E97A6C500DFD31A /* IMPDilation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPDilation.swift; sourceTree = "<group>"; };
+		316A7A431E97A6C500DFD31A /* IMPErosion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPErosion.swift; sourceTree = "<group>"; };
+		316A7A441E97A6C500DFD31A /* IMPMorphology.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPMorphology.swift; sourceTree = "<group>"; };
+		316A7A451E97A6C500DFD31A /* IMPOpening.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPOpening.swift; sourceTree = "<group>"; };
+		316A7A481E97A6C500DFD31A /* IMPBaseBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPBaseBlur.swift; sourceTree = "<group>"; };
+		316A7A491E97A6C500DFD31A /* IMPBoxBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPBoxBlur.swift; sourceTree = "<group>"; };
+		316A7A4A1E97A6C500DFD31A /* IMPConvolution3x3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPConvolution3x3.swift; sourceTree = "<group>"; };
+		316A7A4B1E97A6C500DFD31A /* IMPGaussianBlur.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPGaussianBlur.swift; sourceTree = "<group>"; };
+		316A7A4D1E97A6C500DFD31A /* IMPDerivative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPDerivative.swift; sourceTree = "<group>"; };
+		316A7A4E1E97A6C500DFD31A /* IMPXYDerivative.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPXYDerivative.swift; sourceTree = "<group>"; };
+		316A7A501E97A6C500DFD31A /* IMPCannyEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCannyEdges.swift; sourceTree = "<group>"; };
+		316A7A511E97A6C500DFD31A /* IMPGaussianDerivativeEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPGaussianDerivativeEdges.swift; sourceTree = "<group>"; };
+		316A7A521E97A6C500DFD31A /* IMPHarrisCorner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPHarrisCorner.swift; sourceTree = "<group>"; };
+		316A7A531E97A6C500DFD31A /* IMPNonMaximumSuppression.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPNonMaximumSuppression.swift; sourceTree = "<group>"; };
+		316A7A541E97A6C500DFD31A /* IMPSobelEdges.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPSobelEdges.swift; sourceTree = "<group>"; };
+		316A7A561E97A6C500DFD31A /* IMPMedian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPMedian.swift; sourceTree = "<group>"; };
+		316A7A581E97A6C500DFD31A /* IMPAdaptiveThreshold.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPAdaptiveThreshold.swift; sourceTree = "<group>"; };
+		316A7A5A1E97A6C500DFD31A /* IMPImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPImage.swift; sourceTree = "<group>"; };
+		316A7A5B1E97A6C500DFD31A /* IMPImageProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPImageProvider.swift; sourceTree = "<group>"; };
+		316A7A5C1E97A6C500DFD31A /* IMPMTLDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPMTLDevice.swift; sourceTree = "<group>"; };
+		316A7A5D1E97A6C500DFD31A /* IMPMTLTexture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPMTLTexture.swift; sourceTree = "<group>"; };
+		316A7A5E1E97A6C500DFD31A /* IMPTextureCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPTextureCache.swift; sourceTree = "<group>"; };
+		316A7A5F1E97A6C500DFD31A /* IMPTextureDelayLine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPTextureDelayLine.swift; sourceTree = "<group>"; };
+		316A7A601E97A6C500DFD31A /* IMPTextureProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPTextureProvider.swift; sourceTree = "<group>"; };
+		316A7A611E97A6C500DFD31A /* IMPVideoCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPVideoCache.swift; sourceTree = "<group>"; };
+		316A7A631E97A6C500DFD31A /* IMPAdaptiveThreshold_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPAdaptiveThreshold_metal.h; sourceTree = "<group>"; };
+		316A7A641E97A6C500DFD31A /* IMPBlending_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPBlending_metal.h; sourceTree = "<group>"; };
+		316A7A651E97A6C500DFD31A /* IMPCChekerDetector_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPCChekerDetector_metal.h; sourceTree = "<group>"; };
+		316A7A661E97A6C500DFD31A /* IMPColorProcessing_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPColorProcessing_metal.h; sourceTree = "<group>"; };
+		316A7A671E97A6C500DFD31A /* IMPColorSpaces_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPColorSpaces_metal.h; sourceTree = "<group>"; };
+		316A7A681E97A6C500DFD31A /* IMPCommon_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPCommon_metal.h; sourceTree = "<group>"; };
+		316A7A691E97A6C500DFD31A /* IMPConstants_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPConstants_metal.h; sourceTree = "<group>"; };
+		316A7A6A1E97A6C500DFD31A /* IMPConvolution_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPConvolution_metal.h; sourceTree = "<group>"; };
+		316A7A6B1E97A6C500DFD31A /* IMPCrosshair_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPCrosshair_metal.h; sourceTree = "<group>"; };
+		316A7A6C1E97A6C600DFD31A /* IMPDerivatives_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPDerivatives_metal.h; sourceTree = "<group>"; };
+		316A7A6D1E97A6C600DFD31A /* IMPFlowControl_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPFlowControl_metal.h; sourceTree = "<group>"; };
+		316A7A6E1E97A6C600DFD31A /* IMPGaussianBlur_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPGaussianBlur_metal.h; sourceTree = "<group>"; };
+		316A7A6F1E97A6C600DFD31A /* IMPGeometry_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPGeometry_metal.h; sourceTree = "<group>"; };
+		316A7A701E97A6C600DFD31A /* IMPHarrisCorners_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPHarrisCorners_metal.h; sourceTree = "<group>"; };
+		316A7A711E97A6C600DFD31A /* IMPHarrisCornersDetector_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPHarrisCornersDetector_metal.h; sourceTree = "<group>"; };
+		316A7A721E97A6C600DFD31A /* IMPHuoghTransform_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPHuoghTransform_metal.h; sourceTree = "<group>"; };
+		316A7A731E97A6C600DFD31A /* IMPMedian_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPMedian_metal.h; sourceTree = "<group>"; };
+		316A7A741E97A6C600DFD31A /* IMPMorphology_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPMorphology_metal.h; sourceTree = "<group>"; };
+		316A7A751E97A6C600DFD31A /* IMPPosterize_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPPosterize_metal.h; sourceTree = "<group>"; };
+		316A7A761E97A6C600DFD31A /* IMProcessing_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMProcessing_metal.h; sourceTree = "<group>"; };
+		316A7A771E97A6C600DFD31A /* IMProcessingUI_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMProcessingUI_metal.h; sourceTree = "<group>"; };
+		316A7A781E97A6C600DFD31A /* IMPSobelEdges_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPSobelEdges_metal.h; sourceTree = "<group>"; };
+		316A7A791E97A6C600DFD31A /* IMPStdlib_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPStdlib_metal.h; sourceTree = "<group>"; };
+		316A7A7A1E97A6C600DFD31A /* IMPSwift-Bridging-Metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "IMPSwift-Bridging-Metal.h"; sourceTree = "<group>"; };
+		316A7A7B1E97A6C600DFD31A /* IMPVignette_metal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMPVignette_metal.h; sourceTree = "<group>"; };
+		316A7A7D1E97A6C600DFD31A /* IMPDequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPDequeue.swift; sourceTree = "<group>"; };
+		316A7A7E1E97A6C600DFD31A /* IMPQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPQueue.swift; sourceTree = "<group>"; };
+		3179E7861E96A12D002F7561 /* IMPCCheckerDetectorTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMPCCheckerDetectorTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3179E7891E96A12D002F7561 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3179E78B1E96A12D002F7561 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3179E78E1E96A12D002F7561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3179E7901E96A12D002F7561 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3179E7931E96A12D002F7561 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3179E7951E96A12D002F7561 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3179E79C1E96A18B002F7561 /* IMPCamera_main.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = IMPCamera_main.metal; sourceTree = "<group>"; };
+		3179E79E1E96A1DD002F7561 /* IMPCanvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPCanvas.swift; sourceTree = "<group>"; };
+		319347C11E9975A600CBCDFB /* IMPPatchesGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMPPatchesGridView.swift; sourceTree = "<group>"; };
+		520B0CAF8C994FF16CA15B0F /* Pods_IMPCCheckerDetectorTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMPCCheckerDetectorTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E2081E620A3AD2F78869575 /* Pods-IMPCCheckerDetectorTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMPCCheckerDetectorTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMPCCheckerDetectorTest/Pods-IMPCCheckerDetectorTest.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3179E7831E96A12D002F7561 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0E054D3CAA05F48BAF78361 /* Pods_IMPCCheckerDetectorTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		316A79F21E97A6C500DFD31A /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				316A79F31E97A6C500DFD31A /* Algorithms */,
+				316A79F51E97A6C500DFD31A /* Base */,
+				316A7A091E97A6C500DFD31A /* Bridging */,
+				316A7A101E97A6C500DFD31A /* Common */,
+				316A7A1A1E97A6C500DFD31A /* Detectors */,
+				316A7A261E97A6C500DFD31A /* Devices */,
+				316A7A301E97A6C500DFD31A /* Effects */,
+				316A7A321E97A6C500DFD31A /* FrontEnd */,
+				316A7A361E97A6C500DFD31A /* Generators */,
+				316A7A391E97A6C500DFD31A /* Math */,
+				316A7A401E97A6C500DFD31A /* Morphology */,
+				316A7A461E97A6C500DFD31A /* Operations */,
+				316A7A591E97A6C500DFD31A /* Providers */,
+				316A7A621E97A6C500DFD31A /* Shaders */,
+				316A7A7C1E97A6C600DFD31A /* Utils */,
+			);
+			name = Classes;
+			path = ../../../../IMProcessing/Classes;
+			sourceTree = "<group>";
+		};
+		316A79F31E97A6C500DFD31A /* Algorithms */ = {
+			isa = PBXGroup;
+			children = (
+				316A79F41E97A6C500DFD31A /* IMPBitonicSort.swift */,
+			);
+			path = Algorithms;
+			sourceTree = "<group>";
+		};
+		316A79F51E97A6C500DFD31A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				316A79F61E97A6C500DFD31A /* Graphics */,
+				316A79FE1E97A6C500DFD31A /* IMPFilter.swift */,
+				316A79FF1E97A6C500DFD31A /* IMPFilterOperations.swift */,
+				316A7A001E97A6C500DFD31A /* IMPFunction.swift */,
+				316A7A011E97A6C500DFD31A /* IMPResampler.swift */,
+				316A7A021E97A6C500DFD31A /* IMPShader.swift */,
+				316A7A031E97A6C500DFD31A /* IMPTwoPass.swift */,
+				316A7A041E97A6C500DFD31A /* Processors */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		316A79F61E97A6C500DFD31A /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+				316A79F71E97A6C500DFD31A /* IMPLineSegment.swift */,
+				316A79F81E97A6C500DFD31A /* IMPPhotoPlate.swift */,
+				316A79F91E97A6C500DFD31A /* IMPPolarLine.swift */,
+				316A79FA1E97A6C500DFD31A /* IMPQuad.swift */,
+				316A79FB1E97A6C500DFD31A /* IMPTransformModel.swift */,
+				316A79FC1E97A6C500DFD31A /* IMPTriangle.swift */,
+				316A79FD1E97A6C500DFD31A /* IMPVertices.swift */,
+			);
+			path = Graphics;
+			sourceTree = "<group>";
+		};
+		316A7A041E97A6C500DFD31A /* Processors */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A051E97A6C500DFD31A /* IMPCIFilter.swift */,
+				316A7A061E97A6C500DFD31A /* MPSProcessor.swift */,
+				316A7A071E97A6C500DFD31A /* MTLProcessor.swift */,
+				316A7A081E97A6C500DFD31A /* MTLShader.swift */,
+			);
+			path = Processors;
+			sourceTree = "<group>";
+		};
+		316A7A091E97A6C500DFD31A /* Bridging */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A0A1E97A6C500DFD31A /* IMPConstants-Bridging-Metal.h */,
+				316A7A0B1E97A6C500DFD31A /* IMPExif.h */,
+				316A7A0C1E97A6C500DFD31A /* IMPHistogramTypes-Bridging-Metal.h */,
+				316A7A0D1E97A6C500DFD31A /* IMPOperations-Bridgin-Metal.h */,
+				316A7A0E1E97A6C500DFD31A /* IMProcessing-Bridging-Header.h */,
+				316A7A0F1E97A6C500DFD31A /* IMPTypes-Bridging-Metal.h */,
+			);
+			path = Bridging;
+			sourceTree = "<group>";
+		};
+		316A7A101E97A6C500DFD31A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A111E97A6C500DFD31A /* IMPColor.swift */,
+				316A7A121E97A6C500DFD31A /* IMPContext.swift */,
+				316A7A131E97A6C500DFD31A /* IMPNumericTypes.swift */,
+				316A7A141E97A6C500DFD31A /* IMPRgbHsv.swift */,
+				316A7A151E97A6C500DFD31A /* IMPRgbLab.swift */,
+				316A7A161E97A6C500DFD31A /* IMPRgbXyz.swift */,
+				316A7A171E97A6C500DFD31A /* IMProcessing.swift */,
+				316A7A181E97A6C500DFD31A /* IMPSimd.swift */,
+				316A7A191E97A6C500DFD31A /* IMPTypeAliases .swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		316A7A1A1E97A6C500DFD31A /* Detectors */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A1B1E97A6C500DFD31A /* CChecker */,
+				316A7A1F1E97A6C500DFD31A /* IMPCCheckerDetector.swift */,
+				316A7A201E97A6C500DFD31A /* IMPDetector.swift */,
+				316A7A211E97A6C500DFD31A /* IMPHarrisCornerDetector.swift */,
+				316A7A221E97A6C500DFD31A /* IMPHoughLinesDetector.swift */,
+				316A7A231E97A6C500DFD31A /* IMPHoughSpace.swift */,
+				316A7A241E97A6C500DFD31A /* IMPHoughSpaceDetector.swift */,
+				316A7A251E97A6C500DFD31A /* IMPOrientedLinesDetector.swift */,
+			);
+			path = Detectors;
+			sourceTree = "<group>";
+		};
+		316A7A1B1E97A6C500DFD31A /* CChecker */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A1C1E97A6C500DFD31A /* IMPCChekers.swift */,
+				316A7A1D1E97A6C500DFD31A /* IMPPatch.swift */,
+				316A7A1E1E97A6C500DFD31A /* IMPPatchesGrid.swift */,
+			);
+			path = CChecker;
+			sourceTree = "<group>";
+		};
+		316A7A261E97A6C500DFD31A /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A271E97A6C500DFD31A /* Camera */,
+				316A7A2B1E97A6C500DFD31A /* IMPCameraManager.swift */,
+				316A7A2C1E97A6C500DFD31A /* IMPMotionManager.swift */,
+				316A7A2D1E97A6C500DFD31A /* Sessions */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		316A7A271E97A6C500DFD31A /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A281E97A6C500DFD31A /* IMPCameraExposure.swift */,
+				316A7A291E97A6C500DFD31A /* IMPCameraExtentions.swift */,
+				316A7A2A1E97A6C500DFD31A /* IMPCameraFocus.swift */,
+			);
+			path = Camera;
+			sourceTree = "<group>";
+		};
+		316A7A2D1E97A6C500DFD31A /* Sessions */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A2E1E97A6C500DFD31A /* IMPAVSession.swift */,
+				316A7A2F1E97A6C500DFD31A /* IMPCameraSession.swift */,
+			);
+			path = Sessions;
+			sourceTree = "<group>";
+		};
+		316A7A301E97A6C500DFD31A /* Effects */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A311E97A6C500DFD31A /* IMPPosterize.swift */,
+			);
+			path = Effects;
+			sourceTree = "<group>";
+		};
+		316A7A321E97A6C500DFD31A /* FrontEnd */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A331E97A6C500DFD31A /* IMPDisplayLink.swift */,
+				316A7A341E97A6C500DFD31A /* IMPView.swift */,
+				316A7A351E97A6C500DFD31A /* Privates */,
+			);
+			path = FrontEnd;
+			sourceTree = "<group>";
+		};
+		316A7A351E97A6C500DFD31A /* Privates */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Privates;
+			sourceTree = "<group>";
+		};
+		316A7A361E97A6C500DFD31A /* Generators */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A371E97A6C500DFD31A /* IMPCrosshairsGenerator.swift */,
+				316A7A381E97A6C500DFD31A /* IMPLinesGenerator.swift */,
+			);
+			path = Generators;
+			sourceTree = "<group>";
+		};
+		316A7A391E97A6C500DFD31A /* Math */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A3A1E97A6C500DFD31A /* IMPDistribution.swift */,
+				316A7A3B1E97A6C500DFD31A /* IMPMatrix.swift */,
+				316A7A3C1E97A6C500DFD31A /* Matrix */,
+			);
+			path = Math;
+			sourceTree = "<group>";
+		};
+		316A7A3C1E97A6C500DFD31A /* Matrix */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A3D1E97A6C500DFD31A /* ColumnView.swift */,
+				316A7A3E1E97A6C500DFD31A /* MatrixArithmetic.swift */,
+				316A7A3F1E97A6C500DFD31A /* RowView.swift */,
+			);
+			path = Matrix;
+			sourceTree = "<group>";
+		};
+		316A7A401E97A6C500DFD31A /* Morphology */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A411E97A6C500DFD31A /* IMPClosing.swift */,
+				316A7A421E97A6C500DFD31A /* IMPDilation.swift */,
+				316A7A431E97A6C500DFD31A /* IMPErosion.swift */,
+				316A7A441E97A6C500DFD31A /* IMPMorphology.swift */,
+				316A7A451E97A6C500DFD31A /* IMPOpening.swift */,
+			);
+			path = Morphology;
+			sourceTree = "<group>";
+		};
+		316A7A461E97A6C500DFD31A /* Operations */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A471E97A6C500DFD31A /* Convolutions */,
+				316A7A4C1E97A6C500DFD31A /* Derivatives */,
+				316A7A4F1E97A6C500DFD31A /* Edges */,
+				316A7A551E97A6C500DFD31A /* Filters */,
+				316A7A571E97A6C500DFD31A /* Thresholds */,
+			);
+			path = Operations;
+			sourceTree = "<group>";
+		};
+		316A7A471E97A6C500DFD31A /* Convolutions */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A481E97A6C500DFD31A /* IMPBaseBlur.swift */,
+				316A7A491E97A6C500DFD31A /* IMPBoxBlur.swift */,
+				316A7A4A1E97A6C500DFD31A /* IMPConvolution3x3.swift */,
+				316A7A4B1E97A6C500DFD31A /* IMPGaussianBlur.swift */,
+			);
+			path = Convolutions;
+			sourceTree = "<group>";
+		};
+		316A7A4C1E97A6C500DFD31A /* Derivatives */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A4D1E97A6C500DFD31A /* IMPDerivative.swift */,
+				316A7A4E1E97A6C500DFD31A /* IMPXYDerivative.swift */,
+			);
+			path = Derivatives;
+			sourceTree = "<group>";
+		};
+		316A7A4F1E97A6C500DFD31A /* Edges */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A501E97A6C500DFD31A /* IMPCannyEdges.swift */,
+				316A7A511E97A6C500DFD31A /* IMPGaussianDerivativeEdges.swift */,
+				316A7A521E97A6C500DFD31A /* IMPHarrisCorner.swift */,
+				316A7A531E97A6C500DFD31A /* IMPNonMaximumSuppression.swift */,
+				316A7A541E97A6C500DFD31A /* IMPSobelEdges.swift */,
+			);
+			path = Edges;
+			sourceTree = "<group>";
+		};
+		316A7A551E97A6C500DFD31A /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A561E97A6C500DFD31A /* IMPMedian.swift */,
+			);
+			path = Filters;
+			sourceTree = "<group>";
+		};
+		316A7A571E97A6C500DFD31A /* Thresholds */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A581E97A6C500DFD31A /* IMPAdaptiveThreshold.swift */,
+			);
+			path = Thresholds;
+			sourceTree = "<group>";
+		};
+		316A7A591E97A6C500DFD31A /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A5A1E97A6C500DFD31A /* IMPImage.swift */,
+				316A7A5B1E97A6C500DFD31A /* IMPImageProvider.swift */,
+				316A7A5C1E97A6C500DFD31A /* IMPMTLDevice.swift */,
+				316A7A5D1E97A6C500DFD31A /* IMPMTLTexture.swift */,
+				316A7A5E1E97A6C500DFD31A /* IMPTextureCache.swift */,
+				316A7A5F1E97A6C500DFD31A /* IMPTextureDelayLine.swift */,
+				316A7A601E97A6C500DFD31A /* IMPTextureProvider.swift */,
+				316A7A611E97A6C500DFD31A /* IMPVideoCache.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		316A7A621E97A6C500DFD31A /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A631E97A6C500DFD31A /* IMPAdaptiveThreshold_metal.h */,
+				316A7A641E97A6C500DFD31A /* IMPBlending_metal.h */,
+				316A7A651E97A6C500DFD31A /* IMPCChekerDetector_metal.h */,
+				316A7A661E97A6C500DFD31A /* IMPColorProcessing_metal.h */,
+				316A7A671E97A6C500DFD31A /* IMPColorSpaces_metal.h */,
+				316A7A681E97A6C500DFD31A /* IMPCommon_metal.h */,
+				316A7A691E97A6C500DFD31A /* IMPConstants_metal.h */,
+				316A7A6A1E97A6C500DFD31A /* IMPConvolution_metal.h */,
+				316A7A6B1E97A6C500DFD31A /* IMPCrosshair_metal.h */,
+				316A7A6C1E97A6C600DFD31A /* IMPDerivatives_metal.h */,
+				316A7A6D1E97A6C600DFD31A /* IMPFlowControl_metal.h */,
+				316A7A6E1E97A6C600DFD31A /* IMPGaussianBlur_metal.h */,
+				316A7A6F1E97A6C600DFD31A /* IMPGeometry_metal.h */,
+				316A7A701E97A6C600DFD31A /* IMPHarrisCorners_metal.h */,
+				316A7A711E97A6C600DFD31A /* IMPHarrisCornersDetector_metal.h */,
+				316A7A721E97A6C600DFD31A /* IMPHuoghTransform_metal.h */,
+				316A7A731E97A6C600DFD31A /* IMPMedian_metal.h */,
+				316A7A741E97A6C600DFD31A /* IMPMorphology_metal.h */,
+				316A7A751E97A6C600DFD31A /* IMPPosterize_metal.h */,
+				316A7A761E97A6C600DFD31A /* IMProcessing_metal.h */,
+				316A7A771E97A6C600DFD31A /* IMProcessingUI_metal.h */,
+				316A7A781E97A6C600DFD31A /* IMPSobelEdges_metal.h */,
+				316A7A791E97A6C600DFD31A /* IMPStdlib_metal.h */,
+				316A7A7A1E97A6C600DFD31A /* IMPSwift-Bridging-Metal.h */,
+				316A7A7B1E97A6C600DFD31A /* IMPVignette_metal.h */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		316A7A7C1E97A6C600DFD31A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				316A7A7D1E97A6C600DFD31A /* IMPDequeue.swift */,
+				316A7A7E1E97A6C600DFD31A /* IMPQueue.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		3179E77D1E96A12D002F7561 = {
+			isa = PBXGroup;
+			children = (
+				3179E7881E96A12D002F7561 /* IMPCCheckerDetectorTest */,
+				3179E7871E96A12D002F7561 /* Products */,
+				F5BF7DDDCCB37D823AB6714F /* Pods */,
+				B3A7D7602140931BF28B33BE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3179E7871E96A12D002F7561 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3179E7861E96A12D002F7561 /* IMPCCheckerDetectorTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3179E7881E96A12D002F7561 /* IMPCCheckerDetectorTest */ = {
+			isa = PBXGroup;
+			children = (
+				316A79F21E97A6C500DFD31A /* Classes */,
+				3179E79B1E96A18B002F7561 /* Shaders */,
+				3179E7891E96A12D002F7561 /* AppDelegate.swift */,
+				3179E78B1E96A12D002F7561 /* ViewController.swift */,
+				3179E79E1E96A1DD002F7561 /* IMPCanvas.swift */,
+				319347C11E9975A600CBCDFB /* IMPPatchesGridView.swift */,
+				3179E78D1E96A12D002F7561 /* Main.storyboard */,
+				3179E7901E96A12D002F7561 /* Assets.xcassets */,
+				3179E7921E96A12D002F7561 /* LaunchScreen.storyboard */,
+				3179E7951E96A12D002F7561 /* Info.plist */,
+			);
+			path = IMPCCheckerDetectorTest;
+			sourceTree = "<group>";
+		};
+		3179E79B1E96A18B002F7561 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				3179E79C1E96A18B002F7561 /* IMPCamera_main.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		B3A7D7602140931BF28B33BE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				520B0CAF8C994FF16CA15B0F /* Pods_IMPCCheckerDetectorTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F5BF7DDDCCB37D823AB6714F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5E2081E620A3AD2F78869575 /* Pods-IMPCCheckerDetectorTest.debug.xcconfig */,
+				147BF956D04B68C0B30849DA /* Pods-IMPCCheckerDetectorTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3179E7851E96A12D002F7561 /* IMPCCheckerDetectorTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3179E7981E96A12D002F7561 /* Build configuration list for PBXNativeTarget "IMPCCheckerDetectorTest" */;
+			buildPhases = (
+				349AEFF3656FE3D57B60D6A3 /* [CP] Check Pods Manifest.lock */,
+				3179E7821E96A12D002F7561 /* Sources */,
+				3179E7831E96A12D002F7561 /* Frameworks */,
+				3179E7841E96A12D002F7561 /* Resources */,
+				C466091BF1A6E501FBF1BD35 /* [CP] Embed Pods Frameworks */,
+				ACBA3346AE15DD4D2AC82B2C /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IMPCCheckerDetectorTest;
+			productName = IMPCCheckerDetectorTest;
+			productReference = 3179E7861E96A12D002F7561 /* IMPCCheckerDetectorTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3179E77E1E96A12D002F7561 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Dehancer;
+				TargetAttributes = {
+					3179E7851E96A12D002F7561 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = TCA85S5T49;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 3179E7811E96A12D002F7561 /* Build configuration list for PBXProject "IMPCCheckerDetectorTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3179E77D1E96A12D002F7561;
+			productRefGroup = 3179E7871E96A12D002F7561 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3179E7851E96A12D002F7561 /* IMPCCheckerDetectorTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3179E7841E96A12D002F7561 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3179E7941E96A12D002F7561 /* LaunchScreen.storyboard in Resources */,
+				3179E7911E96A12D002F7561 /* Assets.xcassets in Resources */,
+				3179E78F1E96A12D002F7561 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		349AEFF3656FE3D57B60D6A3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		ACBA3346AE15DD4D2AC82B2C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IMPCCheckerDetectorTest/Pods-IMPCCheckerDetectorTest-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C466091BF1A6E501FBF1BD35 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IMPCCheckerDetectorTest/Pods-IMPCCheckerDetectorTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3179E7821E96A12D002F7561 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				316A7AB91E97A6C600DFD31A /* IMPOpening.swift in Sources */,
+				316A7AA41E97A6C600DFD31A /* IMPCameraExposure.swift in Sources */,
+				316A7AAE1E97A6C600DFD31A /* IMPCrosshairsGenerator.swift in Sources */,
+				316A7AB71E97A6C600DFD31A /* IMPErosion.swift in Sources */,
+				316A7A8C1E97A6C600DFD31A /* IMPTwoPass.swift in Sources */,
+				316A7AA31E97A6C600DFD31A /* IMPOrientedLinesDetector.swift in Sources */,
+				316A7AD01E97A6C600DFD31A /* IMPQueue.swift in Sources */,
+				316A7AB01E97A6C600DFD31A /* IMPDistribution.swift in Sources */,
+				316A7A7F1E97A6C600DFD31A /* IMPBitonicSort.swift in Sources */,
+				316A7AA81E97A6C600DFD31A /* IMPMotionManager.swift in Sources */,
+				316A7ABF1E97A6C600DFD31A /* IMPXYDerivative.swift in Sources */,
+				316A7AC61E97A6C600DFD31A /* IMPAdaptiveThreshold.swift in Sources */,
+				316A7AAD1E97A6C600DFD31A /* IMPView.swift in Sources */,
+				316A7AB51E97A6C600DFD31A /* IMPClosing.swift in Sources */,
+				316A7AA01E97A6C600DFD31A /* IMPHoughLinesDetector.swift in Sources */,
+				316A7ACD1E97A6C600DFD31A /* IMPTextureProvider.swift in Sources */,
+				316A7A961E97A6C600DFD31A /* IMPRgbXyz.swift in Sources */,
+				316A7AC81E97A6C600DFD31A /* IMPImageProvider.swift in Sources */,
+				316A7A901E97A6C600DFD31A /* MTLShader.swift in Sources */,
+				316A7AAF1E97A6C600DFD31A /* IMPLinesGenerator.swift in Sources */,
+				316A7ABD1E97A6C600DFD31A /* IMPGaussianBlur.swift in Sources */,
+				316A7A871E97A6C600DFD31A /* IMPFilter.swift in Sources */,
+				316A7AC91E97A6C600DFD31A /* IMPMTLDevice.swift in Sources */,
+				316A7A881E97A6C600DFD31A /* IMPFilterOperations.swift in Sources */,
+				316A7A8B1E97A6C600DFD31A /* IMPShader.swift in Sources */,
+				316A7AA61E97A6C600DFD31A /* IMPCameraFocus.swift in Sources */,
+				316A7A981E97A6C600DFD31A /* IMPSimd.swift in Sources */,
+				316A7A9E1E97A6C600DFD31A /* IMPDetector.swift in Sources */,
+				316A7AA71E97A6C600DFD31A /* IMPCameraManager.swift in Sources */,
+				316A7ABC1E97A6C600DFD31A /* IMPConvolution3x3.swift in Sources */,
+				316A7A941E97A6C600DFD31A /* IMPRgbHsv.swift in Sources */,
+				316A7A891E97A6C600DFD31A /* IMPFunction.swift in Sources */,
+				316A7AC01E97A6C600DFD31A /* IMPCannyEdges.swift in Sources */,
+				316A7A9F1E97A6C600DFD31A /* IMPHarrisCornerDetector.swift in Sources */,
+				316A7AC51E97A6C600DFD31A /* IMPMedian.swift in Sources */,
+				316A7A991E97A6C600DFD31A /* IMPTypeAliases .swift in Sources */,
+				316A7ACA1E97A6C600DFD31A /* IMPMTLTexture.swift in Sources */,
+				316A7A821E97A6C600DFD31A /* IMPPolarLine.swift in Sources */,
+				316A7A8F1E97A6C600DFD31A /* MTLProcessor.swift in Sources */,
+				316A7AB31E97A6C600DFD31A /* MatrixArithmetic.swift in Sources */,
+				316A7A9C1E97A6C600DFD31A /* IMPPatchesGrid.swift in Sources */,
+				3179E79F1E96A1DD002F7561 /* IMPCanvas.swift in Sources */,
+				316A7ACB1E97A6C600DFD31A /* IMPTextureCache.swift in Sources */,
+				316A7A861E97A6C600DFD31A /* IMPVertices.swift in Sources */,
+				316A7A8D1E97A6C600DFD31A /* IMPCIFilter.swift in Sources */,
+				316A7A831E97A6C600DFD31A /* IMPQuad.swift in Sources */,
+				316A7ABA1E97A6C600DFD31A /* IMPBaseBlur.swift in Sources */,
+				316A7AA21E97A6C600DFD31A /* IMPHoughSpaceDetector.swift in Sources */,
+				319347C21E9975A600CBCDFB /* IMPPatchesGridView.swift in Sources */,
+				3179E78C1E96A12D002F7561 /* ViewController.swift in Sources */,
+				316A7AC41E97A6C600DFD31A /* IMPSobelEdges.swift in Sources */,
+				3179E79D1E96A18B002F7561 /* IMPCamera_main.metal in Sources */,
+				316A7AA51E97A6C600DFD31A /* IMPCameraExtentions.swift in Sources */,
+				316A7ACC1E97A6C600DFD31A /* IMPTextureDelayLine.swift in Sources */,
+				316A7AA91E97A6C600DFD31A /* IMPAVSession.swift in Sources */,
+				316A7A9B1E97A6C600DFD31A /* IMPPatch.swift in Sources */,
+				316A7A8E1E97A6C600DFD31A /* MPSProcessor.swift in Sources */,
+				316A7AAC1E97A6C600DFD31A /* IMPDisplayLink.swift in Sources */,
+				316A7A801E97A6C600DFD31A /* IMPLineSegment.swift in Sources */,
+				316A7AAB1E97A6C600DFD31A /* IMPPosterize.swift in Sources */,
+				316A7A851E97A6C600DFD31A /* IMPTriangle.swift in Sources */,
+				316A7A951E97A6C600DFD31A /* IMPRgbLab.swift in Sources */,
+				316A7AC11E97A6C600DFD31A /* IMPGaussianDerivativeEdges.swift in Sources */,
+				316A7ACF1E97A6C600DFD31A /* IMPDequeue.swift in Sources */,
+				316A7AAA1E97A6C600DFD31A /* IMPCameraSession.swift in Sources */,
+				3179E78A1E96A12D002F7561 /* AppDelegate.swift in Sources */,
+				316A7A971E97A6C600DFD31A /* IMProcessing.swift in Sources */,
+				316A7AB81E97A6C600DFD31A /* IMPMorphology.swift in Sources */,
+				316A7A811E97A6C600DFD31A /* IMPPhotoPlate.swift in Sources */,
+				316A7A9A1E97A6C600DFD31A /* IMPCChekers.swift in Sources */,
+				316A7A8A1E97A6C600DFD31A /* IMPResampler.swift in Sources */,
+				316A7A931E97A6C600DFD31A /* IMPNumericTypes.swift in Sources */,
+				316A7A911E97A6C600DFD31A /* IMPColor.swift in Sources */,
+				316A7AB11E97A6C600DFD31A /* IMPMatrix.swift in Sources */,
+				316A7ACE1E97A6C600DFD31A /* IMPVideoCache.swift in Sources */,
+				316A7A921E97A6C600DFD31A /* IMPContext.swift in Sources */,
+				316A7AB21E97A6C600DFD31A /* ColumnView.swift in Sources */,
+				316A7AC21E97A6C600DFD31A /* IMPHarrisCorner.swift in Sources */,
+				316A7AA11E97A6C600DFD31A /* IMPHoughSpace.swift in Sources */,
+				316A7ABB1E97A6C600DFD31A /* IMPBoxBlur.swift in Sources */,
+				316A7AB41E97A6C600DFD31A /* RowView.swift in Sources */,
+				316A7A9D1E97A6C600DFD31A /* IMPCCheckerDetector.swift in Sources */,
+				316A7AB61E97A6C600DFD31A /* IMPDilation.swift in Sources */,
+				316A7AC31E97A6C600DFD31A /* IMPNonMaximumSuppression.swift in Sources */,
+				316A7A841E97A6C600DFD31A /* IMPTransformModel.swift in Sources */,
+				316A7AC71E97A6C600DFD31A /* IMPImage.swift in Sources */,
+				316A7ABE1E97A6C600DFD31A /* IMPDerivative.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3179E78D1E96A12D002F7561 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3179E78E1E96A12D002F7561 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3179E7921E96A12D002F7561 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3179E7931E96A12D002F7561 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3179E7961E96A12D002F7561 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3179E7971E96A12D002F7561 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3179E7991E96A12D002F7561 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E2081E620A3AD2F78869575 /* Pods-IMPCCheckerDetectorTest.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = TCA85S5T49;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = IMPCCheckerDetectorTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_HEADER_SEARCH_PATHS = "../../../IMProcessing/Classes/Bridging ../../../IMProcessing/Classes/Shaders";
+				PRODUCT_BUNDLE_IDENTIFIER = Dehancer.IMPCCheckerDetectorTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../../../IMProcessing/Classes/Bridging/IMProcessing-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3179E79A1E96A12D002F7561 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 147BF956D04B68C0B30849DA /* Pods-IMPCCheckerDetectorTest.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TCA85S5T49;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = IMPCCheckerDetectorTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MTL_HEADER_SEARCH_PATHS = "../../../IMProcessing/Classes/Bridging ../../../IMProcessing/Classes/Shaders";
+				PRODUCT_BUNDLE_IDENTIFIER = Dehancer.IMPCCheckerDetectorTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "../../../IMProcessing/Classes/Bridging/IMProcessing-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3179E7811E96A12D002F7561 /* Build configuration list for PBXProject "IMPCCheckerDetectorTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3179E7961E96A12D002F7561 /* Debug */,
+				3179E7971E96A12D002F7561 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3179E7981E96A12D002F7561 /* Build configuration list for PBXNativeTarget "IMPCCheckerDetectorTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3179E7991E96A12D002F7561 /* Debug */,
+				3179E79A1E96A12D002F7561 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3179E77E1E96A12D002F7561 /* Project object */;
+}

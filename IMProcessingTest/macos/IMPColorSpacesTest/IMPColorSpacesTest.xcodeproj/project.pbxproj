@@ -1,0 +1,393 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		31AFABB21EB9D58F00C740C5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AFABB11EB9D58F00C740C5 /* AppDelegate.swift */; };
+		31AFABB41EB9D58F00C740C5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31AFABB31EB9D58F00C740C5 /* ViewController.swift */; };
+		31AFABB61EB9D58F00C740C5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 31AFABB51EB9D58F00C740C5 /* Assets.xcassets */; };
+		31AFABB91EB9D58F00C740C5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 31AFABB71EB9D58F00C740C5 /* Main.storyboard */; };
+		A6EC89D7DE31E432672CD38C /* Pods_IMPColorSpacesTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4BA941F69B7C7F4A564C2A26 /* Pods_IMPColorSpacesTest.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		31AFABAE1EB9D58F00C740C5 /* IMPColorSpacesTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMPColorSpacesTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		31AFABB11EB9D58F00C740C5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		31AFABB31EB9D58F00C740C5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		31AFABB51EB9D58F00C740C5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		31AFABB81EB9D58F00C740C5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		31AFABBA1EB9D58F00C740C5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4BA941F69B7C7F4A564C2A26 /* Pods_IMPColorSpacesTest.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMPColorSpacesTest.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4D623E7D7706919C50632678 /* Pods-IMPColorSpacesTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMPColorSpacesTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMPColorSpacesTest/Pods-IMPColorSpacesTest.release.xcconfig"; sourceTree = "<group>"; };
+		D041B0E58812E8682136861B /* Pods-IMPColorSpacesTest.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMPColorSpacesTest.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMPColorSpacesTest/Pods-IMPColorSpacesTest.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		31AFABAB1EB9D58F00C740C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A6EC89D7DE31E432672CD38C /* Pods_IMPColorSpacesTest.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D4BDB87712E86DDAC90F3ED /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D041B0E58812E8682136861B /* Pods-IMPColorSpacesTest.debug.xcconfig */,
+				4D623E7D7706919C50632678 /* Pods-IMPColorSpacesTest.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		31AFABA51EB9D58F00C740C5 = {
+			isa = PBXGroup;
+			children = (
+				31AFABB01EB9D58F00C740C5 /* IMPColorSpacesTest */,
+				31AFABAF1EB9D58F00C740C5 /* Products */,
+				0D4BDB87712E86DDAC90F3ED /* Pods */,
+				674402AED5227D2516FCFADE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		31AFABAF1EB9D58F00C740C5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				31AFABAE1EB9D58F00C740C5 /* IMPColorSpacesTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		31AFABB01EB9D58F00C740C5 /* IMPColorSpacesTest */ = {
+			isa = PBXGroup;
+			children = (
+				31AFABB11EB9D58F00C740C5 /* AppDelegate.swift */,
+				31AFABB31EB9D58F00C740C5 /* ViewController.swift */,
+				31AFABB51EB9D58F00C740C5 /* Assets.xcassets */,
+				31AFABB71EB9D58F00C740C5 /* Main.storyboard */,
+				31AFABBA1EB9D58F00C740C5 /* Info.plist */,
+			);
+			path = IMPColorSpacesTest;
+			sourceTree = "<group>";
+		};
+		674402AED5227D2516FCFADE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4BA941F69B7C7F4A564C2A26 /* Pods_IMPColorSpacesTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		31AFABAD1EB9D58F00C740C5 /* IMPColorSpacesTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 31AFABBD1EB9D58F00C740C5 /* Build configuration list for PBXNativeTarget "IMPColorSpacesTest" */;
+			buildPhases = (
+				9E32EC0B81C9124DB8D06A4A /* [CP] Check Pods Manifest.lock */,
+				31AFABAA1EB9D58F00C740C5 /* Sources */,
+				31AFABAB1EB9D58F00C740C5 /* Frameworks */,
+				31AFABAC1EB9D58F00C740C5 /* Resources */,
+				BDFAA2C8A270C2A7AE18D99A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IMPColorSpacesTest;
+			productName = IMPColorSpacesTest;
+			productReference = 31AFABAE1EB9D58F00C740C5 /* IMPColorSpacesTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		31AFABA61EB9D58F00C740C5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = Dehancer;
+				TargetAttributes = {
+					31AFABAD1EB9D58F00C740C5 = {
+						CreatedOnToolsVersion = 8.3;
+						DevelopmentTeam = TCA85S5T49;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 31AFABA91EB9D58F00C740C5 /* Build configuration list for PBXProject "IMPColorSpacesTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 31AFABA51EB9D58F00C740C5;
+			productRefGroup = 31AFABAF1EB9D58F00C740C5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				31AFABAD1EB9D58F00C740C5 /* IMPColorSpacesTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		31AFABAC1EB9D58F00C740C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AFABB61EB9D58F00C740C5 /* Assets.xcassets in Resources */,
+				31AFABB91EB9D58F00C740C5 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9E32EC0B81C9124DB8D06A4A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IMPColorSpacesTest-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BDFAA2C8A270C2A7AE18D99A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-IMPColorSpacesTest/Pods-IMPColorSpacesTest-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IMProcessing/IMProcessing.framework",
+				"${BUILT_PRODUCTS_DIR}/Surge/Surge.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IMProcessing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Surge.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IMPColorSpacesTest/Pods-IMPColorSpacesTest-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		31AFABAA1EB9D58F00C740C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31AFABB41EB9D58F00C740C5 /* ViewController.swift in Sources */,
+				31AFABB21EB9D58F00C740C5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		31AFABB71EB9D58F00C740C5 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				31AFABB81EB9D58F00C740C5 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		31AFABBB1EB9D58F00C740C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		31AFABBC1EB9D58F00C740C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		31AFABBE1EB9D58F00C740C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D041B0E58812E8682136861B /* Pods-IMPColorSpacesTest.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = IMPColorSpacesTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dehancer.IMPColorSpacesTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		31AFABBF1EB9D58F00C740C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D623E7D7706919C50632678 /* Pods-IMPColorSpacesTest.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = IMPColorSpacesTest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Dehancer.IMPColorSpacesTest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		31AFABA91EB9D58F00C740C5 /* Build configuration list for PBXProject "IMPColorSpacesTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31AFABBB1EB9D58F00C740C5 /* Debug */,
+				31AFABBC1EB9D58F00C740C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		31AFABBD1EB9D58F00C740C5 /* Build configuration list for PBXNativeTarget "IMPColorSpacesTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				31AFABBE1EB9D58F00C740C5 /* Debug */,
+				31AFABBF1EB9D58F00C740C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 31AFABA61EB9D58F00C740C5 /* Project object */;
+}

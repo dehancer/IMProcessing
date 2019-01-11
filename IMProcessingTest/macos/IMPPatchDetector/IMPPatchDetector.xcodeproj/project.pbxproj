@@ -1,0 +1,437 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3102E00720F0C4E7006E3E47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3102E00620F0C4E7006E3E47 /* AppDelegate.swift */; };
+		3102E00920F0C4E7006E3E47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3102E00820F0C4E7006E3E47 /* ViewController.swift */; };
+		3102E00B20F0C4E8006E3E47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3102E00A20F0C4E8006E3E47 /* Assets.xcassets */; };
+		3102E00E20F0C4E8006E3E47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3102E00C20F0C4E8006E3E47 /* Main.storyboard */; };
+		3102E01720F0CADD006E3E47 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3102E01620F0CADD006E3E47 /* WindowController.swift */; };
+		3196A37F20F0CFB400384FB6 /* IMPMain_metal.metal in Sources */ = {isa = PBXBuildFile; fileRef = 3196A37C20F0CFB400384FB6 /* IMPMain_metal.metal */; };
+		31FFCEE120F0DE0900290EBA /* MarkersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FFCEE020F0DE0900290EBA /* MarkersView.swift */; };
+		31FFCEE520F0E31900290EBA /* PatchesGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31FFCEE420F0E31900290EBA /* PatchesGrid.swift */; };
+		BB18E681D6DEFBED7E80DA94 /* Pods_IMPPatchDetector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FA9BD148DC3BECCBDFD5A65 /* Pods_IMPPatchDetector.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		11CAB68738599E1FB4EAB7D4 /* Pods-IMPPatchDetector.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMPPatchDetector.release.xcconfig"; path = "Pods/Target Support Files/Pods-IMPPatchDetector/Pods-IMPPatchDetector.release.xcconfig"; sourceTree = "<group>"; };
+		3102E00320F0C4E7006E3E47 /* IMPPatchDetector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMPPatchDetector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3102E00620F0C4E7006E3E47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3102E00820F0C4E7006E3E47 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3102E00A20F0C4E8006E3E47 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3102E00D20F0C4E8006E3E47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3102E00F20F0C4E8006E3E47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3102E01020F0C4E8006E3E47 /* IMPPatchDetector.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IMPPatchDetector.entitlements; sourceTree = "<group>"; };
+		3102E01620F0CADD006E3E47 /* WindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		3196A37C20F0CFB400384FB6 /* IMPMain_metal.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = IMPMain_metal.metal; sourceTree = "<group>"; };
+		31FFCEE020F0DE0900290EBA /* MarkersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkersView.swift; sourceTree = "<group>"; };
+		31FFCEE420F0E31900290EBA /* PatchesGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchesGrid.swift; sourceTree = "<group>"; };
+		4FA9BD148DC3BECCBDFD5A65 /* Pods_IMPPatchDetector.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IMPPatchDetector.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		83A2A395D5CB764BD89E59A0 /* Pods-IMPPatchDetector.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IMPPatchDetector.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IMPPatchDetector/Pods-IMPPatchDetector.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3102E00020F0C4E7006E3E47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB18E681D6DEFBED7E80DA94 /* Pods_IMPPatchDetector.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3102DFFA20F0C4E7006E3E47 = {
+			isa = PBXGroup;
+			children = (
+				3102E00520F0C4E7006E3E47 /* IMPPatchDetector */,
+				3102E00420F0C4E7006E3E47 /* Products */,
+				FB8084ED89561F79EEE9227C /* Pods */,
+				3F871AD7B2AA724C669042BC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3102E00420F0C4E7006E3E47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3102E00320F0C4E7006E3E47 /* IMPPatchDetector.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3102E00520F0C4E7006E3E47 /* IMPPatchDetector */ = {
+			isa = PBXGroup;
+			children = (
+				3196A37D20F0CFB400384FB6 /* Classes */,
+				3196A37B20F0CFB400384FB6 /* Shaders */,
+				3102E00620F0C4E7006E3E47 /* AppDelegate.swift */,
+				3102E01620F0CADD006E3E47 /* WindowController.swift */,
+				3102E00A20F0C4E8006E3E47 /* Assets.xcassets */,
+				3102E00C20F0C4E8006E3E47 /* Main.storyboard */,
+				3102E00F20F0C4E8006E3E47 /* Info.plist */,
+				3102E01020F0C4E8006E3E47 /* IMPPatchDetector.entitlements */,
+			);
+			path = IMPPatchDetector;
+			sourceTree = "<group>";
+		};
+		3196A37B20F0CFB400384FB6 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				3196A37C20F0CFB400384FB6 /* IMPMain_metal.metal */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		3196A37D20F0CFB400384FB6 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				31FFCEE420F0E31900290EBA /* PatchesGrid.swift */,
+				31FFCEE020F0DE0900290EBA /* MarkersView.swift */,
+				3102E00820F0C4E7006E3E47 /* ViewController.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		3F871AD7B2AA724C669042BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4FA9BD148DC3BECCBDFD5A65 /* Pods_IMPPatchDetector.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FB8084ED89561F79EEE9227C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				83A2A395D5CB764BD89E59A0 /* Pods-IMPPatchDetector.debug.xcconfig */,
+				11CAB68738599E1FB4EAB7D4 /* Pods-IMPPatchDetector.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3102E00220F0C4E7006E3E47 /* IMPPatchDetector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3102E01320F0C4E8006E3E47 /* Build configuration list for PBXNativeTarget "IMPPatchDetector" */;
+			buildPhases = (
+				F3EF59E88DBABE77ADC0F088 /* [CP] Check Pods Manifest.lock */,
+				3102DFFF20F0C4E7006E3E47 /* Sources */,
+				3102E00020F0C4E7006E3E47 /* Frameworks */,
+				3102E00120F0C4E7006E3E47 /* Resources */,
+				2B3C682B90E3505A52555F05 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = IMPPatchDetector;
+			productName = IMPPatchDetector;
+			productReference = 3102E00320F0C4E7006E3E47 /* IMPPatchDetector.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3102DFFB20F0C4E7006E3E47 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0940;
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = Dehancer;
+				TargetAttributes = {
+					3102E00220F0C4E7006E3E47 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 3102DFFE20F0C4E7006E3E47 /* Build configuration list for PBXProject "IMPPatchDetector" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3102DFFA20F0C4E7006E3E47;
+			productRefGroup = 3102E00420F0C4E7006E3E47 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3102E00220F0C4E7006E3E47 /* IMPPatchDetector */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3102E00120F0C4E7006E3E47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3102E00B20F0C4E8006E3E47 /* Assets.xcassets in Resources */,
+				3102E00E20F0C4E8006E3E47 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B3C682B90E3505A52555F05 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-IMPPatchDetector/Pods-IMPPatchDetector-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IMProcessing/IMProcessing.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Surge/Surge.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IMProcessing.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Surge.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-IMPPatchDetector/Pods-IMPPatchDetector-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F3EF59E88DBABE77ADC0F088 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IMPPatchDetector-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3102DFFF20F0C4E7006E3E47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				31FFCEE520F0E31900290EBA /* PatchesGrid.swift in Sources */,
+				3102E00920F0C4E7006E3E47 /* ViewController.swift in Sources */,
+				3196A37F20F0CFB400384FB6 /* IMPMain_metal.metal in Sources */,
+				31FFCEE120F0DE0900290EBA /* MarkersView.swift in Sources */,
+				3102E01720F0CADD006E3E47 /* WindowController.swift in Sources */,
+				3102E00720F0C4E7006E3E47 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3102E00C20F0C4E8006E3E47 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3102E00D20F0C4E8006E3E47 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3102E01120F0C4E8006E3E47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		3102E01220F0C4E8006E3E47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		3102E01420F0C4E8006E3E47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 83A2A395D5CB764BD89E59A0 /* Pods-IMPPatchDetector.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IMPPatchDetector/IMPPatchDetector.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TCA85S5T49;
+				INFOPLIST_FILE = IMPPatchDetector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dehancer.IMPPatchDetector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		3102E01520F0C4E8006E3E47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11CAB68738599E1FB4EAB7D4 /* Pods-IMPPatchDetector.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = IMPPatchDetector/IMPPatchDetector.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = TCA85S5T49;
+				INFOPLIST_FILE = IMPPatchDetector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Dehancer.IMPPatchDetector;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3102DFFE20F0C4E7006E3E47 /* Build configuration list for PBXProject "IMPPatchDetector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3102E01120F0C4E8006E3E47 /* Debug */,
+				3102E01220F0C4E8006E3E47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3102E01320F0C4E8006E3E47 /* Build configuration list for PBXNativeTarget "IMPPatchDetector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3102E01420F0C4E8006E3E47 /* Debug */,
+				3102E01520F0C4E8006E3E47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3102DFFB20F0C4E7006E3E47 /* Project object */;
+}
