@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = 'IMProcessing'
-  s.version      = '0.13.0'
+  s.version      = '0.13.1'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { 'denn nevera' => 'denn.nevera@gmail.com' }
   s.homepage     = 'http://degradr.photo'
