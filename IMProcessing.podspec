@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.source_files        = 'IMProcessing/Classes/**/*.{h,swift,m,mm}', 'IMProcessing/Classes/*.{swift}', 'IMProcessing/Classes/**/*.h','IMProcessing/Classes/Shaders/*.h', 'vendor/libjpeg-turbo/include/*'
   s.public_header_files = 'IMProcessing/Classes/**/*.h','IMProcessing/Classes/Shaders/*.h'
-  s.vendored_libraries  = 'vendor/libjpeg-turbo/lib/libturbojpeg.a'
+  # s.vendored_libraries  = 'vendor/libjpeg-turbo/lib/libturbojpeg.a'
   s.header_dir   = 'IMProcessing'
   s.frameworks   = 'Metal'
   # s.dependency:  'Surge', :git => 'https://github.com/dnevera/surge.git', :tag => '1.0.2'
