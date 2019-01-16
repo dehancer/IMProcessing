@@ -110,7 +110,7 @@ namespace IMProcessing
         
         float4 result = IMProcessing::blend(float4(rgb,1), float4(lutRgb,1), adjustment.blending);
 
-        outTexture.write(float4(lutRgb,1), gid);
+        outTexture.write(result, gid);
     }
     
 }
