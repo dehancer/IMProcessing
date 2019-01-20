@@ -67,6 +67,10 @@ public class IMPHistogram {
         return binCounts[index.rawValue]
     }
     
+    public func clear() {
+        clearHistogram()
+    }
+    
     ///
     /// Конструктор пустой гистограммы.
     ///

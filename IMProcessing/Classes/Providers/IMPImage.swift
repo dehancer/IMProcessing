@@ -69,6 +69,7 @@ open class IMPImage: IMPImageProvider {
                     }
                 }                   
             }
+            _texture?.label = "IMPImage"
             return _texture                
         }
     }

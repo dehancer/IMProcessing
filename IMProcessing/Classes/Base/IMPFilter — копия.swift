@@ -82,10 +82,11 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
         willSet{
             source?.removeObserver(optionsChanged: optionChangedObserver)
         }
-        didSet{   
+        didSet{
             _destination.texture = nil
-            executeNewSourceObservers(source: source)
+            _destination.cgiImage = nil
             source?.addObserver(optionsChanged: optionChangedObserver)
+            executeNewSourceObservers(source: source)
         }
     }
     
@@ -191,17 +192,17 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     @discardableResult public func process<T:IMPFilter>() -> T {
-        guard dirty || (_destination.texture == nil) else {
-            return  self as! T
-        }
+//        guard dirty || (_destination.texture == nil) else {
+//            return  self as! T
+//        }
         apply(result: _destination, resampleSize: nil)
         return self as! T
     }
     
     public func resample<T:IMPImageProvider>(with resampleSize:NSSize? = nil) -> T {
-        guard dirty || (_destination.texture == nil) else {
-            return _destination as! T
-        }
+//        guard dirty || (_destination.texture == nil) else {
+//            return _destination as! T
+//        }
         return apply(result: _destination, resampleSize: resampleSize) as! T
     }
     
@@ -291,7 +292,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     //
     // optimize processing when image < GPU SIZE
     //
-    private func apply(size:NSSize?, commandBuffer: MTLCommandBuffer? = nil) -> MTLTexture? {
+    private func apply(size:NSSize?, commandBuffer buf: MTLCommandBuffer? = nil) -> MTLTexture? {
         
         guard let input = self.source?.texture else { return nil}
         
@@ -299,19 +300,22 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
         
         var currentResult = input
         
-        for c in coreImageFilterList {
+        print(" ###### 1 >>>> \(self)  done")
+
+        context.execute(.sync, complete: {
             
-            context.execute(.sync, complete: { 
+            print(" ###### 2 >>>> \(self)  done")
+            
+        }, fail: {
+            
+            NSLog("IMPFilter: applying failed.")
+            
+        }, action: { (commandBuffer) in
+            
+            for c in self.coreImageFilterList {
                 
-                if let filter = c.filter {
-                    filter.executeDestinationObservers(destination: filter._destination)
-                }
-                
-            }, fail: {                
-                
-                NSLog("IMPFilter: applying failed.")
-                
-            }, action: { (commandBuffer) in
+                print(" ###### 2.1 >>>> \(self) -> \(c.cifilter?.name, c.filter?.name) done")
+
                 
                 let device = commandBuffer.device
                 
@@ -379,10 +383,19 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
                     filter._destination.texture = currentResult
                     
                 }
-            })
-            
-            c.complete?(IMPImage(context:self.context, texture: currentResult))
-        }
+                
+                c.complete?(IMPImage(context:self.context, texture: currentResult))
+                
+                if let filter = c.filter {
+                    filter.executeDestinationObservers(destination: filter._destination)
+                }
+
+            }
+        })
+        
+        
+        print(" ###### 3 >>>> \(self)  done")
+
         return currentResult
     }
     
@@ -477,8 +490,8 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     // MARK: - main filter chain operations
     //
     @discardableResult public func add<T:IMPFilter>(filter: IMPFilter,
-                                       fail: FailHandler?=nil,
-                                       complete: CompleteHandler?=nil) -> T {
+                                                    fail: FailHandler?=nil,
+                                                    complete: CompleteHandler?=nil) -> T {
         filter.root = self
         return appendFilter(filter: FilterContainer(cifilter: nil, filter: filter, complete:complete),
                             fail: { (error) in
@@ -488,9 +501,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     @discardableResult public func insert<T:IMPFilter>(filter: IMPFilter,
-                                          at index: Int,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         filter.root = self
         return insertFilter(filter: FilterContainer(cifilter: nil, filter: filter, complete:complete), index:index,
                             fail: { (error) in
@@ -501,9 +514,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     
     
     @discardableResult public func insert<T:IMPFilter>(filter: IMPFilter,
-                                          after filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let (index, contains) = findFilter(name: filterName, isAfter: true, fail: fail)
         if contains {
             filter.root = self
@@ -517,9 +530,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     @discardableResult public func insert<T:IMPFilter>(filter: IMPFilter,
-                                          before filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         
         let (index, contains) = findFilter(name: filterName, isAfter: false, fail: fail)
         if contains {
@@ -538,40 +551,40 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     // MARK: - create filters chain
     //
     @discardableResult public func add<T:IMPFilter>(function: IMPFunction,
-                                       fail: FailHandler?=nil,
-                                       complete: CompleteHandler?=nil) -> T {
+                                                    fail: FailHandler?=nil,
+                                                    complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLKernel.register(function: function)
         return appendFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), fail: fail)
     }
     
     @discardableResult public func add<T:IMPFilter>(shader: IMPShader,
-                                       fail: FailHandler?=nil,
-                                       complete: CompleteHandler?=nil) -> T {
+                                                    fail: FailHandler?=nil,
+                                                    complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLShader.register(shader: shader)
         return appendFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), fail: fail)
     }
     
     @discardableResult public func add<T:IMPFilter>(function name: String,
-                                       fail: FailHandler?=nil,
-                                       complete: CompleteHandler?=nil) -> T {
+                                                    fail: FailHandler?=nil,
+                                                    complete: CompleteHandler?=nil) -> T {
         return add(function: IMPFunction(context: context, kernelName: name), fail: fail, complete: complete)
     }
     
     @discardableResult public func add<T:IMPFilter>(vertex: String, fragment: String,
-                                       fail: FailHandler?=nil,
-                                       complete: CompleteHandler?=nil) -> T {
+                                                    fail: FailHandler?=nil,
+                                                    complete: CompleteHandler?=nil) -> T {
         return add(shader: IMPShader(context: context, vertexName: vertex, fragmentName: fragment), fail: fail, complete: complete)
     }
     
     @discardableResult public func add<T:IMPFilter>(filter: CIFilter,
-                                       fail: FailHandler?=nil,
-                                       complete: CompleteHandler?=nil)  -> T {
+                                                    fail: FailHandler?=nil,
+                                                    complete: CompleteHandler?=nil)  -> T {
         return appendFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), fail: fail)
     }
     #if os(iOS)
     public func add<T:IMPFilter>(mps: MPSUnaryImageKernel, withName: String? = nil,
-                    fail: FailHandler?=nil,
-                    complete: CompleteHandler?=nil)   {
+                                 fail: FailHandler?=nil,
+                                 complete: CompleteHandler?=nil)   {
         if let newName = withName {
             mps.label = newName
         }
@@ -583,8 +596,8 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     public func add<T:IMPFilter>(mps: IMPMPSUnaryKernelProvider,
-                    fail: FailHandler?=nil,
-                    complete: CompleteHandler?=nil)   {
+                                 fail: FailHandler?=nil,
+                                 complete: CompleteHandler?=nil)   {
         let filter = IMPCoreImageMPSUnaryKernel.register(mps: mps)
         appendFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), fail: fail)
     }
@@ -595,49 +608,49 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     // MARK: - insertion at index
     //
     @discardableResult public func insert<T:IMPFilter>(function: IMPFunction,
-                                          at index: Int,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLKernel.register(function: function)
         return insertFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), index:index, fail: fail)
     }
     
     @discardableResult public func insert<T:IMPFilter>(shader: IMPShader,
-                                          at index: Int,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLShader.register(shader: shader)
         return insertFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), index:index, fail: fail)
     }
     
     @discardableResult public func insert<T:IMPFilter>(function name: String,
-                                          at index: Int,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         return insert(function: IMPFunction(context:context, kernelName:name),
                       at: index, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(vertex: String, fragment: String,
-                                          at index: Int,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         return insert(shader: IMPShader(context:context, vertexName: vertex, fragmentName:fragment),
                       at: index, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(filter: CIFilter,
-                                          at index: Int,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         return insertFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), index:index, fail: fail)
     }
     
     #if os(iOS)
     @discardableResult public func insert<T:IMPFilter>(mps: MPSUnaryImageKernel, withName: String? = nil,
-                       at index: Int,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) {
         if let newName = withName {
             mps.label = newName
         }
@@ -649,9 +662,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     @discardableResult public func insert<T:IMPFilter>(mps: IMPMPSUnaryKernelProvider,
-                       at index: Int,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) {
+                                                       at index: Int,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) {
         let filter = IMPCoreImageMPSUnaryKernel.register(mps: mps)
         return insertFilter(filter: FilterContainer(cifilter: filter, filter: nil, complete:complete), index:index, fail: fail)
     }
@@ -663,9 +676,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     
     // Insert CIFilter before/after
     @discardableResult public func insert<T:IMPFilter>(filter: CIFilter,
-                                          before filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         
         let (index, contains) = findFilter(name: filterName, isAfter: false, fail: fail)
         if contains {
@@ -675,9 +688,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     @discardableResult public func insert<T:IMPFilter>(filter: CIFilter,
-                                          after filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         
         let (index, contains) = findFilter(name: filterName, isAfter: true, fail: fail)
         if contains {
@@ -688,69 +701,69 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     
     // Insert IMPFunction before/after
     @discardableResult public func insert<T:IMPFilter>(function: IMPFunction,
-                                          after filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLKernel.register(function: function)
         return insert(filter: filter, after: filterName, fail: fail, complete: complete)
     }
     
     // Insert IMPFunction before/after
     @discardableResult public func insert<T:IMPFilter>(shader: IMPShader,
-                                          after filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLShader.register(shader: shader)
         return insert(filter: filter, after: filterName, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(function: IMPFunction,
-                                          before filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLKernel.register(function: function)
         return insert(filter: filter, before: filterName, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(shader: IMPShader,
-                                          before filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let filter = IMPCoreImageMTLShader.register(shader: shader)
         return insert(filter: filter, before: filterName, fail: fail, complete: complete)
     }
     
     // Insert IMPFunction by name before/after
     @discardableResult public func insert<T:IMPFilter>(function name: String,
-                                          after filterName: String,
-                                          fail: FailHandler?=nil,
-                                          complete: CompleteHandler?=nil) -> T {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let function = IMPFunction(context: context, kernelName: name)
         let filter = IMPCoreImageMTLKernel.register(function: function)
         return insert(filter: filter, after: filterName, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(vertex: String, fragment: String,
-                       after filterName: String,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) -> T {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         return insert(shader: IMPShader(context:context, vertexName:vertex, fragmentName:fragment),
                       after: filterName, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(function name: String,
-                       before filterName: String,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) -> T {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         let function = IMPFunction(context: context, kernelName: name)
         let filter = IMPCoreImageMTLKernel.register(function: function)
         return insert(filter: filter, before: filterName, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(vertex: String, fragment: String,
-                       before filterName: String,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) -> T {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) -> T {
         return insert(shader: IMPShader(context:context, vertexName:vertex, fragmentName:fragment),
                       before: filterName, fail: fail, complete: complete)
     }
@@ -758,9 +771,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     // Insert MPS before/after
     #if os(iOS)
     @discardableResult public func insert<T:IMPFilter>(mps: MPSUnaryImageKernel, withName: String? = nil,
-                       after filterName: String,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) {
         if let newName = withName {
             mps.label = newName
         }
@@ -772,17 +785,17 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     @discardableResult public func insert<T:IMPFilter>(mps: IMPMPSUnaryKernelProvider,
-                       after filterName: String,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) {
+                                                       after filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) {
         let filter = IMPCoreImageMPSUnaryKernel.register(mps: mps)
         return insert(filter: filter, after: filterName, fail: fail, complete: complete)
     }
     
     @discardableResult public func insert<T:IMPFilter>(mps: MPSUnaryImageKernel, withName: String? = nil,
-                       before filterName: String,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) {
         if let newName = withName {
             mps.label = newName
         }
@@ -794,9 +807,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     @discardableResult public func insert<T:IMPFilter>(mps: IMPMPSUnaryKernelProvider,
-                       before filterName: String,
-                       fail: FailHandler?=nil,
-                       complete: CompleteHandler?=nil) {
+                                                       before filterName: String,
+                                                       fail: FailHandler?=nil,
+                                                       complete: CompleteHandler?=nil) {
         let filter = IMPCoreImageMPSUnaryKernel.register(mps: mps)
         return insert(filter: filter, before: filterName, fail: fail, complete: complete)
     }
@@ -951,7 +964,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     private func appendFilter<T:IMPFilter>(filter:FilterContainer,
-                              fail: FailHandler?=nil) -> T {
+                                           fail: FailHandler?=nil) -> T {
         if coreImageFilterList.contains(filter) == false {
             coreImageFilterList.append(filter)
         }
@@ -962,8 +975,8 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     private func insertFilter<T:IMPFilter>(filter:FilterContainer,
-                              index: Int,
-                              fail: FailHandler?=nil) -> T {
+                                           index: Int,
+                                           fail: FailHandler?=nil) -> T {
         if coreImageFilterList.contains(filter) == false {
             coreImageFilterList.insert(filter, at: index)
         }
@@ -1017,11 +1030,11 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToOptionalCIImageOptionDictionary(_ input: [String: Any]?) -> [CIImageOption: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (CIImageOption(rawValue: key), value)})
+    guard let input = input else { return nil }
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (CIImageOption(rawValue: key), value)})
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromCIImageOption(_ input: CIImageOption) -> String {
-	return input.rawValue
+    return input.rawValue
 }

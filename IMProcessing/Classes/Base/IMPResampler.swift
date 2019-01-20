@@ -45,10 +45,9 @@ open class IMPResampler: IMPFilter{
     
     open override func configure(complete:CompleteHandler?=nil) {
         //self.complete = complete
+        
         extendName(suffix: "Resampler")
-        super.configure() { (source) in
-            complete?(source)
-        }
+        super.configure(complete: complete)
         
         addObserver(newSource: { (source) in
             self.updateResampler()

@@ -99,7 +99,7 @@ namespace IMProcessing
         uint total = 0;
         
         for (uint j = 0; j < numParts; j++)
-        total += in[j].channels[blockIdx.x][threadIdx.x];
+            total += in[j].channels[blockIdx.x][threadIdx.x];
         
         out.channels[blockIdx.x][threadIdx.x] = total;
     }
@@ -174,7 +174,6 @@ namespace IMProcessing
             }
         }
     }
- 
     
 }
 
