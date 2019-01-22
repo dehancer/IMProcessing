@@ -72,9 +72,10 @@ public struct IMPObserverHash<T>:Hashable {
         return key
     }    
     
-    public static func unsafeAddObserver<T>(to list:inout [IMPObserverHash<T>], _ observer:T, key aKey:String? = nil){
+    @discardableResult public static func unsafeAddObserver<T>(to list:inout [IMPObserverHash<T>], _ observer:T, key aKey:String? = nil) -> String{
         let key = unsafeRemoveObserver(from: &list, observer, key: aKey)
         list.append(IMPObserverHash<T>(key:key, observer:observer))
+        return key
     }
 }
 
