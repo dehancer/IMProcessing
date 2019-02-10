@@ -79,6 +79,8 @@ public class IMPHistogramAnalyzer: IMPDetector, IMPHistogramAnalyzerProtocol{
         
         super.configure()
         
+        analizerComplite = complete
+        
         partialHistogramKernel.threadsPerThreadgroup = MTLSize(width: self.regionSize, height: self.regionSize, depth: 1)
         partialHistogramKernel.preferedDimension     = MTLSize(width: gridDimension.width*self.regionSize, height: gridDimension.height*self.regionSize, depth: 1)
         
@@ -93,8 +95,8 @@ public class IMPHistogramAnalyzer: IMPDetector, IMPHistogramAnalyzerProtocol{
         
         self
             .add(function: partialHistogramKernel)
-            .add(function: accumHistogramKernel)
-            .addObserver(destinationUpdated: { (result) in
+            .add(function: accumHistogramKernel){ (result) in
+            //.addObserver(destinationUpdated: { (result) in
                 self.context.execute(
                     .sync,
                     wait: true,
@@ -106,10 +108,11 @@ public class IMPHistogramAnalyzer: IMPDetector, IMPHistogramAnalyzerProtocol{
                             self.histogram.update(data: self.completeBuffer.contents())
                         }
                         self.executeSolverObservers()
-                        complete?(result)
+                        //complete?(result)
                 },
                     action: { (dest) in })
-            })
+            }
+    //)
     }
 
     ///
@@ -121,6 +124,8 @@ public class IMPHistogramAnalyzer: IMPDetector, IMPHistogramAnalyzerProtocol{
         solvers.append(s)
     }
 
+    private var analizerComplite:IMPFilterProtocol.CompleteHandler?
+    
     public func executeSolverObservers() {
         guard let srcSize = source?.size else { return }
         if observersEnabled {
@@ -129,6 +134,9 @@ public class IMPHistogramAnalyzer: IMPDetector, IMPHistogramAnalyzerProtocol{
                 s.analizer(didUpdate: self, histogram: self.histogram, imageSize: size)
                 s.executeComplete()
             }
+        }
+        if let result = self.source {
+            analizerComplite?(result)
         }
     }
 

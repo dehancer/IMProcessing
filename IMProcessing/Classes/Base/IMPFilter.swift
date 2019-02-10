@@ -921,7 +921,13 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     // MARK: - private
     //
     
-    private var root:IMPFilter?
+    private var root:IMPFilter? {
+        didSet{
+            if let r = root {
+                observingType = r.observingType
+            }
+        }
+    }
     
     private lazy var _destination:IMPImageProvider   = IMPImage(context: self.context)
     
