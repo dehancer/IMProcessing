@@ -219,6 +219,21 @@ public extension IMPImageProvider {
     }
     
     public init(context: IMPContext,
+                data: Data,
+                storageMode:IMPImageStorageMode? = nil,
+                maxSize: CGFloat = 0,
+                orientation:IMPImageOrientation? = nil){
+
+        self.init(context:context, storageMode: storageMode)
+
+        let ciimage = CIImage(data: data, options: convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
+        let imageOrientation = IMPImageOrientation.up
+        
+        self.image = prepareImage(image: ciimage,
+                                  maxSize: maxSize, orientation: orientation ?? imageOrientation)
+    }
+    
+    public init(context: IMPContext,
                 image: CGImage,
                 storageMode:IMPImageStorageMode? = nil,
                 maxSize: CGFloat = 0,
@@ -718,7 +733,7 @@ public extension IMPImageProvider {
     
     public func makeTextureCopyAsync(copy: @escaping (_ texture:MTLTexture?)->Void){
         
-        context.runOperation(.async) {             
+        context.runOperation(.async) {
             
             if let txt = self.texture, let commandBuffer = self.context.commandBuffer {
                 
