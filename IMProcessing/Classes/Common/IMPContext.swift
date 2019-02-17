@@ -7,10 +7,10 @@
 //
 
 #if os(iOS)
-    import UIKit
+import UIKit
 #else
-    import Cocoa
-    import OpenGL.GL
+import Cocoa
+import OpenGL.GL
 #endif
 
 import Metal
@@ -138,14 +138,15 @@ open class IMPContext {
     public let uid = String.uniqString()
     
     /// Current command queue uses the current device
-    open var commandQueue:MTLCommandQueue? 
+    open var commandQueue:MTLCommandQueue?  {
+        return IMPContext.__commandQueue
+    }
     //{
     //    return _device?.makeCommandQueue()
     //}
     
     /// Default library associated with current context
     public let defaultLibrary:MTLLibrary
-    
     
     /// How context execution is processed
     public let isLazy:Bool
@@ -190,26 +191,26 @@ open class IMPContext {
         
         dispatchQueue.setSpecific(key: dispatchQueueKey, value: queueKey)
         
-        if device != nil {
-            self._device = device
-        }
-        else {
-            _device = MTLCreateSystemDefaultDevice()
-        }
+//        if device != nil {
+//            self._device = device
+//        }
+//        else {
+//            _device = MTLCreateSystemDefaultDevice()
+//        }
         
-        if self._device == nil {
-            fatalError("The system does not support any MTL devices...")
-        }
+//        if self._device == nil {
+//            fatalError("The system does not support any MTL devices...")
+//        }
         
         isLazy = lazy
         
-        if let commandQ = _device?.makeCommandQueue() {
-            commandQueue = commandQ
-        }
-        else {
-            fatalError("Default Metal command queue could not be created...")
-        }
-        
+//        if let commandQ = self._device?.makeCommandQueue() {
+//            commandQueue = commandQ
+//        }
+//        else {
+//            fatalError("Default Metal command queue could not be created...")
+//        }
+//
         if let library = IMPContext.__library {
             defaultLibrary = library
         }
@@ -220,8 +221,9 @@ open class IMPContext {
     
     private static let __sharedDevice = MTLCreateSystemDefaultDevice()
     private static var __library = IMPContext.__sharedDevice?.makeDefaultLibrary()
+    private static let __commandQueue:MTLCommandQueue? = IMPContext.__sharedDevice?.makeCommandQueue(maxCommandBufferCount:64)
     
-    var _device:MTLDevice?
+    private var _device:MTLDevice? { return IMPContext.__sharedDevice }
     
     @available(iOS 9.0, *)
     //private static let __sharedCIContext = CIContext(mtlDevice: __sharedDevice!)
@@ -230,9 +232,9 @@ open class IMPContext {
     
     open lazy var supportsGPUv2:Bool = {
         #if os(iOS)
-            return self.device.supportsFeatureSet(.iOS_GPUFamily2_v1)
+        return self.device.supportsFeatureSet(.iOS_GPUFamily2_v1)
         #else
-            return true
+        return true
         #endif
     }()
     
@@ -257,9 +259,10 @@ open class IMPContext {
         
         unowned let this = self
         
-        runOperation(sync) {
+        runOperation(sync) {            
+            
             #if DEBUG
-                //this.commandQueue?.insertDebugCaptureBoundary()
+            //this.commandQueue?.insertDebugCaptureBoundary()
             #endif
             
             if let commandBuffer = this.commandBuffer {
@@ -279,13 +282,13 @@ open class IMPContext {
             }
             
             #if DEBUG
-                // this.commandQueue?.insertDebugCaptureBoundary()
+            //this.commandQueue?.insertDebugCaptureBoundary()
             #endif
             
         }
     }
     
-    @discardableResult public final func runOperation(_ sync:OperationType = .sync, _ execute:@escaping () -> ()) -> DispatchWorkItem? {
+    @discardableResult public final func runOperation(_ sync:OperationType = .async, _ execute:@escaping () -> ()) -> DispatchWorkItem? {
         
         if sync == .sync {
             if (DispatchQueue.getSpecific(key:dispatchQueueKey) == queueKey) {
@@ -302,7 +305,7 @@ open class IMPContext {
             }
         }
         else {
-            let block = DispatchWorkItem { 
+            let block = DispatchWorkItem(flags: [.barrier]) {
                 execute()
             }
             dispatchQueue.async(execute: block)
@@ -385,7 +388,6 @@ open class IMPContext {
         }
         
         get {
-            //return 1
             return IMPContext.sharedContainer.currentMaximumTextureSize
         }
     }
@@ -430,17 +432,17 @@ open class IMPContext {
         
         override init() {
             #if os(iOS)
-                let glContext =  EAGLContext(api: .openGLES2)
-                EAGLContext.setCurrent(glContext)
-                glGetIntegerv(GLenum(GL_MAX_TEXTURE_SIZE), &sharedContainerType.maxTextureSize)
-                currentMaximumTextureSize = Int(sharedContainerType.maxTextureSize)
+            let glContext =  EAGLContext(api: .openGLES2)
+            EAGLContext.setCurrent(glContext)
+            glGetIntegerv(GLenum(GL_MAX_TEXTURE_SIZE), &sharedContainerType.maxTextureSize)
+            currentMaximumTextureSize = Int(sharedContainerType.maxTextureSize)
             #else
-                var pixelAttributes:[NSOpenGLPixelFormatAttribute] = [UInt32(NSOpenGLPFADoubleBuffer), UInt32(NSOpenGLPFAAccelerated), 0]
-                let pixelFormat = NSOpenGLPixelFormat(attributes: &pixelAttributes)
-                let context = NSOpenGLContext(format: pixelFormat!, share: nil)
-                context?.makeCurrentContext()
-                glGetIntegerv(GLenum(GL_MAX_TEXTURE_SIZE), &sharedContainerType.maxTextureSize)
-                currentMaximumTextureSize = Int(sharedContainerType.maxTextureSize)
+            var pixelAttributes:[NSOpenGLPixelFormatAttribute] = [UInt32(NSOpenGLPFADoubleBuffer), UInt32(NSOpenGLPFAAccelerated), 0]
+            let pixelFormat = NSOpenGLPixelFormat(attributes: &pixelAttributes)
+            let context = NSOpenGLContext(format: pixelFormat!, share: nil)
+            context?.makeCurrentContext()
+            glGetIntegerv(GLenum(GL_MAX_TEXTURE_SIZE), &sharedContainerType.maxTextureSize)
+            currentMaximumTextureSize = Int(sharedContainerType.maxTextureSize)
             #endif
         }
     }
@@ -460,13 +462,6 @@ public extension IMPContext {
         }
         return device.makeBuffer(bytes: &value, length: length, options: options)!
     }
-    
-    //    public func makeBuffer<T:Array>(from value:T, options: MTLResourceOptions = []) -> MTLBuffer {
-    //        var value = value
-    //        //return device.makeBuffer(bytes: &value, length: MemoryLayout<T.Iterator.Element>.size * Int(value.count.toIntMax()), options: options)
-    //        let length = MemoryLayout.size(ofValue: value) * Int(value.count.toIntMax())
-    //        return device.makeBuffer(bytes: &value, length: length, options: options)
-    //    }
     
     public func make2DTexture(size: MTLSize,
                               pixelFormat:MTLPixelFormat = IMProcessing.colors.pixelFormat,
@@ -491,8 +486,6 @@ precedencegroup Precedence {
     associativity: right
     lowerThan: AdditionPrecedence
 }
-
-//infix operator <=: Precedence
 
 private func fatalAssignment<T>(_ left: MTLBuffer, _ right: T) {
     fatalError("MTLBuffer: invalid buffer assighment size: \(left.length) from \(MemoryLayout<T>.size)")

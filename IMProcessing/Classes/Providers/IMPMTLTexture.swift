@@ -137,3 +137,46 @@ public extension MTLTexture {
         }
     }
 }
+
+public extension IMPImageProvider {
+    public func copyTexture() -> MTLTexture? {
+        
+        guard let texture = self.texture else {
+            return nil
+        }
+        
+        let textureDescriptor = MTLTextureDescriptor()
+        
+        textureDescriptor.textureType = texture.textureType
+        textureDescriptor.width  = texture.width
+        textureDescriptor.height = texture.height
+        textureDescriptor.depth  = texture.depth
+        textureDescriptor.usage  = texture.usage
+        
+        textureDescriptor.pixelFormat = texture.pixelFormat
+        
+        if let t = context.device.makeTexture(descriptor: textureDescriptor),
+            let commandBuffer = context.commandQueue?.makeCommandBuffer(){
+            
+            let blt = commandBuffer.makeBlitCommandEncoder()
+            
+            blt?.copy(from: texture,
+                      sourceSlice: 0,
+                      sourceLevel: 0,
+                      sourceOrigin: MTLOrigin(x:0,y:0,z:0),
+                      sourceSize: texture.size,
+                      to: t,
+                      destinationSlice: 0,
+                      destinationLevel: 0,
+                      destinationOrigin:  MTLOrigin(x:0,y:0,z:0))
+            
+            blt?.endEncoding()
+            
+            commandBuffer.commit()
+            
+            return t
+        }
+        
+        return nil
+    }
+}

@@ -190,9 +190,18 @@ public class IMPHistogram {
         }
     }
     
+    public func clip() -> IMPHistogram {
+        let h = IMPHistogram(histogram: self)
+        for c in 0..<h.channels.count{
+            h.channels[c][0] = 0
+            h.channels[c][h.channels[c].count-1] = 0
+        }
+        return h
+    }
+    
     
     ///
-    /// Текущий CDF (комулятивная функция распределения) гистограммы.
+    ///  CDF (комулятивная функция распределения) гистограммы.
     ///
     /// - parameter scale: масштабирование значений, по умолчанию CDF приводится к 1
     ///
@@ -202,8 +211,13 @@ public class IMPHistogram {
         let _cdf = IMPHistogram(channels:channels);
         _cdf._distributionType = .cdf
         for c in 0..<_cdf.channels.count{
-            power(pow: pow, A: _cdf.channels[c], B: &_cdf.channels[c])
-            integrate(A: &_cdf.channels[c], B: &_cdf.channels[c], size: _cdf.channels[c].count, scale:scale)
+            let i = _cdf.channels[c]
+            power(pow: pow, A: i, B: &_cdf.channels[c])
+            var a = _cdf.channels[c]
+            var b = a
+            var count = a.count
+            integrate(A: &a, B: &b, size: count, scale:scale)
+            _cdf.channels[c] = b
             _cdf.updateBinCountForChannel(channel: c)
         }
         return _cdf;
