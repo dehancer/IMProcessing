@@ -7,26 +7,26 @@
 //
 
 #if os(iOS)
-    import UIKit
-    
-    public typealias IMPImageOrientation = UIImageOrientation
-    
+import UIKit
+
+public typealias IMPImageOrientation = UIImageOrientation
+
 #else
-    import Cocoa
-    
-    public enum IMPImageOrientation : Int {
-        case up             // 0,  default orientation
-        case down           // 1, -> Up    (0), UIImage, 180 deg rotation
-        case left           // 2, -> Right (3), UIImage, 90 deg CCW
-        case right          // 3, -> Down  (1), UIImage, 90 deg CW
-        case upMirrored     // 4, -> Right (3), UIImage, as above but image mirrored along other axis. horizontal flip
-        case downMirrored   // 5, -> Right (3), UIImage, horizontal flip
-        case leftMirrored   // 6, -> Right (3), UIImage, vertical flip
-        case rightMirrored  // 7, -> Right (3), UIImage, vertical flip
-    }
-    
-    public typealias UIImageOrientation = IMPImageOrientation
-    
+import Cocoa
+
+public enum IMPImageOrientation : Int {
+    case up             // 0,  default orientation
+    case down           // 1, -> Up    (0), UIImage, 180 deg rotation
+    case left           // 2, -> Right (3), UIImage, 90 deg CCW
+    case right          // 3, -> Down  (1), UIImage, 90 deg CW
+    case upMirrored     // 4, -> Right (3), UIImage, as above but image mirrored along other axis. horizontal flip
+    case downMirrored   // 5, -> Right (3), UIImage, horizontal flip
+    case leftMirrored   // 6, -> Right (3), UIImage, vertical flip
+    case rightMirrored  // 7, -> Right (3), UIImage, vertical flip
+}
+
+public typealias UIImageOrientation = IMPImageOrientation
+
 #endif
 
 import CoreImage
@@ -152,16 +152,16 @@ public extension IMPImageProvider {
                 maxSize: CGFloat = 0,
                 orientation:IMPImageOrientation? = nil){
         #if os(iOS)
-            self.init(context:context, storageMode: storageMode)
-            self.image = prepareImage(image: CIImage(contentsOf: url, options: [kCIImageColorSpace: colorSpace]),
-                                      maxSize: maxSize, orientation: orientation)
+        self.init(context:context, storageMode: storageMode)
+        self.image = prepareImage(image: CIImage(contentsOf: url, options: [kCIImageColorSpace: colorSpace]),
+                                  maxSize: maxSize, orientation: orientation)
         #elseif os(OSX)
-            let image = NSImage(byReferencing: url)
-            self.init(context: context,
-                      image: image,
-                      storageMode:storageMode,
-                      maxSize:maxSize,
-                      orientation:orientation)
+        let image = NSImage(byReferencing: url)
+        self.init(context: context,
+                  image: image,
+                  storageMode:storageMode,
+                  maxSize:maxSize,
+                  orientation:orientation)
         #endif
     }
     
@@ -204,14 +204,14 @@ public extension IMPImageProvider {
                 orientation:IMPImageOrientation? = nil){
         self.init(context:context, storageMode: storageMode)
         #if os(OSX)
-            guard let data = image.tiffRepresentation else {
-                return
-            }
-            let ciimage = CIImage(data: data, options: convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
-            let imageOrientation = IMPImageOrientation.up
+        guard let data = image.tiffRepresentation else {
+            return
+        }
+        let ciimage = CIImage(data: data, options: convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
+        let imageOrientation = IMPImageOrientation.up
         #else
-            let ciimage = CIImage(cgImage: image.cgImage!, options: [kCIImageColorSpace: colorSpace])
-            let imageOrientation = image.imageOrientation
+        let ciimage = CIImage(cgImage: image.cgImage!, options: [kCIImageColorSpace: colorSpace])
+        let imageOrientation = image.imageOrientation
         #endif
         
         self.image = prepareImage(image: ciimage,
@@ -223,9 +223,9 @@ public extension IMPImageProvider {
                 storageMode:IMPImageStorageMode? = nil,
                 maxSize: CGFloat = 0,
                 orientation:IMPImageOrientation? = nil){
-
+        
         self.init(context:context, storageMode: storageMode)
-
+        
         let ciimage = CIImage(data: data, options: convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
         let imageOrientation = IMPImageOrientation.up
         
@@ -273,10 +273,10 @@ public extension IMPImageProvider {
     
     public mutating func update(_ inputImage:NSImage){
         #if os(OSX)
-            guard let data = inputImage.tiffRepresentation else { return }
-            image = CIImage(data: data, options: convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
+        guard let data = inputImage.tiffRepresentation else { return }
+        image = CIImage(data: data, options: convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
         #else
-            image = CIImage(image: inputImage)
+        image = CIImage(image: inputImage)
         #endif
     }
     
@@ -782,11 +782,11 @@ public extension IMPImageProvider {
         
         if storageMode == .shared {
             #if os(iOS)
-                descriptor.storageMode = .shared
-                descriptor.usage = [.shaderRead, .shaderWrite,.pixelFormatView,.renderTarget]
+            descriptor.storageMode = .shared
+            descriptor.usage = [.shaderRead, .shaderWrite,.pixelFormatView,.renderTarget]
             #elseif os(OSX)
-                descriptor.storageMode = .managed
-                descriptor.usage = [.shaderRead, .shaderWrite, .pixelFormatView, .renderTarget]
+            descriptor.storageMode = .managed
+            descriptor.usage = [.shaderRead, .shaderWrite, .pixelFormatView, .renderTarget]
             #endif
         }
         else {
@@ -834,13 +834,13 @@ public extension IMPImageProvider {
     
     #if os(iOS)
     public var nsImage:NSImage? {
-    get{
-    guard (image != nil) else { return nil}
-    return NSImage(cgImage: cgiImage!)
-    }
-    set {
-    cgiImage = newValue?.cgImage
-    }
+        get{
+            guard (image != nil) else { return nil}
+            return NSImage(cgImage: cgiImage!)
+        }
+        set {
+            cgiImage = newValue?.cgImage
+        }
     }
     #else
     public func nsImage(scale:CGFloat, reflect:Bool = false) -> NSImage? {
@@ -865,123 +865,132 @@ public extension IMPImageProvider {
 
 
 #if os(OSX)
+
+public typealias IMPImageFileType = NSBitmapImageRep.FileType
+
+public extension NSImage {
     
-    public typealias IMPImageFileType = NSBitmapImageRep.FileType
-    
-    public extension NSImage {
+    public func representation(using type: IMPImageFileType, compression factor:Float? = nil) -> Data? {
         
-        @discardableResult public func representation(using type: IMPImageFileType, compression factor:Float? = nil) -> Data? {
-            
-            guard let tiffRepresentation = tiffRepresentation(using: .none, factor: factor ?? 1.0), 
-                let bitmapImage = NSBitmapImageRep(data: tiffRepresentation) 
-                else { return nil }
-            
-            var properties:[NSBitmapImageRep.PropertyKey : Any] = [:]
-            
-            if type == .jpeg {
-                properties = [NSBitmapImageRep.PropertyKey.compressionFactor: factor ?? 1.0]
-            }
-            
-            return bitmapImage.representation(using: type, properties: properties)            
+        guard let tiffRepresentation = tiffRepresentation(using: .none, factor: factor ?? 1.0),
+            let bitmapImage = NSBitmapImageRep(data: tiffRepresentation)
+            else { return nil }
+        
+        var properties:[NSBitmapImageRep.PropertyKey : Any] = [:]
+        
+        if type == .jpeg {
+            properties = [NSBitmapImageRep.PropertyKey.compressionFactor: factor ?? 1.0]
         }
         
-        public convenience init?(ciimage:CIImage?){
-            
-            guard var image = ciimage else {
-                return nil
-            }
-            
-            //
-            // convert back to MTL texture coordinates system
-            //
-            let transform = CGAffineTransform.identity.scaledBy(x: 1, y: -1).translatedBy(x: 0, y: image.extent.height)
-            image = image.transformed(by: transform)
-            
-            self.init(size: image.extent.size)
-            let rep = NSCIImageRep(ciImage: image)
-            addRepresentation(rep)
-        }        
+        let data = bitmapImage.representation(using: type, properties: properties)
+        
+        return data
     }
     
-    // MARK: - export to files
-    public extension IMPImageProvider{
+    public convenience init?(ciimage:CIImage?){
         
+        guard var image = ciimage else {
+            return nil
+        }
         
-        /// Image provider representaion as Data?
-        ///
-        /// - Parameters:
-        ///   - type: representation type: `IMPImageFileType`
-        ///   - factor: compression factor (.JPEG only)
-        /// - Returns: representation Data?
-        public func representation(using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) -> Data?{
-            
+        //
+        // convert back to MTL texture coordinates system
+        //
+        let transform = CGAffineTransform.identity.scaledBy(x: 1, y: -1).translatedBy(x: 0, y: image.extent.height)
+        image = image.transformed(by: transform)
+        
+        self.init(size: image.extent.size)
+        let rep = NSCIImageRep(ciImage: image)
+        addRepresentation(rep)
+    }
+}
+
+// MARK: - export to files
+public extension IMPImageProvider{
+    
+    
+    /// Image provider representaion as Data?
+    ///
+    /// - Parameters:
+    ///   - type: representation type: `IMPImageFileType`
+    ///   - factor: compression factor (.JPEG only)
+    /// - Returns: representation Data?
+    public func representation(using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws -> Data?{
+        do {
             var properties:[CIImageRepresentationOption : Any] = [:]
             if type == .jpeg {
                 properties = [CIImageRepresentationOption(rawValue: kCGImageDestinationLossyCompressionQuality as String): factor ?? 1.0]
             }
             
-            let csp = self.colorSpace
+            guard let ciContext = context.coreImage, let extent = self.image?.extent else { return nil }
+            let csp:CGColorSpace = CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB()
             
-            if let image = self.image { 
+            if let _image = self.image {
                 
                 var t = CGAffineTransform.identity
                 
                 if reflect {
-                    t = t.scaledBy(x: 1, y: -1).translatedBy(x: 0, y: image.extent.size.height)
+                    t = t.scaledBy(x: 1, y: -1).translatedBy(x: 0, y: extent.size.height)
                 }
+                
+                let image = _image.transformed(by: t)
                 
                 switch type {
                 case .jpeg:
-                    return context.coreImage?.jpegRepresentation(of: image.transformed(by: t),
-                                                                 colorSpace: csp,
-                                                                 options: properties)
+                    return ciContext.jpegRepresentation(of: image,
+                                                        colorSpace: csp,
+                                                        options: properties)
                 case .tiff:
-                    return context.coreImage?.tiffRepresentation(of: image.transformed(by: t),
-                                                                 format: CIFormat.RGBAf,
-                                                                 colorSpace: csp, options:properties)
+                    return ciContext.tiffRepresentation(of: image,
+                                                        format: CIFormat.RGBAf,
+                                                        colorSpace: csp, options: properties)
                 case .png:
                     if #available(OSX 10.13, *) {
-                        return context.coreImage?.pngRepresentation(of: image.transformed(by: t),
-                                                                    format: CIFormat.RGBA16,
-                                                                    colorSpace: csp,
-                                                                    options: properties)
+                        return ciContext.pngRepresentation(of: image,
+                                                           format: CIFormat.RGBAf,
+                                                           colorSpace: csp,
+                                                           options: properties)
                     } else {
-                        nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
+                        return nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
                     }
                 default:
-                    nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
+                    return nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
                 }
             }
             return nil
         }
-        
-        
-        /// Write image to URL
-        ///
-        /// - Parameters:
-        ///   - url: url
-        ///   - type: image type
-        ///   - factor: compression factor (.JPEG only)
-        /// - Throws: `Error`
-        public func write(to url: URL, using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws {
-            try representation(using: type, compression: factor, reflect:reflect)?.write(to: url, options: .atomic)
+        catch let error {
+            throw error
         }
-        
-        public func write(to path: String, using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws {
-            try representation(using: type, compression: factor, reflect:reflect)?.write(to: URL(fileURLWithPath: path), options: .atomic)
-        }        
     }
     
+    
+    /// Write image to URL
+    ///
+    /// - Parameters:
+    ///   - url: url
+    ///   - type: image type
+    ///   - factor: compression factor (.JPEG only)
+    /// - Throws: `Error`
+    public func write(to url: URL, using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws {
+        try representation(using: type, compression: factor, reflect:reflect)?.write(to: url, options: .atomic)
+    }
+    
+    public func write(to path: String, using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws {
+        try representation(using: type, compression: factor, reflect:reflect)?.write(to: URL(fileURLWithPath: path), options: .atomic)
+    }
+}
+
 #endif
 
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToOptionalCIImageOptionDictionary(_ input: [String: Any]?) -> [CIImageOption: Any]? {
-	guard let input = input else { return nil }
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (CIImageOption(rawValue: key), value)})
+    guard let input = input else { return nil }
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (CIImageOption(rawValue: key), value)})
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertFromCIImageOption(_ input: CIImageOption) -> String {
-	return input.rawValue
+    return input.rawValue
 }

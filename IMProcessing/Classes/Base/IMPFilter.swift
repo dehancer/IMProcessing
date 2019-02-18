@@ -341,11 +341,17 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
                         let dsize = currentResult.cgsize
                         let pixelFormat = currentResult.pixelFormat 
                         let tmp:MTLTexture = device.make2DTexture(size: dsize, pixelFormat: pixelFormat)
+
+                        let kciOptions = [CIImageOption.colorSpace:colorSpace,
+                                          CIContextOption.outputPremultiplied: true,
+                                          CIContextOption.useSoftwareRenderer: false] as! [CIImageOption : Any]
                         
-                        filter.setValue(CIImage(mtlTexture: currentResult,
-                                                options:  convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace])),
-                                        forKey: kCIInputImageKey)
+                        filter.setValue(CIImage(mtlTexture: currentResult, options: kciOptions),forKey: kCIInputImageKey)
                         
+//                        filter.setValue(CIImage(mtlTexture: currentResult,
+//                                                options:  convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace])),
+//                                        forKey: kCIInputImageKey)
+//
                         guard let image = filter.outputImage else { return }
                         
                         self.context.coreImage?.render(image,

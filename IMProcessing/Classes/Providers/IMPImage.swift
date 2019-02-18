@@ -82,7 +82,14 @@ open class IMPImage: IMPImageProvider {
         }
         get {
             if _image == nil && _texture != nil {
-                _image = CIImage(mtlTexture: _texture!, options:  convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
+                
+                let kciOptions = [CIImageOption.colorSpace:colorSpace,
+                                  CIContextOption.outputPremultiplied: true,
+                                  CIContextOption.useSoftwareRenderer: false] as! [CIImageOption : Any]
+                
+                _image = CIImage(mtlTexture: _texture!, options: kciOptions)
+                
+               // _image = CIImage(mtlTexture: _texture!, options:  convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
                 
                 let observers = self.mutex.sync { return [IMPObserverHash<ObserverType>](self.filterObservers) }
                 
