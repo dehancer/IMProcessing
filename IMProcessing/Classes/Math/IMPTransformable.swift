@@ -9,7 +9,7 @@
 import Foundation
 import simd
 
-public protocol IMPTransformPoint:Collection{
+public protocol IMPTransformPoint/*:Collection*/{
     associatedtype Vector
     init()
     init(_ x:Float)
