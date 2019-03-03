@@ -251,7 +251,8 @@ open class IMPView: MTKView {
             needUpdateDisplay = true                         
         }
         
-        processingPhase = context.runOperation(.async, { 
+        processingPhase = 
+            context.runOperation(.async, { 
             proc()
         })        
     }
@@ -317,14 +318,14 @@ open class IMPView: MTKView {
                 
                 encoder.setVertexBuffer(vertexBuffer, offset:0, index:0)
                 encoder.setFragmentTexture(sourceTexture, index:0)
-                //encoder.setViewport(viewPort)
+                encoder.setViewport(viewPort)
                 
                 encoder.drawPrimitives(type: .triangleStrip, vertexStart:0, vertexCount:4, instanceCount:1)
                 encoder.endEncoding()
             }
         }
         
-        commandBuffer.present(currentDrawable!)        
+        commandBuffer.present(currentDrawable!)
         commandBuffer.commit()
                 
         if self.frameCounter > 0  && self.isFirstFrame {
