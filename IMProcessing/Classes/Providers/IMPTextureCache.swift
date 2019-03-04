@@ -34,9 +34,7 @@ public class IMPTextureCache: IMPContextProvider {
             cache[hash] = q
             texture = cache[hash]?.dequeue()
         }
-        
-        //print(" requestTexture[\(hash)](size: \(size)) count[\(cache.count)] = \(cache[hash]?.count)")
-        
+                
         return texture
     }
     
@@ -52,8 +50,6 @@ public class IMPTextureCache: IMPContextProvider {
         context.runOperation(.sync) {
             let hash = self.hashFor(texture: texture)
             
-            //print(" returnTexure[\(hash)](size: \(texture.size)) count[\(cache.count)] = \(cache[hash]?.count)")
-
             if self.cache[hash] == nil {
                 self.cache[hash] =  IMPTextureQueue()
             }

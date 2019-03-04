@@ -31,11 +31,19 @@ open class IMProcessingView: MTKView {
     
     public var image:IMPImageProvider? {
         didSet{            
-            refreshQueue.async(flags: [.barrier]) {                
-                self.__source = self.image
+            refreshQueue.async(flags: [.barrier]) {   
                 if self.image == nil /*&& self.__placeHolderColor == nil*/ {
                     return
                 }
+                
+                self.__context = self.image?.context
+                self.__texture = self.image?.texture//?.copyTexture()
+                
+                if let texture = self.__texture {
+                    self.drawableSize = NSSize(width: texture.width, height: texture.height)
+                }
+                
+                
                 if self.isPaused  {
                     self.draw()
                 }
@@ -43,7 +51,9 @@ open class IMProcessingView: MTKView {
         }
     }
     
-    private var __source:IMPImageProvider? 
+    //private var __source:IMPImageProvider?
+    private var __texture:MTLTexture?
+    private var __context:IMPContext?
     private var __placeHolderColor = float4(1)  
 
     public override init(frame frameRect: CGRect, device: MTLDevice?=nil) {
@@ -60,10 +70,10 @@ open class IMProcessingView: MTKView {
     open func configure() {
         delegate = self
         isPaused = true
-        enableSetNeedsDisplay = false
+        enableSetNeedsDisplay = true
         framebufferOnly = true
         clearColor = MTLClearColorMake(0, 0, 0, 0)
-    }
+    }    
         
     private lazy var commandQueue:MTLCommandQueue = self.device!.makeCommandQueue(maxCommandBufferCount: IMProcessingView.maxFrames)!
     
@@ -75,8 +85,8 @@ open class IMProcessingView: MTKView {
     fileprivate func refresh(){
         
         guard
-            let pipeline = ((self.__source?.texture == nil)  ? self.placeHolderPipeline : self.pipeline), 
-            let commandBuffer = self.__source?.context.commandBuffer ?? commandQueue.makeCommandBuffer() else {
+            let pipeline = ((self.__texture == nil)  ? self.placeHolderPipeline : self.pipeline), 
+            let commandBuffer = self.__context?.commandBuffer ?? commandQueue.makeCommandBuffer() else {
                 return             
         }
         
@@ -86,7 +96,7 @@ open class IMProcessingView: MTKView {
             }
         }
 
-        self.render(commandBuffer: commandBuffer, texture: self.__source?.texture, with: pipeline){
+        self.render(commandBuffer: commandBuffer, texture: self.__texture, with: pipeline){
             if !self.isPaused {
                 self.mutex.signal()
             }
@@ -95,19 +105,18 @@ open class IMProcessingView: MTKView {
     
     fileprivate func render(commandBuffer:MTLCommandBuffer, texture:MTLTexture?, with pipeline: MTLRenderPipelineState,
                             complete: @escaping () -> Void) {        
-        
-                
+                        
         commandBuffer.label = "Frame command buffer"
         
         commandBuffer.addCompletedHandler{ commandBuffer in            
             complete()            
             return
         }
-        
+         
         if  let currentDrawable = self.currentDrawable,
             let renderPassDescriptor = currentRenderPassDescriptor,               
-            let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor){
-            
+            let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor) {            
+          
             renderEncoder.label = "IMPProcessingView"
             
             renderEncoder.setRenderPipelineState(pipeline)
@@ -126,7 +135,7 @@ open class IMProcessingView: MTKView {
             
             commandBuffer.present(currentDrawable)
             commandBuffer.commit()  
-            commandBuffer.waitUntilCompleted()
+            //commandBuffer.waitUntilCompleted()
         }
         else {
             complete()            
