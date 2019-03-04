@@ -124,7 +124,7 @@ open class IMPContext {
     
     /// Current device is used in the current context
     open var device:MTLDevice {
-        return _device!
+        return IMPDevice.shared.device
     }
     
     open var coreImage:CIContext? {
@@ -139,14 +139,14 @@ open class IMPContext {
     
     /// Current command queue uses the current device
     open var commandQueue:MTLCommandQueue?  {
-        return IMPContext.__commandQueue
+        return IMPDevice.shared.commandQueue
     }
-    //{
-    //    return _device?.makeCommandQueue()
-    //}
+   
     
     /// Default library associated with current context
-    public let defaultLibrary:MTLLibrary
+    public var defaultLibrary:MTLLibrary {
+        return IMPDevice.shared.defaultLibrary
+    }
     
     /// How context execution is processed
     public let isLazy:Bool
@@ -187,47 +187,12 @@ open class IMPContext {
     ///
     ///  - returns: context instanc
     ///
-    required public init(device: MTLDevice? = nil,  lazy:Bool = false) {
-        
-        dispatchQueue.setSpecific(key: dispatchQueueKey, value: queueKey)
-        
-//        if device != nil {
-//            self._device = device
-//        }
-//        else {
-//            _device = MTLCreateSystemDefaultDevice()
-//        }
-        
-//        if self._device == nil {
-//            fatalError("The system does not support any MTL devices...")
-//        }
-        
-        isLazy = lazy
-        
-//        if let commandQ = self._device?.makeCommandQueue() {
-//            commandQueue = commandQ
-//        }
-//        else {
-//            fatalError("Default Metal command queue could not be created...")
-//        }
-//
-        if let library = IMPContext.__library {
-            defaultLibrary = library
-        }
-        else{
-            fatalError("Default Metal library could not be found...")
-        }
+    required public init(device: MTLDevice? = nil,  lazy:Bool = false) {        
+        dispatchQueue.setSpecific(key: dispatchQueueKey, value: queueKey)        
+        isLazy = lazy        
     }
-    
-    private static let __sharedDevice = MTLCreateSystemDefaultDevice()
-    private static var __library = IMPContext.__sharedDevice?.makeDefaultLibrary()
-    private static let __commandQueue:MTLCommandQueue? = IMPContext.__sharedDevice?.makeCommandQueue(maxCommandBufferCount:64)
-    
-    private var _device:MTLDevice? { return IMPContext.__sharedDevice }
-    
+        
     @available(iOS 9.0, *)
-    //private static let __sharedCIContext = CIContext(mtlDevice: __sharedDevice!)
-    //lazy var _ciContext:CIContext = IMPContext.__sharedCIContext //CIContext(mtlDevice: self.device)
     lazy var _ciContext:CIContext = CIContext(mtlDevice: self.device)
     
     open lazy var supportsGPUv2:Bool = {
@@ -498,17 +463,3 @@ public extension MTLBuffer{
         memcpy(contents(), &value, length)
     }
 }
-
-//public func <=<M:MTLBuffer,T> (left: M, right: T) {
-//    guard left.length == MemoryLayout<T>.size else { fatalAssignment(left, right); return }
-//    var value = right
-//    memcpy(left.contents(), &value, left.length)
-//}
-
-//public func <=<M:MTLBuffer,T:Collection> (left: M, right: T) {
-//    var value = right
-//    let size = MemoryLayout.size(ofValue: value) * Int(value.count.toIntMax())
-//    guard left.length == size else { fatalAssignment(left, right); return }
-//    memcpy(left.contents(), &value, left.length)
-//}
-
