@@ -915,7 +915,10 @@ public extension IMPImageProvider{
     ///   - type: representation type: `IMPImageFileType`
     ///   - factor: compression factor (.JPEG only)
     /// - Returns: representation Data?
-    public func representation(using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws -> Data?{
+    public func representation(using type: IMPImageFileType,
+                               compression factor:Float? = nil,
+                               reflect:Bool = false,
+                               colorSpace outColorSpace:CGColorSpace? = nil) throws -> Data?{
         do {
             var properties:[CIImageRepresentationOption : Any] = [:]
             if type == .jpeg {
@@ -923,7 +926,8 @@ public extension IMPImageProvider{
             }
             
             guard let ciContext = context.coreImage, let extent = self.image?.extent else { return nil }
-            let csp:CGColorSpace = CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB()
+            let csp:CGColorSpace =  outColorSpace ?? colorSpace
+            //CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB()
             
             if let _image = self.image {
                 
@@ -941,15 +945,21 @@ public extension IMPImageProvider{
                                                         colorSpace: csp,
                                                         options: properties)
                 case .tiff:
+                    //let csp = CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB()
                     return ciContext.tiffRepresentation(of: image,
-                                                        format: CIFormat.RGBAf,
+                                                        format: CIFormat.RGBA16,
                                                         colorSpace: csp, options: properties)
                 case .png:
                     if #available(OSX 10.13, *) {
+                        do {
                         return ciContext.pngRepresentation(of: image,
                                                            format: CIFormat.RGBAf,
                                                            colorSpace: csp,
                                                            options: properties)
+                        }
+                        catch{
+                            debugPrint("pngRepresentation: ", error)
+                        }
                     } else {
                         return nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
                     }
@@ -972,12 +982,26 @@ public extension IMPImageProvider{
     ///   - type: image type
     ///   - factor: compression factor (.JPEG only)
     /// - Throws: `Error`
-    public func write(to url: URL, using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws {
-        try representation(using: type, compression: factor, reflect:reflect)?.write(to: url, options: .atomic)
+    public func write(to url: URL,
+                      using type: IMPImageFileType,
+                      compression factor:Float? = nil,
+                      reflect:Bool = false,
+                      colorSpace outColorSpace:CGColorSpace? = nil) throws {
+        try representation(using: type,
+                           compression: factor,
+                           reflect:reflect,
+                           colorSpace: outColorSpace)?.write(to: url, options: .atomic)
     }
     
-    public func write(to path: String, using type: IMPImageFileType, compression factor:Float? = nil, reflect:Bool = false) throws {
-        try representation(using: type, compression: factor, reflect:reflect)?.write(to: URL(fileURLWithPath: path), options: .atomic)
+    public func write(to path: String,
+                      using type: IMPImageFileType,
+                      compression factor:Float? = nil,
+                      reflect:Bool = false,
+                      colorSpace outColorSpace:CGColorSpace? = nil) throws {
+        try representation(using: type,
+                           compression: factor,
+                           reflect:reflect,
+                           colorSpace: outColorSpace)?.write(to: URL(fileURLWithPath: path), options: .atomic)
     }
 }
 

@@ -133,8 +133,13 @@ public class IMPCurve: Hashable {
         updateCurve()
     }
 
-    public func add(points: [float2]) {
-        synchronizationQueue.async(flags: [.barrier]) {
+    public func add(points: [float2], async:Bool = true) {
+        if async {
+            synchronizationQueue.async(flags: [.barrier]) {
+                self._add(points: points)
+            }
+        }
+        else {
             self._add(points: points)
         }
     }
