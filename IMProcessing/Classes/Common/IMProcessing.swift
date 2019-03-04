@@ -33,7 +33,7 @@ public enum IMProcessing{
 //        fatalError("extendedLinearSRGB: ios >10.0 supports only")
 //        }
 
-        public static let cgColorSpace =  CGColorSpaceCreateDeviceRGB()
+        public static let cgColorSpace =  NSColorSpace.sRGB.cgColorSpace ?? CGColorSpaceCreateDeviceRGB()
         public static let srgb = NSColorSpace.sRGB
         #endif
     }
