@@ -28,7 +28,7 @@ namespace IMProcessing
         
         float3 grayScale = float3(dot(inColor.rgb,kIMP_Y_YCbCr_factor));
 
-        float4 color = float4(mix(grayScale, inColor.rgb, adjustment.level * 2), adjustment.blending.opacity);
+        float4 color = float4(mix(grayScale, inColor.rgb, adjustment.level), adjustment.blending.opacity);
                 
         return blend(inColor, color, adjustment.blending);
 
