@@ -816,8 +816,8 @@ public extension IMPImageProvider {
     public func cgiImage(scale:CGFloat, reflect:Bool = false) -> CGImage? {
         guard let image = scaledImage(with: scale, reflect:reflect) else { return nil }
         return context.coreImage?.createCGImage(image, from: image.extent,
-                                                format: CIFormat.ARGB8,
-                                                colorSpace: colorSpace,
+                                                format: CIFormat.RGBA16,
+                                                colorSpace: NSColorSpace.sRGB.cgColorSpace!,
                                                 deferred:true)                    
     }
     
@@ -927,7 +927,6 @@ public extension IMPImageProvider{
             
             guard let ciContext = context.coreImage, let extent = self.image?.extent else { return nil }
             let csp:CGColorSpace =  outColorSpace ?? colorSpace
-            //CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB()
             
             if let _image = self.image {
                 
