@@ -584,7 +584,7 @@ public extension IMPImageProvider {
                             execute:((_ command:MTLCommandBuffer?)->Void)?=nil,
                             complete:((_ command:MTLCommandBuffer?)->Void)?=nil) {
         
-        context.runOperation(.async) { 
+        context.runOperation(.async) {
             
             if let commandBuffer = self.context.commandBuffer {
                 
@@ -623,7 +623,8 @@ public extension IMPImageProvider {
                             execute:((_ command:MTLCommandBuffer?)->Void)?=nil,
                             complete:((_ command:MTLCommandBuffer?)->Void)?=nil) {
         
-        context.runOperation(.async) { 
+        context.runOperation(.async) {
+        
             if let txt = self.texture {
                 
                 DispatchQueue.main.async {

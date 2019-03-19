@@ -301,7 +301,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
         
         for c in coreImageFilterList {
             
-            context.execute(.sync, complete: { 
+            context.execute(.sync, complete: { [weak self] in
+                
+                guard let self = self else { return }
                 
                 if let filter = c.filter {
                     filter.executeDestinationObservers(destination: filter._destination)

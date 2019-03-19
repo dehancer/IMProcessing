@@ -62,7 +62,10 @@ open class IMPImage: IMPImageProvider {
         }
         get{
             if _texture == nil && _image != nil {
-                render(to: &_texture) { (texture,command) in
+                render(to: &_texture) { [weak self] (texture,command) in
+
+                    guard let self = self else { return }
+
                     let observers = self.mutex.sync { return [IMPObserverHash<ObserverType>](self.filterObservers) }
                     for hash in observers {
                         hash.observer(self)
