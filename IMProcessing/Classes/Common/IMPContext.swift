@@ -93,7 +93,7 @@ public struct IMPSemaphore {
 ///  @brief Context provider protocol.
 ///  All filter classes should conform to the protocol to get access current filter context.
 ///
-public protocol IMPContextProvider{
+public protocol IMPContextProvider: class {
     var context:IMPContext {get}
 }
 
@@ -222,15 +222,15 @@ open class IMPContext {
                               fail:     (() -> Void)? = nil,
                               action:   @escaping Execution) {
         
-        unowned let this = self
+        //unowned let this = self
         
-        runOperation(sync) {            
+        runOperation(sync) { [weak self] in
             
             #if DEBUG
             //this.commandQueue?.insertDebugCaptureBoundary()
             #endif
             
-            if let commandBuffer = this.commandBuffer {
+            if let commandBuffer = self?.commandBuffer, let this = self {
                 
                 action(commandBuffer)
                 

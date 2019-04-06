@@ -22,7 +22,7 @@ public extension Array where Element : Equatable {
     }
 }
 
-public protocol IMPTextureProvider{
+public protocol IMPTextureProvider: class {
     var texture:MTLTexture?{ get set }
 }
 

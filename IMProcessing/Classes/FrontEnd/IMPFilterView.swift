@@ -122,9 +122,9 @@ open class IMPFilterView: MTKView {
             if let filter = self.filter, filter.dirty || self.needProcessing {
                 self.__source = filter.destination
                 self.needProcessing = false
-                if self.debug {
-                    Swift.print("View[\((self.name ?? "-"))] filter = \(filter, self.__source, self.__source?.size)")
-                }
+                //if self.debug {
+                    //Swift.print("View[\((self.name ?? "-"))] filter = \(filter, self.__source, self.__source?.size)")
+                //}
             }
             else {
                 return

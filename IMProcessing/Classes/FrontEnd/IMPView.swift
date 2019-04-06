@@ -65,7 +65,7 @@ extension DispatchQueue {
     // will be invoked immediately instead of being dispatched.
     func safeAsync(_ block: @escaping ()->()) {
         if self === DispatchQueue.main && Thread.isMainThread {
-            NSLog(" @@@ IMPView safeAsync \(Thread.isMainThread, self)")
+            //NSLog(" @@@ IMPView safeAsync \(Thread.isMainThread, self)")
             block()
         } else {
             async { block() }
@@ -186,9 +186,10 @@ open class IMPView: MTKView {
     
     required public init(coder: NSCoder) {
         super.init(coder: coder)
-        guard device != nil else {
-            fatalError("The system does not support any MTL devices...")
-        }
+        //guard device != nil else {
+        //    fatalError("The system does not support any MTL devices...")
+        //}
+        device = IMPDevice.shared.device
         defer {
             _init_()
         }

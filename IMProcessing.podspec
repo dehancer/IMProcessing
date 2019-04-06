@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.osx.deployment_target = "10.12"
   s.ios.deployment_target = "10.2"
-  s.swift_version = "4.2"
+  s.swift_version = "5.0"
 
   s.source_files        = 'IMProcessing/Classes/**/*.{h,swift,m,mm}', 'IMProcessing/Classes/*.{swift}', 'IMProcessing/Classes/**/*.h','IMProcessing/Classes/Shaders/*.h', 'vendor/libjpeg-turbo/include/*'
   s.public_header_files = 'IMProcessing/Classes/**/*.h','IMProcessing/Classes/Shaders/*.h'

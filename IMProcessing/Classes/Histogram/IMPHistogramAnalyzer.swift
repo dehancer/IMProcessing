@@ -51,7 +51,7 @@ public extension IMPHistogramSolver {
 }
 
 public extension IMPHistogramAnalyzerProtocol {
-    public mutating func setCenterRegion(inPercent value:Float){
+    public func setCenterRegion(inPercent value:Float){
         let half = value/2.0
         region = IMPRegion(
             left:   0.5 - half,

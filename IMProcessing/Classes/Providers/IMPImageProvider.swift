@@ -125,7 +125,7 @@ public enum IMPImageStorageMode {
 
 
 /// Image provider base protocol
-public protocol IMPImageProvider: IMPTextureProvider, IMPContextProvider{
+public protocol IMPImageProvider: class, IMPTextureProvider, IMPContextProvider {
     
     var mutex:IMPSemaphore {get}
     
@@ -263,15 +263,15 @@ public extension IMPImageProvider {
     }
     
     
-    public mutating func update(_ inputImage:CIImage){
+    public func update(_ inputImage:CIImage){
         image = inputImage
     }
     
-    public mutating func update(_ inputImage:CGImage){
+    public func update(_ inputImage:CGImage){
         image = CIImage(cgImage: inputImage)
     }
     
-    public mutating func update(_ inputImage:NSImage){
+    public func update(_ inputImage:NSImage){
         #if os(OSX)
         guard let data = inputImage.tiffRepresentation else { return }
         image = CIImage(data: data, options: convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
@@ -280,7 +280,7 @@ public extension IMPImageProvider {
         #endif
     }
     
-    public mutating func update(_ buffer:CMSampleBuffer){
+    public func update(_ buffer:CMSampleBuffer){
         if let pixelBuffer = CMSampleBufferGetImageBuffer(buffer) {
             CVPixelBufferLockBaseAddress(pixelBuffer, CVPixelBufferLockFlags(rawValue:CVOptionFlags(0)))
             update(pixelBuffer)
@@ -288,7 +288,7 @@ public extension IMPImageProvider {
         }
     }
     
-    public mutating func update(_ buffer: CVImageBuffer) {
+    public func update(_ buffer: CVImageBuffer) {
         
         let width = CVPixelBufferGetWidth(buffer)
         let height = CVPixelBufferGetHeight(buffer)
@@ -321,7 +321,7 @@ public extension IMPImageProvider {
         }
     }
     
-    internal mutating func prepareImage(image originImage: CIImage?, maxSize: CGFloat, orientation:IMPImageOrientation? = nil)  -> CIImage? {
+    internal func prepareImage(image originImage: CIImage?, maxSize: CGFloat, orientation:IMPImageOrientation? = nil)  -> CIImage? {
         
         guard let image = originImage else { return originImage }
         
@@ -523,9 +523,9 @@ public extension IMPImageProvider {
         
         var texture = texture
         
-        context.execute(.sync, wait: true) { (commandBuffer) in
+        context.execute(.sync, wait: true) { [weak self] (commandBuffer) in
             
-            guard  var image = image else {
+            guard  var image = image, let self = self else {
                 complete?(nil,nil)            
                 return             
             }
@@ -562,16 +562,19 @@ public extension IMPImageProvider {
         texture = checkTexture(texture: texture)
         
         if let t = texture {
-            context.execute(.sync, wait: true) { (commandBuffer) in
+            
+            let cs = self.colorSpace
+            
+            context.execute(.sync, wait: true) { [weak self] (commandBuffer) in
                 
                 let transform = CGAffineTransform.identity.scaledBy(x: 1, y: -1).translatedBy(x: 0, y: image.extent.size.height)
                 image = !flipVertical ? image : image.transformed(by: transform)
                 
-                self.context.coreImage?.render(image,
+                self?.context.coreImage?.render(image,
                                                to: t,
                                                commandBuffer: commandBuffer,
                                                bounds: image.extent,
-                                               colorSpace: self.colorSpace)
+                                               colorSpace: cs)
                 complete?(t,commandBuffer)
             }
         }
@@ -584,16 +587,16 @@ public extension IMPImageProvider {
                             execute:((_ command:MTLCommandBuffer?)->Void)?=nil,
                             complete:((_ command:MTLCommandBuffer?)->Void)?=nil) {
         
-        context.runOperation(.async) {
+        context.runOperation(.async) { [weak self] in
             
-            if let commandBuffer = self.context.commandBuffer {
+            if let commandBuffer = self?.context.commandBuffer {
                 
                 commandBuffer.addCompletedHandler{ commandBuffer in            
                     complete?(commandBuffer)                
                     return
                 }                
                 
-                if let txt = self.texture {
+                if let txt = self?.texture {
                     
                     let blit = commandBuffer.makeBlitCommandEncoder()
                     
@@ -623,15 +626,15 @@ public extension IMPImageProvider {
                             execute:((_ command:MTLCommandBuffer?)->Void)?=nil,
                             complete:((_ command:MTLCommandBuffer?)->Void)?=nil) {
         
-        context.runOperation(.async) {
+        context.runOperation(.async) { [weak self] in
         
-            if let txt = self.texture {
+            if let txt = self?.texture {
                 
                 DispatchQueue.main.async {
                     view.drawableSize = txt.cgsize                    
                 }
                 
-                if let currentDrawable = view.currentDrawable, let commandBuffer = self.context.commandBuffer {
+                if let currentDrawable = view.currentDrawable, let commandBuffer = self?.context.commandBuffer {
                     
                     let texture = currentDrawable.texture
                     
@@ -706,11 +709,11 @@ public extension IMPImageProvider {
     public func makeCopy() -> MTLTexture? {
         var newTexture:MTLTexture? = nil
         
-        context.execute { (commandBuffer) in
+        context.execute { [weak self] (commandBuffer) in
             
-            if let txt = self.texture {
+            if let txt = self?.texture {
                 
-                newTexture = self.context.device.make2DTexture(size: txt.cgsize, pixelFormat: txt.pixelFormat)
+                newTexture = self?.context.device.make2DTexture(size: txt.cgsize, pixelFormat: txt.pixelFormat)
                 
                 let blit = commandBuffer.makeBlitCommandEncoder()
                 
@@ -734,11 +737,11 @@ public extension IMPImageProvider {
     
     public func makeTextureCopyAsync(copy: @escaping (_ texture:MTLTexture?)->Void){
         
-        context.runOperation(.async) {
+        context.runOperation(.async) {  [weak self] in
             
-            if let txt = self.texture, let commandBuffer = self.context.commandBuffer {
-                
-                let newTexture = self.context.device.make2DTexture(size: txt.cgsize, pixelFormat: txt.pixelFormat)
+            if let txt = self?.texture,
+                let commandBuffer = self?.context.commandBuffer,
+                let newTexture = self?.context.device.make2DTexture(size: txt.cgsize, pixelFormat: txt.pixelFormat) {
                 
                 let blit = commandBuffer.makeBlitCommandEncoder()
                 

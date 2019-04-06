@@ -42,7 +42,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
             for c in self.coreImageFilterList {
                 c.filter?.observingType = observingType
             }
-            root?.observingType = observingType
+            //root?.observingType = observingType
         }
     }
     
@@ -128,7 +128,11 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
             for c in self.coreImageFilterList {
                 c.filter?.dirty = dirty
             }
-            root?.resetDirty(dirty)
+            
+            //root?.resetDirty(dirty)
+                        
+            //root?.dirty = self.dirty
+            
             if dirty {
                 if root == nil {
                     executeDirtyObservers(filter: self)
@@ -151,9 +155,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
         isIgnoringDirty = false
     }
     
-    private func resetDirty(_ dirty:Bool){
-        self.dirty = dirty
-    }
+//    private func resetDirty(_ dirty:Bool){
+//        self.dirty = dirty
+//    }
     
     public var chain:[FilterContainer] {
         return coreImageFilterList
@@ -487,7 +491,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     @discardableResult public func add<T:IMPFilter>(filter: IMPFilter,
                                        fail: FailHandler?=nil,
                                        complete: CompleteHandler?=nil) -> T {
-        filter.root = self
+        if filter !== self {
+            filter.root = self
+        }
         return appendFilter(filter: FilterContainer(cifilter: nil, filter: filter, complete:complete),
                             fail: { (error) in
                                 filter.root = nil
@@ -499,7 +505,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
                                           at index: Int,
                                           fail: FailHandler?=nil,
                                           complete: CompleteHandler?=nil) -> T {
-        filter.root = self
+        if filter !== self {
+            filter.root = self
+        }
         return insertFilter(filter: FilterContainer(cifilter: nil, filter: filter, complete:complete), index:index,
                             fail: { (error) in
                                 filter.root = nil
@@ -514,7 +522,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
                                           complete: CompleteHandler?=nil) -> T {
         let (index, contains) = findFilter(name: filterName, isAfter: true, fail: fail)
         if contains {
-            filter.root = self
+            if filter !== self {
+                filter.root = self
+            }
             return insertFilter(filter: FilterContainer(cifilter: nil, filter: filter, complete:complete), index:index,
                                 fail: { (error) in
                                     filter.root = nil
@@ -531,7 +541,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
         
         let (index, contains) = findFilter(name: filterName, isAfter: false, fail: fail)
         if contains {
-            filter.root = self
+            if filter !== self {
+                filter.root = self
+            }
             return insertFilter(filter: FilterContainer(cifilter: nil, filter: filter, complete:complete), index:index,
                                 fail: { (error) in
                                     filter.root = nil
@@ -929,10 +941,11 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     // MARK: - private
     //
     
-    private var root:IMPFilter? {
+    private var root:IMPFilter? = nil {
         didSet{
-            if let r = root {
-                observingType = r.observingType
+            if let r = root, self !== r {
+                self.observingType = r.observingType
+                self.dirty = r.dirty
             }
         }
     }

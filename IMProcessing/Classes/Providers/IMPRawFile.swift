@@ -42,7 +42,7 @@ open class IMPRawFile: IMPImageProvider {
     
     public var baselineExposure:Float {
         set {
-            rawFilter?.setValue(baselineExposure,  forKey: convertFromCIRAWFilterOption(CIRAWFilterOption.baselineExposure))
+            rawFilter?.setValue(newValue,  forKey: convertFromCIRAWFilterOption(CIRAWFilterOption.baselineExposure))
             renderTexture()
         }
         get {
@@ -146,7 +146,7 @@ open class IMPRawFile: IMPImageProvider {
         }
     }
     
-    public var enableSharpening:Bool = false {
+    public var enableSharpening:Bool = true {
         didSet{  
             rawFilter?.setValue(enableSharpening, forKey: convertFromCIRAWFilterOption(CIRAWFilterOption.enableSharpening))
             renderTexture()
