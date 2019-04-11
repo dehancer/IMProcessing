@@ -182,8 +182,14 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     }
     
     public func flush(){
-        source?.image = nil
+        if (source as? IMPRawFile) == nil {
+            source?.image = nil
+        }
+        else {
+            source = nil
+        }
         _destination.image = nil
+        _destination.texture = nil
         for c in coreImageFilterList {
             if let f = c.filter {
                 f.flush()
