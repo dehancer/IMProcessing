@@ -5,7 +5,7 @@ inhibit_all_warnings!
 target 'IMPBaseOperations' do
     pod 'SnapKit'
     pod 'Surge', :path => '../../../../Surge'
-    pod 'ObjectMapper', :git => 'https://github.com/Hearst-DD/ObjectMapper', :branch => 'swift-4'
+    pod 'ObjectMapper' #, :git => 'https://github.com/Hearst-DD/ObjectMapper', :branch => 'swift-4'
     pod 'IMProcessing', :path => '../../../'
     #pod 'IMProcessing', :path => '../../../'
 end

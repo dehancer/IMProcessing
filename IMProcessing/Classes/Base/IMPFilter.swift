@@ -108,9 +108,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     public required init(context:IMPContext, name: String? = nil) {
         self.context = context
         _name = name ?? String(describing: type(of: self)) + ":" + String.uniqString()
-        defer {
+        //defer {
             configure()
-        }
+        //}
     }
     
     public var enabled: Bool = true {

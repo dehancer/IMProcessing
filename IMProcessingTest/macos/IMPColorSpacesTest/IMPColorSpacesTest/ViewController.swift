@@ -29,7 +29,7 @@ extension String {
     }
     
     func numberOfCharacters() -> Int {
-        return self.characters.count
+        return self.count
     }
 }
 
@@ -133,7 +133,7 @@ class ViewController: NSViewController {
     lazy var destinationValues:[NSTextField]  = [self.destinationXValue, self.destinationYValue, self.destinationZValue]
 
     @IBAction func valueUpdated(_ sender: NSTextField) {
-        if sourceValues.index(of: sender) != nil {
+        if sourceValues.firstIndex(of: sender) != nil {
             updateDestinations()
         }
         else {
@@ -142,7 +142,7 @@ class ViewController: NSViewController {
     }
 
     func updateDestinations() {
-        var c = float3(0)
+        var c = float3(repeating: 0)
         for (i,s) in sourceValues.enumerated() {
             let f = s.floatValue
             c[i] = f
@@ -156,7 +156,7 @@ class ViewController: NSViewController {
     }
 
     func updateSources() {
-        var c = float3(0)
+        var c = float3(repeating: 0)
         for (i,s) in destinationValues.enumerated() {
             let f = s.floatValue
             c[i] = f
@@ -178,7 +178,7 @@ class ViewController: NSViewController {
 
         let rgb  = sourceColorSpace.to(.rgb, value: t)
         
-        let tempTint = IMPBridge.tempTint(for: rgb, from: float3(122,122,121)/float3(255))
+        let tempTint = IMPBridge.tempTint(for: rgb, from: float3(122,122,121)/float3(repeating: 255))
         temperatureLabel.stringValue = String(format: "%.2f",tempTint.x)
         tintLabel.stringValue = String(format: "%.2f",tempTint.y)
         
@@ -187,7 +187,7 @@ class ViewController: NSViewController {
         var rgb1  = rgb
         while tx>5000.0 {
             rgb1 = IMPBridge.adjustTempTint(float2(tx,tempTint.y), for: rgb1)
-            let rrr = IMPBridge.tempTint(for: rgb1, from: float3(122,122,121)/float3(255))
+            let rrr = IMPBridge.tempTint(for: rgb1, from: float3(122,122,121)/float3(repeating: 255))
             Swift.print("[\(tx)] rrr = \(rrr) rgb1 = \(rgb1)")
             tx -= 1
         }
@@ -203,7 +203,7 @@ class ViewController: NSViewController {
         
         updateFormaters(sources: matchingValues, space: to)
 
-        var c = float3(0)
+        var c = float3(repeating: 0)
         for (i,f) in fromValues.enumerated() {
             c[i] = f.floatValue
         }

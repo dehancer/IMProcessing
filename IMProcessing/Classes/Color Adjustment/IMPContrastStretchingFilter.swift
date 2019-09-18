@@ -9,7 +9,7 @@
 import Foundation
 import Accelerate
 
-public class IMPContrastScretchingFilter:IMPFilter{
+public class IMPContrastStretchingFilter:IMPFilter{
     
     public static let defaultAdjustment = IMPContrastAdjustment(
         minimum: float4([0,0,0,1]),
@@ -29,7 +29,7 @@ public class IMPContrastScretchingFilter:IMPFilter{
     }
     
     private lazy var kernel:IMPFunction = {
-        var f = IMPFunction(context: self.context, kernelName: "kernel_adjustContrastScretching")
+        var f = IMPFunction(context: self.context, kernelName: "kernel_adjustContrastStretching")
         f.optionsHandler = { (function, command, input, output) in
             command.setBytes(&self.adjustment, length:MemoryLayout.size(ofValue: self.adjustment),index:0)
         }

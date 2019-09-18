@@ -99,15 +99,21 @@ public class IMPCubicSpline:IMPInterpolator {
         B[n-1,0] = 6 * (secondDerivative-(controls[n-1].y-controls[n-2].y)/h1)/h1
         
         do {
+            Swift.print("A:\n\(A)")
+            Swift.print("B:\n\(B)")
             _ = try Surge.solve(a: A, b: &B)
         }
         catch let error {
             NSLog("IMPCubicSpline: \(error)")
         }
         
+        Swift.print("X:\n\(B)")
+
         var b = B[column:0]
         b.append(0)
-        
+
+        Swift.print("col:\n\(b)")
+
         return b
     }
 }

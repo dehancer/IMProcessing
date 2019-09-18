@@ -17,7 +17,7 @@
 import Surge
 import Accelerate
 
-public class IMPCurvesFilter: IMPFilter {
+public class  IMPCurvesFilter: IMPFilter {
     
     public static let defaultAdjustment = IMPAdjustment( blending: IMPBlending(mode: .normal, opacity: 1))
     

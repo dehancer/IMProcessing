@@ -34,8 +34,8 @@ public extension IMPInterpolator {
     }
         
     public func testBounds(at x:Float) -> Float? {
-        if bounds.left.x>=x { return bounds.left.y }
-        if bounds.right.x<=x { return bounds.right.y }
+        if bounds.left.x>x { return bounds.left.y }
+        if bounds.right.x<x { return bounds.right.y }
         return nil
     }
     

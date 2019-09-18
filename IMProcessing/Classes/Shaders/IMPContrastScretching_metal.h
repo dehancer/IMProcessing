@@ -17,7 +17,7 @@
 #include <simd/simd.h>
 #include "IMPSwift-Bridging-Metal.h"
 
-inline float4 adjustContrastScretching(float4 inColor, constant IMPContrastAdjustment &adjustment){
+inline float4 adjustContrastStretching(float4 inColor, constant IMPContrastAdjustment &adjustment){
     float4 result = inColor;
     
     float3 alow  = float4(adjustment.minimum).rgb;
@@ -37,14 +37,14 @@ inline float4 adjustContrastScretching(float4 inColor, constant IMPContrastAdjus
     return result;
 }
 
-kernel void kernel_adjustContrastScretching(
+kernel void kernel_adjustContrastStretching(
                                             texture2d<float, access::sample>   inTexture   [[texture(0)]],
                                             texture2d<float, access::write>    outTexture  [[texture(1)]],
                                             constant IMPContrastAdjustment     &adjustment [[buffer(0)]],
                                             uint2 gid [[thread_position_in_grid]]){
     
     float4 inColor = IMProcessing::sampledColor(inTexture,outTexture,gid);
-    outTexture.write(adjustContrastScretching(inColor,adjustment),gid);
+    outTexture.write(adjustContrastStretching(inColor,adjustment),gid);
 }
 
 
