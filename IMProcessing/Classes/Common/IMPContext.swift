@@ -98,7 +98,7 @@ public protocol IMPContextProvider: class {
 }
 
 public extension String{
-    public static func uniqString() -> String{
+    static func uniqString() -> String{
         return CFUUIDCreateString(nil, CFUUIDCreate(nil)) as String
     }
 }

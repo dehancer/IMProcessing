@@ -32,7 +32,7 @@ public extension IMPCLut {
     ///   - url: URL
     ///   - storageMode: storageMode
     /// - Throws: `FormatError`
-    public convenience init(context:IMPContext,  haldImage url: URL, storageMode:IMPImageStorageMode?=nil) throws {
+    convenience init(context:IMPContext,  haldImage url: URL, storageMode:IMPImageStorageMode?=nil) throws {
         self.init(context: context, url: url)
         try checkFormat(url: url)
     }
@@ -45,7 +45,7 @@ public extension IMPCLut {
     ///   - path: path
     ///   - storageMode: storageMode
     /// - Throws: `FormatError`
-    public convenience init(context:IMPContext,  haldImage path: String, storageMode:IMPImageStorageMode?=nil) throws {
+    convenience init(context:IMPContext,  haldImage path: String, storageMode:IMPImageStorageMode?=nil) throws {
         self.init(context: context, path: path)
         try checkFormat(url: URL(fileURLWithPath:path))
     }
@@ -57,7 +57,7 @@ public extension IMPCLut {
     ///   - path: path
     ///   - storageMode: storageMode
     /// - Throws: `FormatError`
-    public convenience init(context:IMPContext,  haldImage image: NSImage, storageMode:IMPImageStorageMode?=nil) throws {
+    convenience init(context:IMPContext,  haldImage image: NSImage, storageMode:IMPImageStorageMode?=nil) throws {
         self.init(context: context, image: image)
         try checkFormat(image: image)
     }

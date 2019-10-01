@@ -6,8 +6,6 @@
 //  Copyright © 2019 Dehancer. All rights reserved.
 //
 
-import IMProcessing
-
 public class IMPDevice {
     
     public static let shared = IMPDevice()

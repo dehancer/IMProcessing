@@ -14,6 +14,10 @@
 
 import simd
 
+public typealias float2 = SIMD2<Float>
+public typealias float3 = SIMD3<Float>
+public typealias float4 = SIMD4<Float>
+
 // MARK: - Vector extensions
 
 public extension Float {
@@ -55,60 +59,60 @@ public extension float3 {
         return (1-t)*self + t*final
     }
     
-    public var xy:float2 { get{ return float2(x,y) }   set{self.x=newValue.x; self.y=newValue.y}}
-    public var xz:float2 { get{ return float2(x,z) }   set{self.x=newValue.x; self.z=newValue.y}}
-    public var yz:float2 { get{ return float2(y,z) }   set{self.y=newValue.x; self.z=newValue.y}}
-    public var xxx:float3 { get{ return float3(x,x,x)}}
-    public var yyy:float3 { get{ return float3(y,y,y)}}
-    public var zzz:float3 { get{ return float3(z,z,z)}}
+    var xy:float2 { get{ return float2(x,y) }   set{self.x=newValue.x; self.y=newValue.y}}
+    var xz:float2 { get{ return float2(x,z) }   set{self.x=newValue.x; self.z=newValue.y}}
+    var yz:float2 { get{ return float2(y,z) }   set{self.y=newValue.x; self.z=newValue.y}}
+    var xxx:float3 { get{ return float3(x,x,x)}}
+    var yyy:float3 { get{ return float3(y,y,y)}}
+    var zzz:float3 { get{ return float3(z,z,z)}}
 }
 
 // float4
 
 public extension float4 {
 
-    public static func == (left:float4,right:float4) -> Bool {
+    static func == (left:float4,right:float4) -> Bool {
         return (left.x == right.x) && (left.y == right.y) && (left.z == right.z) && (left.w == right.w)
     }
     
-    public static func != (left:float4,right:float4) -> Bool {
+    static func != (left:float4,right:float4) -> Bool {
         return !(left == right)
     }
 
-    public func lerp(final:float4, t:Float) -> float4 {
+    func lerp(final:float4, t:Float) -> float4 {
         return (1-t)*self + t*final
     }
 
-    public var xy:float2 { get{ return float2(x,y) } set{self.x=newValue.x; self.y=newValue.y}}
-    public var zw:float2 { get{ return float2(z,w) } set{self.z=newValue.x; self.w=newValue.y}}
-    public var wz:float2 { get{ return float2(w,z) } set{self.w=newValue.x; self.z=newValue.y}}
+    var xy:float2 { get{ return float2(x,y) } set{self.x=newValue.x; self.y=newValue.y}}
+    var zw:float2 { get{ return float2(z,w) } set{self.z=newValue.x; self.w=newValue.y}}
+    var wz:float2 { get{ return float2(w,z) } set{self.w=newValue.x; self.z=newValue.y}}
     
-    public var xxx:float3 { get{ return float3(x,x,x) } }
-    public var yyy:float3 { get{ return float3(y,y,y) } }
-    public var zzz:float3 { get{ return float3(z,z,z) } }
-    public var www:float3 { get{ return float3(w,w,w) } }
+    var xxx:float3 { get{ return float3(x,x,x) } }
+    var yyy:float3 { get{ return float3(y,y,y) } }
+    var zzz:float3 { get{ return float3(z,z,z) } }
+    var www:float3 { get{ return float3(w,w,w) } }
     
-    public var xyw:float3 { get{ return float3(x,y,w) } set{self.x=newValue.x; self.y=newValue.y; self.w=newValue.z}}
-    public var xwy:float3 { get{ return float3(x,w,y) } set{self.x=newValue.x; self.w=newValue.y; self.y=newValue.z}}
-    public var wxy:float3 { get{ return float3(w,x,y) } set{self.w=newValue.x; self.x=newValue.y; self.y=newValue.z}}
-    public var yzx:float3 { get{ return float3(y,z,x) } set{self.y=newValue.x; self.z=newValue.y; self.x=newValue.z}}
-    public var xyz:float3 { get{ return float3(x,y,z) } set{self.x=newValue.x; self.y=newValue.y; self.z=newValue.z}}
+    var xyw:float3 { get{ return float3(x,y,w) } set{self.x=newValue.x; self.y=newValue.y; self.w=newValue.z}}
+    var xwy:float3 { get{ return float3(x,w,y) } set{self.x=newValue.x; self.w=newValue.y; self.y=newValue.z}}
+    var wxy:float3 { get{ return float3(w,x,y) } set{self.w=newValue.x; self.x=newValue.y; self.y=newValue.z}}
+    var yzx:float3 { get{ return float3(y,z,x) } set{self.y=newValue.x; self.z=newValue.y; self.x=newValue.z}}
+    var xyz:float3 { get{ return float3(x,y,z) } set{self.x=newValue.x; self.y=newValue.y; self.z=newValue.z}}
 }
 
 
 // MARK: - Matrix constructors
 public extension float3x3 {
-    public init(rows: [[Float]]){
+    init(rows: [[Float]]){
         self.init(matrix_from_rows(vector_float3(rows[0]), vector_float3(rows[1]), vector_float3(rows[2])))
     }
     
-    public init(_ columns: [[Float]]){
+    init(_ columns: [[Float]]){
         self.init(float3x3(vector_float3(columns[0]), vector_float3(columns[1]), vector_float3(columns[2])))
     }
 }
 
 public extension float4x4 {
-    public init(rows: [[Float]]){
+    init(rows: [[Float]]){
         self.init(matrix_from_rows(float4(rows[0]), float4(rows[1]), float4(rows[2]),float4(rows[3])))
     }
 }

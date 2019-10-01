@@ -134,21 +134,21 @@ public extension float3{
         #endif
     }
     
-    public init(colors:[String]){
+    init(colors:[String]){
         self.init(colors[0].floatValue,colors[1].floatValue,colors[2].floatValue)
     }
 }
 
 public extension float4{
     
-    public var r:Float{ set{ x = newValue } get{ return x } }
-    public var g:Float{ set{ y = newValue } get{ return y } }
-    public var b:Float{ set{ z = newValue } get{ return z } }
-    public var a:Float{ set{ w = newValue } get{ return w } }
+    var r:Float{ set{ x = newValue } get{ return x } }
+    var g:Float{ set{ y = newValue } get{ return y } }
+    var b:Float{ set{ z = newValue } get{ return z } }
+    var a:Float{ set{ w = newValue } get{ return w } }
     
-    public var rgb:float3 {
+    var rgb:float3 {
         set{
-            x = rgb.x
+            x = newValue.x
             y = rgb.y
             z = rgb.z
         }
@@ -157,10 +157,10 @@ public extension float4{
         }
     }
     
-    public var bg:float2 { get{ return float2(b,g) } }
-    public var gb:float2 { get{ return float2(g,b) } }
+    var bg:float2 { get{ return float2(b,g) } }
+    var gb:float2 { get{ return float2(g,b) } }
     
-    public func normalized() -> float4 {
+    func normalized() -> float4 {
         var vector = self
         var sum = vector.x+vector.y+vector.z+vector.w
         if (sum==0.0) {
@@ -173,19 +173,19 @@ public extension float4{
         return vector
     }
     
-    public init(_ bg:float2, _ wz:float2){
+    init(_ bg:float2, _ wz:float2){
         self.init(bg.x,bg.y,wz.x,wz.y)
     }
     
-    public init(_ r:Float, _ xyz:float3){
+    init(_ r:Float, _ xyz:float3){
         self.init(r,xyz.x,xyz.y,xyz.z)
     }
     
-    public init(rgb:float3,a:Float){
+    init(rgb:float3,a:Float){
         self.init(rgb.x,rgb.y,rgb.z,a)
     }
     
-    public init(color:NSColor){
+    init(color:NSColor){
         #if os(iOS)
             var r = CGFloat(0)
             var g = CGFloat(0)
@@ -198,7 +198,7 @@ public extension float4{
         #endif
     }
     
-    public init(colors:[String]){
+    init(colors:[String]){
         self.init(colors[0].floatValue,colors[1].floatValue,colors[2].floatValue,colors[3].floatValue)
     }
 }

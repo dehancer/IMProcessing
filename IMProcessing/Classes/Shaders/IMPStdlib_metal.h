@@ -56,6 +56,7 @@
 //#include "IMPDithering_metal.h"
 #include "IMPVignette_metal.h"
 #include "IMPSaturation_metal.h"
+#include "IMPAdjustGray_metal.h"
 
 #ifdef __cplusplus
 
