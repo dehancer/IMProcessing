@@ -81,7 +81,8 @@ open class IMPTwoPass: IMPFilter {
     private lazy var horizontalKernel:IMPFunction = {
         let f = IMPFunction(context: self.context, kernelName: self.kernelName)
         
-        f.optionsHandler = { (function, commandEncoder, input, output) in
+        f.optionsHandler = { [weak self]  (function, commandEncoder, input, output) in
+            guard let self = self else { return }
             commandEncoder.setBuffer(self.hTexelSizeBuffer, offset: 0, index: 0)
             self.optionsHandler(passnumber: .first,
                                 function: function,
@@ -95,7 +96,10 @@ open class IMPTwoPass: IMPFilter {
     
     private lazy var verticalKernel:IMPFunction = {
         let f = IMPFunction(context: self.context, kernelName: self.kernelName)
-        f.optionsHandler = { (function, commandEncoder, input, output) in
+        f.optionsHandler = {  [weak self] (function, commandEncoder, input, output) in
+            
+            guard let self = self else { return }
+            
             //var d:uint = uint(self.dimensions.height)
             commandEncoder.setBuffer(self.vTexelSizeBuffer, offset: 0, index: 0)
             //commandEncoder.setBytes(&d,length:MemoryLayout<uint>.size,at:1)

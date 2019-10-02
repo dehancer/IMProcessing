@@ -23,7 +23,11 @@ public class IMPTpsFilter: IMPTpsCLutTransform {
         
         let kernel = IMPFunction(context: self.context, kernelName: kernelName)
         
-        kernel.optionsHandler = {(shader, commandEncoder, input, output) in            
+        kernel.optionsHandler = { [weak self] (shader, commandEncoder, input, output) in
+            
+            guard let self = self else {
+                return
+            }
             
             var index = self.space.index
             commandEncoder.setBytes(&index,

@@ -29,23 +29,23 @@ open class IMPImage: IMPImageProvider {
     }
                 
     public func addObserver(optionsChanged observer: @escaping ObserverType) {
-        mutex.sync { () -> Void in
+        mutex.sync { [weak self] () -> Void in
             let key = unsafeRemoveObserver(optionsChanged: observer)
-            self.filterObservers.append(IMPObserverHash<ObserverType>(key:key,observer: observer))
+            self?.filterObservers.append(IMPObserverHash<ObserverType>(key:key,observer: observer))
         }
     }
     
     @discardableResult public func unsafeRemoveObserver(optionsChanged observer: @escaping ObserverType) -> String {
         let key = IMPObserverHash<ObserverType>.observerKey(observer)
         if let index = self.filterObservers.index(where: { return $0.key == key }) {
-            self.filterObservers.remove(at: index)
+            filterObservers.remove(at: index)
         } 
         return key
     }
     
     public func removeObservers() {
-        mutex.sync { () -> Void in
-            self.filterObservers.removeAll()
+        mutex.sync { [weak self] () -> Void in
+            self?.filterObservers.removeAll()
         }
     }
     
@@ -94,7 +94,7 @@ open class IMPImage: IMPImageProvider {
                 
                // _image = CIImage(mtlTexture: _texture!, options:  convertToOptionalCIImageOptionDictionary([convertFromCIImageOption(CIImageOption.colorSpace): colorSpace]))
                 
-                let observers = self.mutex.sync { return [IMPObserverHash<ObserverType>](self.filterObservers) }
+                let observers = mutex.sync { return [IMPObserverHash<ObserverType>](filterObservers) }
                 
                 for hash in observers {
                     hash.observer(self)

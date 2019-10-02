@@ -125,7 +125,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
             
             if isIgnoringDirty { return }
             
-            for c in self.coreImageFilterList {
+            for c in coreImageFilterList {
                 c.filter?.dirty = dirty
             }
             
@@ -143,7 +143,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     
     private var isIgnoringDirty: Bool = false {
         didSet{        
-            for c in self.coreImageFilterList {
+            for c in coreImageFilterList {
                 c.filter?.isIgnoringDirty = isIgnoringDirty
             }
         }
@@ -242,10 +242,10 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
             
             let destSize = resampleSize ?? destinationSize ?? size
             
-            result.texture = self.apply(size:destSize, commandBuffer: nil)
+            result.texture = apply(size:destSize, commandBuffer: nil)
             
-            self.executeDestinationObservers(destination: result)
-            self.dirty = false
+            executeDestinationObservers(destination: result)
+            dirty = false
             return result
         }
         
@@ -303,7 +303,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     //
     private func apply(size:NSSize?, commandBuffer: MTLCommandBuffer? = nil) -> MTLTexture? {
         
-        guard let input = self.source?.texture else { return nil}
+        guard let input = source?.texture else { return nil}
         
         guard let colorSpace =  source?.colorSpace else { return nil }
         
@@ -323,7 +323,9 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
                 
                 NSLog("IMPFilter: applying failed.")
                 
-            }, action: { (commandBuffer) in
+            }, action: { [weak self]  (commandBuffer) in
+                
+                guard let self = self else { return }
                 
                 let device = commandBuffer.device
                 
@@ -399,7 +401,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
                 }
             })
             
-            c.complete?(IMPImage(context:self.context, texture: currentResult))
+            c.complete?(IMPImage(context:context, texture: currentResult))
         }
         return currentResult
     }
@@ -898,7 +900,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     // MARK: - internal
     //
     internal func executeNewSourceObservers(source:IMPImageProvider?){
-        let observers = self.mutex.sync { Array(self.newSourceObservers) } 
+        let observers = mutex.sync { Array(self.newSourceObservers) }
         context.runOperation(self.observingType) {
             for hash in observers {
                 hash.observer(source)
@@ -909,7 +911,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     internal func executeDestinationObservers(destination:IMPImageProvider?){
         if observersEnabled {
             if let d = destination {
-                let observers = self.mutex.sync { Array(self.destinationObservers) }                     
+                let observers = mutex.sync { Array(self.destinationObservers) }
                 context.runOperation(self.observingType) {
                     for hash in observers {
                         hash.observer(d)
@@ -933,7 +935,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     
     internal func executeEnablingObservers(filter:IMPFilter){
         if observersEnabled {
-            let observers = self.mutex.sync { Array(self.enablingObservers) }
+            let observers = mutex.sync { Array(self.enablingObservers) }
             context.runOperation(self.observingType) {
                 for hash in observers {
                     hash.observer(filter,filter.source,filter._destination)
@@ -950,8 +952,8 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
     private var root:IMPFilter? = nil {
         didSet{
             if let r = root, self !== r {
-                self.observingType = r.observingType
-                self.dirty = r.dirty
+                observingType = r.observingType
+                dirty = r.dirty
             }
         }
     }

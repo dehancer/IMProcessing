@@ -76,7 +76,10 @@ public class IMPColorObserver:IMPFilter {
     
     private lazy var patchColorsKernel:IMPFunction = {
         let f = IMPFunction(context: self.context, kernelName: "kernel_patchColors")
-        f.optionsHandler = { (function,command,source,destination) in
+        f.optionsHandler = { [weak self] (function,command,source,destination) in
+            
+            guard let self = self else { return }
+            
             if self.centers.count > 0 {
                 command.setBuffer(self.centersBuffer,  offset: 0, index: 0)
                 command.setBuffer(self.colorsBuffer,   offset: 0, index: 1)

@@ -47,7 +47,8 @@ public class IMPCCheckerDetector: IMPDetector {
         
         super.configure()
         
-        add(filter: opening) { (source) in
+        add(filter: opening) { [weak self] (source) in
+            guard let self = self else { return }
             self.sourceImage = source
             self.harrisCornerDetector.source = source
             self.harrisCornerDetector.process()
@@ -57,7 +58,9 @@ public class IMPCCheckerDetector: IMPDetector {
         
         harrisCornerDetector.addObserver { (corners:[IMPCorner], size:NSSize) in
             
-            var filtered = corners.filter { (corner) -> Bool in
+            var filtered = corners.filter { [weak self] (corner) -> Bool in
+                
+                guard let self = self else { return false }
                 
                 var count = 0
                 for i in 0..<4 {
@@ -142,7 +145,9 @@ public class IMPCCheckerDetector: IMPDetector {
     
     private lazy var patchDetectorKernel:IMPFunction = {
         let f = IMPFunction(context: self.context, kernelName: "kernel_patchScanner")
-        f.optionsHandler = { (function,command,source,destination) in
+        f.optionsHandler = { [weak self] (function,command,source,destination) in
+            
+            guard let self = self else { return }
             
             if let texture = self.sourceImage?.texture {
                 command.setTexture(texture, index: 2)
@@ -158,7 +163,10 @@ public class IMPCCheckerDetector: IMPDetector {
     
     private lazy var patchDetector:IMPFilter = {
         let f = IMPFilter(context:self.context)
-        f.add(function: self.patchDetectorKernel){ (source) in
+        
+        f.add(function: self.patchDetectorKernel){ [weak self] (source) in
+            
+            guard let self = self else { return }
             
             self._isDetected = false
             guard let size = source.size else {return}
@@ -179,7 +187,8 @@ public class IMPCCheckerDetector: IMPDetector {
     private lazy var patchColors:IMPColorObserver = {
         let f = IMPColorObserver(context: self.context)
         
-        f.addObserver(destinationUpdated: { (destination) in
+        f.addObserver(destinationUpdated: { [weak self] (destination) in
+            guard let self = self else { return }
             self.patchGrid.target.update(colors:f.colorsBuffer)
             if let s = f.source {
                 self.complete?(s)

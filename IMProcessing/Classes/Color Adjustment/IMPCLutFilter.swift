@@ -51,7 +51,8 @@ public class IMPCLutFilter: IMPFilter {
                 }
             }
             if let kernel = currentKernel {
-                insert(function: kernel, at: 0) { (imp) in  
+                insert(function: kernel, at: 0) { [weak self] imp in
+                    guard let self = self else { return }
                     self.completeHandler?(imp)
                 }
                 dirty = true
@@ -101,7 +102,7 @@ public class IMPCLutFilter: IMPFilter {
                             _ command:MTLComputeCommandEncoder, 
                             _ inputTexture:MTLTexture?, 
                             _ outputTexture:MTLTexture?){
-                        
+                                    
             guard let lut = self.clut else { return }
             
             command.setTexture(lut.texture, index:2)

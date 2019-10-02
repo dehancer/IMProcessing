@@ -145,7 +145,9 @@ public class IMPHistogramAnalyzer: IMPDetector, IMPHistogramAnalyzerProtocol{
     private lazy var partialHistogramKernel:IMPFunction = {
         let f = IMPFunction(context: self.context, kernelName: "kernel_partialHistogram")
         
-        f.optionsHandler = { (function, command, input, output) in
+        f.optionsHandler = { [weak self] (function, command, input, output) in
+            
+            guard let self = self else { return }
             
             command.setBuffer(self.partialBuffer,       offset: 0, index: 0)
             
@@ -165,8 +167,10 @@ public class IMPHistogramAnalyzer: IMPDetector, IMPHistogramAnalyzerProtocol{
     private lazy var accumHistogramKernel:IMPFunction = {
         let f = IMPFunction(context: self.context, kernelName: "kernel_accumHistogram")
         
-        f.optionsHandler = { (function, command, input, output) in
+        f.optionsHandler = { [weak self] (function, command, input, output) in
 
+            guard let self = self else { return }
+            
             command.setBuffer(self.partialBuffer,  offset: 0, index: 0)
             command.setBuffer(self.completeBuffer, offset: 0, index: 1)
             

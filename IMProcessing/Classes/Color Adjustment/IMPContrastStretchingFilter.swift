@@ -30,7 +30,8 @@ public class IMPContrastStretchingFilter:IMPFilter{
     
     private lazy var kernel:IMPFunction = {
         var f = IMPFunction(context: self.context, kernelName: "kernel_adjustContrastStretching")
-        f.optionsHandler = { (function, command, input, output) in
+        f.optionsHandler = { [weak self] (function, command, input, output) in
+            guard let self = self else { return }
             command.setBytes(&self.adjustment, length:MemoryLayout.size(ofValue: self.adjustment),index:0)
         }
         return f
