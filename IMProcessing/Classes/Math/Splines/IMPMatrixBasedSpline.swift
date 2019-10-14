@@ -21,7 +21,6 @@ open class IMPMatrixBasedSpline:IMPInterpolator{
     public func didControlsUpdate() {
         guard controls.count >= minimumControls else { return }
         nps = getNps()
-        Swift.print("nps: \(nps)")
         curve = evaluate()
     }
     

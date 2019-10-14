@@ -36,10 +36,7 @@ public extension IMPCLut {
         // make new identity
         //
         
-        let sz = newLutSize ?? _lutSize
-//        if newType == .lut_2d && newLutSize == nil {
-//            sz = _lutSize //Int(sqrt(Float(_lutSize*_lutSize*_lutSize)))/3; //sz = sz*sz*sz
-//        }
+        var sz = newLutSize ?? _lutSize
         
         let lut = try IMPCLut(context: context,
                               lutType: newType,

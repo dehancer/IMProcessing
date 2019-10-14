@@ -85,20 +85,15 @@ extension IMPCLut {
     }
     
     fileprivate func checkFormat(image:NSImage) throws {
-        
-        //imagelet path = url.absoluteString
-        
+                
         guard let text = texture else { throw FormatError(file: "", line: 0, kind: .empty) }
         
         if Int(image.size.width) != text.height {
             throw FormatError(file: "", line: 0, kind: .wrongFormat)
         }
         
-        if !Int(image.size.width).isPowerOfTwo {
-            throw FormatError(file: "", line: 0, kind: .wrongFormat)
-        }
         _type = .lut_2d
-        //_title = url.lastPathComponent
+
         let level = Int(round(pow(Float(text.width), 1.0/3.0)))
         _lutSize = level*level
     }
