@@ -50,7 +50,11 @@ public class IMPTpsFilter: IMPTpsCLutTransform {
             commandEncoder.setBytes(&self.adjustment,
                                     length:MemoryLayout.stride(ofValue: self.adjustment),
                                     index:4)
-
+            
+            commandEncoder.setBytes(&self.levels,
+                                    length:MemoryLayout.stride(ofValue: self.levels),
+                                    index:5)
+            
         }
         
         add(function: kernel) { (image) in

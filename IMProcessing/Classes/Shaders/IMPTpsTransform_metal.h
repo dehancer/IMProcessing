@@ -91,6 +91,7 @@ namespace IMProcessing
                                        constant float3  *q           [[buffer(2)]],
                                        constant int     &count       [[buffer(3)]],
                                        constant IMPAdjustment  &adjustment   [[buffer(4)]],
+                                       constant float3  &levels      [[buffer(5)]],
 
                                        metal::uint2 gid [[thread_position_in_grid]]
                                        )
@@ -102,12 +103,16 @@ namespace IMProcessing
                                                     space,
                                                     rgb);
         
+        float3 sources_lutXyz = lutXyz;
+        
         lutXyz = IMProcessing::tpsValue<float3,float,3>(lutXyz, weights, q, count);
         
+        lutXyz = mix(sources_lutXyz,lutXyz,levels);
+
         float3 lutRgb = IMPConvertFromNormalizedColor(space,
                                                       IMPRgbSpace,
                                                       lutXyz);
-        
+                
         float4 result = IMProcessing::blend(float4(rgb,1), float4(lutRgb,1), adjustment.blending);
 
         outTexture.write(result, gid);

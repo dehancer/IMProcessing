@@ -44,7 +44,7 @@ import CoreVideo
 
         private lazy var _systemFramesPersecond: Int = self.displayLink.preferredFramesPerSecond
 
-        private lazy var displayLink:CADisplayLink = CADisplayLink(target: self, selector: #selector(procesingLinkHandler))
+        private lazy var displayLink:CADisplayLink = CADisplayLink(target_left: self, selector: #selector(procesingLinkHandler))
         
         private var handler:((CFTimeInterval)->Void)
 

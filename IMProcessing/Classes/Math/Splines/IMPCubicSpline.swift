@@ -41,7 +41,6 @@ public class IMPCubicSpline:IMPInterpolator {
         let x0 = x - controls[i.0].x
         let x1 = controls[i.1].x - x
         
-        //var y = (powf(x1,3) * coeffs[i.0] + powf(x0, 3) * coeffs[i.1])/6/h
         var y = powf(x1,3) * coeffs[i.0] + powf(x0, 3) * coeffs[i.1]
             y = y/6/h
             let z = coeffs[i.0]*x1 + coeffs[i.1]*x0
@@ -99,20 +98,14 @@ public class IMPCubicSpline:IMPInterpolator {
         B[n-1,0] = 6 * (secondDerivative-(controls[n-1].y-controls[n-2].y)/h1)/h1
         
         do {
-            Swift.print("A:\n\(A)")
-            Swift.print("B:\n\(B)")
             _ = try Surge.solve(a: A, b: &B)
         }
         catch let error {
             NSLog("IMPCubicSpline: \(error)")
         }
         
-        Swift.print("X:\n\(B)")
-
         var b = B[column:0]
         b.append(0)
-
-        Swift.print("col:\n\(b)")
 
         return b
     }

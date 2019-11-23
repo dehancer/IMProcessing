@@ -147,14 +147,14 @@ public extension IMPCLut {
         
         let kernel = IMPFunction(context: context, kernelName:
             _type == .lut_1d ? "kernel_make1DLut" :  _type == .lut_2d ?  "kernel_make2DLut" :  "kernel_make3DLut")
-
+        
         let threadgroups  = MTLSizeMake(text.width/4, text.height == 1 ? 1 : text.height/4, text.depth == 1 ? 1 : text.depth/4)
         let threadsPerThreadgroup = MTLSizeMake(4, 4, text.depth == 1 ? 1 : 4)
         
         context.execute(.sync, wait: true){ (commandBuffer) in
             let commandEncoder =  kernel.commandEncoder(from: commandBuffer)
             commandEncoder.setTexture(text, index:0)
-                                    
+            
             commandEncoder.setBytes(&compression,  length:MemoryLayout.stride(ofValue: compression),  index:0)
             
             if self._type == .lut_2d {
@@ -164,6 +164,7 @@ public extension IMPCLut {
             commandEncoder.dispatchThreadgroups(threadgroups, threadsPerThreadgroup:threadsPerThreadgroup)
             commandEncoder.endEncoding()
         }
+        
     }
     
     public func update(from image: IMPImageProvider, operation:IMPContext.OperationType = .async, complete: (() -> Void)? = nil) throws {

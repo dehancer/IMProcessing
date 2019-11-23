@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ImageIO
 import Metal
 import simd
 
@@ -54,10 +55,34 @@ public extension IMPCLut {
     ///
     /// - Parameters:
     ///   - context:  processing context
-    ///   - path: path
+    ///   - image: image
     ///   - storageMode: storageMode
     /// - Throws: `FormatError`
     convenience init(context:IMPContext,  haldImage image: NSImage, storageMode:IMPImageStorageMode?=nil) throws {
+        self.init(context: context, image: image)
+        try checkFormat(image: image)
+    }
+    
+    /// Load data from URL (the current version is supported local file only!)
+    ///
+    /// - Parameters:
+    ///   - context:  processing context
+    ///   - path: path
+    ///   - storageMode: storageMode
+    /// - Throws: `FormatError`
+    convenience init(context:IMPContext,  haldImage image: CGImage, storageMode:IMPImageStorageMode?=nil) throws {
+        self.init(context: context, image: image)
+        try checkFormat(image: image)
+    }
+    
+    /// Load data from URL (the current version is supported local file only!)
+    ///
+    /// - Parameters:
+    ///   - context:  processing context
+    ///   - path: path
+    ///   - storageMode: storageMode
+    /// - Throws: `FormatError`
+    convenience init(context:IMPContext,  haldImage image: CIImage, storageMode:IMPImageStorageMode?=nil) throws {
         self.init(context: context, image: image)
         try checkFormat(image: image)
     }
@@ -70,7 +95,7 @@ extension IMPCLut {
         let path = url.absoluteString
         
         guard let text = texture else { throw FormatError(file: "", line: 0, kind: .empty) }
-
+        
         if text.width != text.height {
             throw FormatError(file: path, line: 0, kind: .wrongFormat)
         }
@@ -85,7 +110,7 @@ extension IMPCLut {
     }
     
     fileprivate func checkFormat(image:NSImage) throws {
-                
+        
         guard let text = texture else { throw FormatError(file: "", line: 0, kind: .empty) }
         
         if Int(image.size.width) != text.height {
@@ -93,7 +118,35 @@ extension IMPCLut {
         }
         
         _type = .lut_2d
-
+        
+        let level = Int(round(pow(Float(text.width), 1.0/3.0)))
+        _lutSize = level*level
+    }
+    
+    fileprivate func checkFormat(image:CGImage) throws {
+        
+        guard let text = texture else { throw FormatError(file: "", line: 0, kind: .empty) }
+        
+        if Int(image.width) != text.height {
+            throw FormatError(file: "", line: 0, kind: .wrongFormat)
+        }
+        
+        _type = .lut_2d
+        
+        let level = Int(round(pow(Float(text.width), 1.0/3.0)))
+        _lutSize = level*level
+    }
+    
+    fileprivate func checkFormat(image:CIImage) throws {
+        
+        guard let text = texture else { throw FormatError(file: "", line: 0, kind: .empty) }
+        
+        if Int(image.extent.size.width) != text.height {
+            throw FormatError(file: "", line: 0, kind: .wrongFormat)
+        }
+        
+        _type = .lut_2d
+        
         let level = Int(round(pow(Float(text.width), 1.0/3.0)))
         _lutSize = level*level
     }

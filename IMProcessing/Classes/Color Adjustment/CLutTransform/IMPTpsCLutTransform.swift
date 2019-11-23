@@ -15,6 +15,7 @@ private func convert<T>(count: Int, data: UnsafePointer<T>) -> [T] {
 
 public class IMPTpsCLutTransform: IMPCLutTransform {
     public typealias Vector = float3
+   
     public typealias Controls=IMPControlPoints<Vector>
     
     public var lambda:Float = 1 {
@@ -59,6 +60,8 @@ public class IMPTpsCLutTransform: IMPCLutTransform {
             dirty = true
         }
     }
+    
+    public var levels:float3 = float3(repeating: 1) { didSet {  dirty = true } }
     
     public var kernelName:String {
         return "-"

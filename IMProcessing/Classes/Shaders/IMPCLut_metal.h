@@ -52,8 +52,8 @@ namespace IMProcessing
                                  texture3d<float, access::write>         d3DLut     [[texture(0)]],
                                  constant float2  &compression [[buffer(0)]],
                                  uint3 gid [[thread_position_in_grid]]){
-                
-        float3 denom = float3(d3DLut.get_width()-1,d3DLut.get_height()-1,d3DLut.get_depth()-1);
+        
+        float3 denom = float3(d3DLut.get_width(),d3DLut.get_height(),d3DLut.get_depth());
         float4 input_color  = float4(compress(float3(gid)/denom, compression),1);
         d3DLut.write(input_color, gid);
     }
