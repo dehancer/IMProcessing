@@ -61,24 +61,24 @@ public extension IMPImageOrientation {
     
     public init?(exifValue: IMPImageOrientation.RawValue) {
         switch exifValue {
-        case 1:
-            self.init(rawValue: IMPImageOrientation.up.rawValue)            // IMPExifOrientationUp
-        case 2:
-            self.init(rawValue: IMPImageOrientation.upMirrored.rawValue)    // IMPExifOrientationHorizontalFlipped
-        case 3:
-            self.init(rawValue: IMPImageOrientation.down.rawValue)          // IMPExifOrientationLeft180
-        case 4:
-            self.init(rawValue: IMPImageOrientation.downMirrored.rawValue)  // IMPExifOrientationVerticalFlipped
-        case 5:
-            self.init(rawValue: IMPImageOrientation.leftMirrored.rawValue)  // IMPExifOrientationLeft90VertcalFlipped
-        case 6:
-            self.init(rawValue: IMPImageOrientation.right.rawValue)         // IMPExifOrientationLeft90
-        case 7:
-            self.init(rawValue: IMPImageOrientation.rightMirrored.rawValue) // IMPExifOrientationLeft90HorizontalFlipped
-        case 8:
-            self.init(rawValue: IMPImageOrientation.left.rawValue)          // IMPExifOrientationRight90
-        default:
-            self.init(rawValue: IMPImageOrientation.up.rawValue)
+            case 1:
+                self.init(rawValue: IMPImageOrientation.up.rawValue)            // IMPExifOrientationUp
+            case 2:
+                self.init(rawValue: IMPImageOrientation.upMirrored.rawValue)    // IMPExifOrientationHorizontalFlipped
+            case 3:
+                self.init(rawValue: IMPImageOrientation.down.rawValue)          // IMPExifOrientationLeft180
+            case 4:
+                self.init(rawValue: IMPImageOrientation.downMirrored.rawValue)  // IMPExifOrientationVerticalFlipped
+            case 5:
+                self.init(rawValue: IMPImageOrientation.leftMirrored.rawValue)  // IMPExifOrientationLeft90VertcalFlipped
+            case 6:
+                self.init(rawValue: IMPImageOrientation.right.rawValue)         // IMPExifOrientationLeft90
+            case 7:
+                self.init(rawValue: IMPImageOrientation.rightMirrored.rawValue) // IMPExifOrientationLeft90HorizontalFlipped
+            case 8:
+                self.init(rawValue: IMPImageOrientation.left.rawValue)          // IMPExifOrientationRight90
+            default:
+                self.init(rawValue: IMPImageOrientation.up.rawValue)
         }
     }
     
@@ -94,22 +94,22 @@ public extension IMPImageOrientation {
 public extension IMPExifOrientation {
     public init?(imageOrientation: IMPImageOrientation) {
         switch imageOrientation {
-        case .up:
-            self.init(rawValue: IMPExifOrientation.up.rawValue)
-        case .upMirrored:
-            self.init(rawValue: IMPExifOrientation.horizontalFlipped.rawValue)
-        case .down:
-            self.init(rawValue: IMPExifOrientation.left180.rawValue)
-        case .downMirrored:
-            self.init(rawValue: IMPExifOrientation.verticalFlipped.rawValue)
-        case .leftMirrored:
-            self.init(rawValue: IMPExifOrientation.left90VertcalFlipped.rawValue)
-        case .right:
-            self.init(rawValue: IMPExifOrientation.left90.rawValue)
-        case .rightMirrored:
-            self.init(rawValue: IMPExifOrientation.left90HorizontalFlipped.rawValue)
-        case .left:
-            self.init(rawValue: IMPExifOrientation.right90.rawValue)
+            case .up:
+                self.init(rawValue: IMPExifOrientation.up.rawValue)
+            case .upMirrored:
+                self.init(rawValue: IMPExifOrientation.horizontalFlipped.rawValue)
+            case .down:
+                self.init(rawValue: IMPExifOrientation.left180.rawValue)
+            case .downMirrored:
+                self.init(rawValue: IMPExifOrientation.verticalFlipped.rawValue)
+            case .leftMirrored:
+                self.init(rawValue: IMPExifOrientation.left90VertcalFlipped.rawValue)
+            case .right:
+                self.init(rawValue: IMPExifOrientation.left90.rawValue)
+            case .rightMirrored:
+                self.init(rawValue: IMPExifOrientation.left90HorizontalFlipped.rawValue)
+            case .left:
+                self.init(rawValue: IMPExifOrientation.right90.rawValue)
         }
     }
     
@@ -346,36 +346,36 @@ public extension IMPImageProvider {
             
             switch orientation {
                 
-            case .up:
-                angle = CGFloat.pi
-                reflectHorisontalMode = true // 0
+                case .up:
+                    angle = CGFloat.pi
+                    reflectHorisontalMode = true // 0
                 
-            case .upMirrored:
-                reflectHorisontalMode = true
-                reflectVerticalMode   = true // 4
+                case .upMirrored:
+                    reflectHorisontalMode = true
+                    reflectVerticalMode   = true // 4
                 
-            case .down:
-                reflectHorisontalMode = true // 1
+                case .down:
+                    reflectHorisontalMode = true // 1
                 
-            case .downMirrored: break        // 5
+                case .downMirrored: break        // 5
                 
-            case .left:
-                angle = -CGFloat.pi/2
-                reflectHorisontalMode = true // 2
+                case .left:
+                    angle = -CGFloat.pi/2
+                    reflectHorisontalMode = true // 2
                 
-            case .leftMirrored:
-                angle = -CGFloat.pi/2
-                reflectVerticalMode   = true
-                reflectHorisontalMode = true // 6
+                case .leftMirrored:
+                    angle = -CGFloat.pi/2
+                    reflectVerticalMode   = true
+                    reflectHorisontalMode = true // 6
                 
-            case .right:
-                angle = CGFloat.pi/2
-                reflectHorisontalMode = true // 3
+                case .right:
+                    angle = CGFloat.pi/2
+                    reflectHorisontalMode = true // 3
                 
-            case .rightMirrored:
-                angle = CGFloat.pi/2
-                reflectVerticalMode   = true
-                reflectHorisontalMode = true // 7
+                case .rightMirrored:
+                    angle = CGFloat.pi/2
+                    reflectVerticalMode   = true
+                    reflectHorisontalMode = true // 7
             }
         }
         
@@ -571,10 +571,10 @@ public extension IMPImageProvider {
                 image = !flipVertical ? image : image.transformed(by: transform)
                 
                 self?.context.coreImage?.render(image,
-                                               to: t,
-                                               commandBuffer: commandBuffer,
-                                               bounds: image.extent,
-                                               colorSpace: cs)
+                                                to: t,
+                                                commandBuffer: commandBuffer,
+                                                bounds: image.extent,
+                                                colorSpace: cs)
                 complete?(t,commandBuffer)
             }
         }
@@ -627,7 +627,7 @@ public extension IMPImageProvider {
                             complete:((_ command:MTLCommandBuffer?)->Void)?=nil) {
         
         context.runOperation(.async) { [weak self] in
-        
+            
             if let txt = self?.texture {
                 
                 DispatchQueue.main.async {
@@ -943,31 +943,26 @@ public extension IMPImageProvider{
                 let image = _image.transformed(by: t)
                 
                 switch type {
-                case .jpeg:
-                    return ciContext.jpegRepresentation(of: image,
-                                                        colorSpace: csp,
-                                                        options: properties)
-                case .tiff:
-                    //let csp = CGColorSpace(name: CGColorSpace.sRGB) ?? CGColorSpaceCreateDeviceRGB()
-                    return ciContext.tiffRepresentation(of: image,
-                                                        format: CIFormat.RGBA16,
-                                                        colorSpace: csp, options: properties)
-                case .png:
-                    if #available(OSX 10.13, *) {
-                        do {
-                        return ciContext.pngRepresentation(of: image,
-                                                           format: CIFormat.RGBAf,
-                                                           colorSpace: csp,
-                                                           options: properties)
-                        }
-                        catch{
-                            debugPrint("pngRepresentation: ", error)
-                        }
-                    } else {
-                        return nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
+                    case .jpeg:
+                        return ciContext.jpegRepresentation(of: image,
+                                                            colorSpace: csp,
+                                                            options: properties)
+                    case .tiff:
+                        return ciContext.tiffRepresentation(of: image,
+                                                            format: CIFormat.RGBA16,
+                                                            colorSpace: csp,
+                                                            options: properties)
+                    case .png:
+                        if #available(OSX 10.13, *) {
+                            return try ciContext.pngRepresentation(of: image,
+                                                                   format: CIFormat.RGBAf, 
+                                                                   colorSpace: csp,
+                                                                   options: properties)
+                        } else {
+                            return nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
                     }
-                default:
-                    return nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
+                    default:
+                        return nsImage(scale: 1, reflect: reflect)?.representation(using: type, compression: factor)
                 }
             }
             return nil

@@ -55,7 +55,7 @@ public extension IMPCLut {
     ///
     /// - Parameters:
     ///   - context:  processing context
-    ///   - image: image
+    ///   - haldImage: hald image
     ///   - storageMode: storageMode
     /// - Throws: `FormatError`
     convenience init(context:IMPContext,  haldImage image: NSImage, storageMode:IMPImageStorageMode?=nil) throws {
@@ -67,7 +67,7 @@ public extension IMPCLut {
     ///
     /// - Parameters:
     ///   - context:  processing context
-    ///   - path: path
+    ///   - haldImage: hald image
     ///   - storageMode: storageMode
     /// - Throws: `FormatError`
     convenience init(context:IMPContext,  haldImage image: CGImage, storageMode:IMPImageStorageMode?=nil) throws {
@@ -79,15 +79,26 @@ public extension IMPCLut {
     ///
     /// - Parameters:
     ///   - context:  processing context
-    ///   - path: path
+    ///   - haldImage: hald image
     ///   - storageMode: storageMode
     /// - Throws: `FormatError`
     convenience init(context:IMPContext,  haldImage image: CIImage, storageMode:IMPImageStorageMode?=nil) throws {
         self.init(context: context, image: image)
         try checkFormat(image: image)
     }
+    
+    /// Load data from URL (the current version is supported local file only!)
+       ///
+       /// - Parameters:
+       ///   - context:  processing context
+       ///   - data: hald image
+       ///   - storageMode: storageMode
+       /// - Throws: `FormatError`
+       convenience init(context:IMPContext,  haldImage data: Data, storageMode:IMPImageStorageMode?=nil) throws {
+           self.init(context: context, data: data)
+           try checkFormat(data: data)
+       }
 }
-
 
 extension IMPCLut {
     fileprivate func checkFormat(url:URL) throws {
@@ -144,6 +155,16 @@ extension IMPCLut {
         if Int(image.extent.size.width) != text.height {
             throw FormatError(file: "", line: 0, kind: .wrongFormat)
         }
+        
+        _type = .lut_2d
+        
+        let level = Int(round(pow(Float(text.width), 1.0/3.0)))
+        _lutSize = level*level
+    }
+    
+    fileprivate func checkFormat(data:Data) throws {
+        
+        guard let text = texture else { throw FormatError(file: "", line: 0, kind: .empty) }
         
         _type = .lut_2d
         
