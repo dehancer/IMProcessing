@@ -955,7 +955,7 @@ public extension IMPImageProvider{
                     case .png:
                         if #available(OSX 10.13, *) {
                             return try ciContext.pngRepresentation(of: image,
-                                                                   format: CIFormat.RGBAf, 
+                                                                   format: CIFormat.RGBA8,
                                                                    colorSpace: csp,
                                                                    options: properties)
                         } else {
