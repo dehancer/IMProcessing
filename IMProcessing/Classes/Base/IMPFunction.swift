@@ -76,7 +76,7 @@ public class IMPFunction: IMPContextProvider, IMPDestinationSizeProvider, Equata
             return try self.context.device.makeComputePipelineState(function: self.kernel!)
         }
         catch let error as NSError{
-            fatalError(" *** IMPFunction: \(error)")
+            fatalError(" *** IMPFunction: \(error): \(self.name))")
         }
     }()
 }

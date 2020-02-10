@@ -12,6 +12,8 @@ import simd
 
 public class IMPBaseBlur: IMPFilter {
     
+    public var isRendered:Bool = false ;
+    
     public override var source: IMPImageProvider? {
         didSet{
             self.updateWeights()
@@ -22,7 +24,7 @@ public class IMPBaseBlur: IMPFilter {
     
     public static let defaultAdjustment = IMPAdjustment(blending: IMPBlending(mode: .normal, opacity: 1))
     
-    public var adjustment:IMPAdjustment!{
+    public var adjustment:IMPAdjustment = defaultAdjustment {
         didSet{
             adjustmentBuffer.copy(from: adjustment)
             update()
@@ -61,7 +63,7 @@ public class IMPBaseBlur: IMPFilter {
             
         }
         
-        if prefersRendering {
+        if isRendered {
             add(shader: downscaleShader, fail: fail)
             add(shader: horizontalShader, fail: fail)
             add(shader: verticalShader, fail: fail)
@@ -116,7 +118,7 @@ public class IMPBaseBlur: IMPFilter {
         let newSize = NSSize(width: size.width/CGFloat(downsamplingFactor),
                              height: size.height/CGFloat(downsamplingFactor))
         
-        if prefersRendering {
+        if isRendered {
             downscaleShader.destinationSize = newSize
             upscaleShader.destinationSize = size
         }
@@ -132,7 +134,8 @@ public class IMPBaseBlur: IMPFilter {
             var
             factor = float2(1/newSize.width.float, 0)
             memcpy(hTexelSizeBuffer.contents(), &factor, hTexelSizeBuffer.length)
-            
+            print("blur: texel: ", factor);
+
             factor = float2(0, 1/newSize.height.float)
             memcpy(vTexelSizeBuffer.contents(), &factor, vTexelSizeBuffer.length)
 
@@ -154,6 +157,11 @@ public class IMPBaseBlur: IMPFilter {
             offsets.append(1)
         }
         
+        print("blur: radius: ", radius, sigma, pixelRadius);
+        print("blur: weights: ", weights);
+        print("blur: offsets: ", offsets);
+        print("==========================");
+
         weightsTexture = context.device.texture1D(buffer:weights)
         offsetsTexture = context.device.texture1D(buffer:offsets)
     }
@@ -206,6 +214,7 @@ public class IMPBaseBlur: IMPFilter {
                             kernelName: "kernel_gaussianSampledBlur")
         f.optionsHandler = { (function,commandEncoder, input, output) in
             
+            print(" ... vertical kernel...")
             commandEncoder.setBuffer(self.hTexelSizeBuffer, offset: 0, index: 0)
             commandEncoder.setTexture(self.weightsTexture, index:2)
             commandEncoder.setTexture(self.offsetsTexture, index:3)

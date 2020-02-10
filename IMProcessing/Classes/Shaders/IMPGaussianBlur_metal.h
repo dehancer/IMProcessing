@@ -25,14 +25,12 @@ namespace IMProcessing
 {
     
     inline float3 gaussianSampledBlur(texture2d<float, access::sample> source,
-                                      //texture2d<float, access::write>  destination,
                                       texture1d<float, access::read>   weights,
                                       texture1d<float, access::read>   offsets,
                                       float2 texCoord,
                                       float2 texelSize
                                       )
     {
-        //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
 
         float3 color  = source.sample(baseSampler, texCoord).rgb * weights.read(uint(0)).x;
         
@@ -86,12 +84,6 @@ namespace IMProcessing
         float3 rgb     = IMProcessing::sampledColor(source,destination,gid).rgb;
 
         inColor = IMProcessing::blend(inColor, float4(rgb,1), adjustment.blending);
-        
-//        if (adjustment.blending.mode == IMPLuminosity)
-//            inColor = IMProcessing::blendLuminosity(inColor, float4(rgb,adjustment.blending.opacity));
-//        else // only two modes yet
-//            inColor = IMProcessing::blendNormal(inColor, float4(rgb,adjustment.blending.opacity));
-        
         destination.write(inColor, gid);
     }
 
@@ -102,17 +94,10 @@ namespace IMProcessing
                                          constant IMPAdjustment           &adjustment  [[buffer(0)]]
                                          
                                          ) {
-        //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
-        
         float4 inColor = source.sample(baseSampler, in.texcoord.xy);
         float3 rgb = texture.sample(baseSampler, in.texcoord.xy).rgb;
 
         inColor = IMProcessing::blend(inColor, float4(rgb,1), adjustment.blending);
-
-//        if (adjustment.blending.mode == IMPLuminosity)
-//            inColor = IMProcessing::blendLuminosity(inColor, float4(rgb,adjustment.blending.opacity));
-//        else // only two modes yet
-//            inColor = IMProcessing::blendNormal(inColor, float4(rgb, adjustment.blending.opacity));
         
         return  inColor;
     }
