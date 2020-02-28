@@ -55,7 +55,7 @@ public class IMPBaseBlur: IMPFilter {
         
         super.configure()
         
-        extendName(suffix: "GaussianBlur")
+        extendName(suffix: "Gaussian Blur")
         radius = 0
         
         func fail(_ error:RegisteringError) {
@@ -73,13 +73,12 @@ public class IMPBaseBlur: IMPFilter {
             
         }
         else {
-            add(function: downscaleKernel, fail: fail)
+            //add(function: downscaleKernel, fail: fail)
             add(function: horizontalKernel, fail: fail)
             add(function: verticalKernel, fail: fail)
             add(function: upscaleKernel, fail: fail){ (source) in
                 complete?(source)
-            }
-            
+           }
         }
     }
     
@@ -130,14 +129,19 @@ public class IMPBaseBlur: IMPFilter {
         var offsets:[Float] = [Float]()
         var weights:[Float] = [Float]()
         
+        hTexelSize = float2(1/newSize.width.float, 0);
+        vTexelSize = float2(0, 1/newSize.height.float)
+        print("blur: h texel: ", hTexelSize)
+        print("blur: v texel: ", vTexelSize)
+        
         if radius > IMPGaussianBlur.radiusRange.minimum {
-            var
-            factor = float2(1/newSize.width.float, 0)
-            memcpy(hTexelSizeBuffer.contents(), &factor, hTexelSizeBuffer.length)
-            print("blur: texel: ", factor);
+            //var
+            //factor = float2(1/newSize.width.float, 0)
+            //memcpy(hTexelSizeBuffer.contents(), &factor, hTexelSizeBuffer.length)
+          
 
-            factor = float2(0, 1/newSize.height.float)
-            memcpy(vTexelSizeBuffer.contents(), &factor, vTexelSizeBuffer.length)
+            //factor = float2(0, 1/newSize.height.float)
+            //memcpy(vTexelSizeBuffer.contents(), &factor, vTexelSizeBuffer.length)
 
             var extendedWeights:[Float]
             var extendedOffsets:[Float]
@@ -167,8 +171,12 @@ public class IMPBaseBlur: IMPFilter {
     }
     
     
-    lazy var hTexelSizeBuffer:MTLBuffer = self.context.device.makeBuffer(length: MemoryLayout<float2>.size, options: [])!
-    lazy var vTexelSizeBuffer:MTLBuffer = self.context.device.makeBuffer(length: MemoryLayout<float2>.size, options: [])!
+    //lazy var hTexelSizeBuffer:MTLBuffer = self.context.device.makeBuffer(length: MemoryLayout<float2>.size, options: [])!
+    //lazy var vTexelSizeBuffer:MTLBuffer = self.context.device.makeBuffer(length: MemoryLayout<float2>.size, options: [])!
+    
+    var  hTexelSize = float2(1,0)
+    var  vTexelSize = float2(0,1)
+
     lazy var weightsTexture:MTLTexture = {
         return self.context.device.texture1D(buffer:[Float](repeating:1, count:1))
     }()
@@ -214,8 +222,9 @@ public class IMPBaseBlur: IMPFilter {
                             kernelName: "kernel_gaussianSampledBlur")
         f.optionsHandler = { (function,commandEncoder, input, output) in
             
-            print(" ... vertical kernel...")
-            commandEncoder.setBuffer(self.hTexelSizeBuffer, offset: 0, index: 0)
+            print(" ... horizontalKernel kernel...")
+            //commandEncoder.setBuffer(self.hTexelSizeBuffer, offset: 0, index: 0)
+            commandEncoder.setBytes(&self.hTexelSize, length: MemoryLayout<float2>.size, index: 0)
             commandEncoder.setTexture(self.weightsTexture, index:2)
             commandEncoder.setTexture(self.offsetsTexture, index:3)
         }
@@ -227,7 +236,10 @@ public class IMPBaseBlur: IMPFilter {
                             kernelName: "kernel_gaussianSampledBlur")
         f.optionsHandler = { (function,commandEncoder, input, output) in
             
-            commandEncoder.setBuffer(self.vTexelSizeBuffer, offset: 0, index: 0)
+            print(" ... verticalKernel kernel...")
+
+            //commandEncoder.setBuffer(self.vTexelSizeBuffer, offset: 0, index: 0)
+            commandEncoder.setBytes(&self.vTexelSize, length: MemoryLayout<float2>.size, index: 0)
             commandEncoder.setTexture(self.weightsTexture, index:2)
             commandEncoder.setTexture(self.offsetsTexture, index:3)
         }
@@ -240,7 +252,8 @@ public class IMPBaseBlur: IMPFilter {
         
         s.optionsHandler = { (shader,commandEncoder, input, output) in
             
-            commandEncoder.setFragmentBuffer(self.hTexelSizeBuffer, offset: 0, index: 0)
+            //commandEncoder.setFragmentBuffer(self.hTexelSizeBuffer, offset: 0, index: 0)
+            commandEncoder.setFragmentBytes(&self.hTexelSize, length: MemoryLayout<float2>.size, index: 0)
             commandEncoder.setFragmentTexture(self.weightsTexture, index:1)
             commandEncoder.setFragmentTexture(self.offsetsTexture, index:2)
         }
@@ -255,7 +268,8 @@ public class IMPBaseBlur: IMPFilter {
         
         s.optionsHandler = { (shader,commandEncoder, input, output) in
             
-            commandEncoder.setFragmentBuffer(self.vTexelSizeBuffer, offset: 0, index: 0)
+            //commandEncoder.setFragmentBuffer(self.vTexelSizeBuffer, offset: 0, index: 0)
+            commandEncoder.setFragmentBytes(&self.vTexelSize, length: MemoryLayout<float2>.size, index: 0)
             commandEncoder.setFragmentTexture(self.weightsTexture, index:1)
             commandEncoder.setFragmentTexture(self.offsetsTexture, index:2)
         }

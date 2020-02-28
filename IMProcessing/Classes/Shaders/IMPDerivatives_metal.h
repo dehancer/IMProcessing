@@ -89,7 +89,7 @@ fragment float4 fragment_directionalNonMaximumSuppression(
     
     float3 gradient = texture.sample(IMProcessing::cornerSampler, in.texcoord.xy).rgb;
     
-    float2 texel(1/float(texture.get_width()), 1/float(texture.get_height()));
+    float2 texel(radius/float(texture.get_width()), radius/float(texture.get_height()));
     
     float2 gradientDirection = ((gradient.gb * 2.0) - 1.0) * texel;
     
@@ -130,8 +130,6 @@ inline float gaussianDerivativeComponent(
                                          float2 texelSize,
                                          const int offset,
                                          const int pitch ) {
-    //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
-    
     float3 rgb = source.sample(IMProcessing::baseSampler, (texCoord + texelSize * float2( offset * pitch))).rgb;
     return IMProcessing::max_component(rgb);
 }
@@ -142,9 +140,7 @@ inline float gaussianDerivative(
                                 const uint2 gid,
                                 float2 texelSize,
                                 const int pitch ) {
-    
-    //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
-    
+        
     float2 texCoord  = float2(gid) / float2(destination.get_width(),destination.get_height());
     
     float color;
@@ -157,16 +153,14 @@ inline float gaussianDerivative(
 }
 
 kernel void kernel_gaussianDerivativeEdge(
-                                          texture2d<float, access::sample> source     [[texture(0)]],
+                                          texture2d<float, access::sample>     source [[texture(0)]],
                                           texture2d<float, access::write> destination [[texture(1)]],
-                                          constant uint                   &pitch  [[buffer(0)]],
-                                          
+                                          constant uint&                        pitch [[buffer(0)]],
                                           uint2 pid [[thread_position_in_grid]]
                                           ){
     
     float2 texelSizeX = float2(1,0)/float2(destination.get_width(),1);
     float2 texelSizeY = float2(0,1)/float2(1,destination.get_height());
-    //constexpr uint pitch = 5;
     
     float gx   = gaussianDerivative(source,destination,pid, texelSizeX, pitch);
     float gy   = gaussianDerivative(source,destination,pid, texelSizeY, pitch);

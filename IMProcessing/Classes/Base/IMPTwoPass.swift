@@ -25,14 +25,6 @@ open class IMPTwoPass: IMPFilter {
         outputTexture:MTLTexture?
         ){}
 
-//    public typealias Dimensions = (width:Int,height:Int)
-//
-//    public var dimensions:Dimensions = (width:3,height:3) {
-//        didSet{
-//            dirty = true
-//        }
-//    }
-    
     open override var source: IMPImageProvider? {
         didSet{
             updateSize()
@@ -100,9 +92,7 @@ open class IMPTwoPass: IMPFilter {
             
             guard let self = self else { return }
             
-            //var d:uint = uint(self.dimensions.height)
             commandEncoder.setBuffer(self.vTexelSizeBuffer, offset: 0, index: 0)
-            //commandEncoder.setBytes(&d,length:MemoryLayout<uint>.size,at:1)
             self.optionsHandler(passnumber: .first,
                                 function: function, 
                                 command: commandEncoder, 

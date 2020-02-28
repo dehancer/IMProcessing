@@ -22,12 +22,12 @@ using namespace metal;
  * View rendering vertex
  */
 vertex VertexOut vertex_passview(
-                                 device VertexIn*   verticies [[ buffer(0) ]],
+                                 const device VertexIn*   verticies [[ buffer(0) ]],
                                  unsigned int        vid       [[ vertex_id ]]
                                  ) {
     VertexOut out;
     
-    device VertexIn& v = verticies[vid];
+    const device VertexIn& v = verticies[vid];
     
     float3 position = float3(float2(v.position) , 0.0);
     

@@ -173,16 +173,55 @@ namespace IMProcessing
     }
 
     constexpr sampler baseSampler(address::clamp_to_edge, filter::linear, coord::normalized);
-
+    //constexpr sampler cornerSampler(address::clamp_to_edge, filter::linear, coord::normalized);
+    //constexpr sampler cornerSampler(address::mirrored_repeat, filter::linear, coord::normalized);
+    constexpr sampler cornerSampler(address::clamp_to_zero, filter::linear, coord::normalized);
+    
     inline float4 sampledColor(
                                texture2d<float, access::sample> inTexture,
                                texture2d<float, access::write> outTexture,
                                uint2 gid
                                ){
-        //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
         float w = outTexture.get_width();
         return mix(inTexture.sample(baseSampler, float2(gid) * float2(1.0/w, 1.0/outTexture.get_height())),
                    inTexture.read(gid),
+                   IMProcessing::when_eq(inTexture.get_width(), w) // whe equal read exact texture color
+                   );
+    }
+    
+    inline float4 sampledCorner(
+                                texture2d<float, access::sample> inTexture,
+                                texture2d<float, access::write> outTexture,
+                                uint2 gid
+                                ){
+        float w = outTexture.get_width();
+        return mix(inTexture.sample(cornerSampler, float2(gid) * float2(1.0/w, 1.0/outTexture.get_height())),
+                   inTexture.read(gid),
+                   IMProcessing::when_eq(inTexture.get_width(), w) // whe equal read exact texture color
+                   );
+    }
+    
+    
+    inline float4 sampledColor(
+                               texture2d<float, access::sample> inTexture,
+                               texture2d<float, access::write> outTexture,
+                               float2 gid
+                               ){
+        float w = outTexture.get_width();
+        return mix(inTexture.sample(baseSampler, gid * float2(1.0/w, 1.0/outTexture.get_height())),
+                   inTexture.read(uint2(gid)),
+                   IMProcessing::when_eq(inTexture.get_width(), w) // whe equal read exact texture color
+                   );
+    }
+    
+    inline float4 sampledCorner(
+                               texture2d<float, access::sample> inTexture,
+                               texture2d<float, access::write> outTexture,
+                               float2 gid
+                               ){
+        float w = outTexture.get_width();
+        return mix(inTexture.sample(cornerSampler, gid * float2(1.0/w, 1.0/outTexture.get_height())),
+                   inTexture.read(uint2(gid)),
                    IMProcessing::when_eq(inTexture.get_width(), w) // whe equal read exact texture color
                    );
     }
@@ -201,7 +240,6 @@ namespace IMProcessing
                                float                   scale,
                                uint2 gid
                                ){
-        //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
         
         float w = float(inTexture.get_width())  * scale;
         float h = float(inTexture.get_height()) * scale;
@@ -251,8 +289,6 @@ namespace IMProcessing
     }
 
     
-    constexpr sampler cornerSampler(address::clamp_to_edge, filter::linear, coord::normalized);
-    
     class LineColors {
         
         public:
@@ -290,16 +326,12 @@ namespace IMProcessing
                               int y,
                               int radius
                               ) {
-            
-            //float x = radius/float(texture.get_width());
-
-            //float2 texCoord = float2(gid)/float2(texture.get_width(),texture.get_height());
-            
+                        
             int2 g = int2(gid);
             
-            left   = IMProcessing::sampledColor(texture, destination, uint2(g + int2(-radius,y))).rgb; //texture.sample(cornerSampler, texCoord + float2(-x,y)).rgb;
-            center = IMProcessing::sampledColor(texture, destination, uint2(g + int2(      0,y))).rgb; //texture.sample(cornerSampler, texCoord + float2( 0,y)).rgb;
-            right  = IMProcessing::sampledColor(texture, destination, uint2(g + int2( radius,y))).rgb; //texture.sample(cornerSampler, texCoord + float2( x,y)).rgb;
+            left   = IMProcessing::sampledCorner(texture, destination, uint2(g + int2(-radius,y))).rgb;
+            center = IMProcessing::sampledCorner(texture, destination, uint2(g + int2(      0,y))).rgb;
+            right  = IMProcessing::sampledCorner(texture, destination, uint2(g + int2( radius,y))).rgb;
 
             leftIntensity   = left.r;
             rightIntensity  = right.r;
@@ -337,7 +369,6 @@ namespace IMProcessing
         METAL_FUNC Kernel3x3Colors(texture2d<float, access::sample> texture,
                                    texture2d<float, access::write>  destination,
                                    const uint2 gid, int radius){
-            //float y = radius/float(texture.get_height());
             top    = LineColors(texture,destination,gid,-radius,radius);
             mid    = LineColors(texture,destination,gid, 0,     radius);
             bottom = LineColors(texture,destination,gid, radius,radius);

@@ -52,6 +52,12 @@ public class IMPFunction: IMPContextProvider, IMPDestinationSizeProvider, Equata
         _ command:MTLComputeCommandEncoder,
         _ inputTexture:MTLTexture?,
         _ outputTexture:MTLTexture?)->Void)? = nil
+  
+    public var stagesHandler:((
+           _ function:IMPFunction,
+           _ command:MTLCommandBuffer,
+           _ inputTexture:MTLTexture?,
+           _ outputTexture:MTLTexture?)->Void)? = nil
     
     public required init(context:IMPContext,
                          kernelName:String = "kernel_passthrough"){

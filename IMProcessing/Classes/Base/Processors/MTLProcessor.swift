@@ -130,18 +130,24 @@ public class IMPCoreImageMTLKernel: IMPCIFilter{
         threadsPerThreadgroup:MTLSize,
         input:MTLTexture,
         output:MTLTexture
-        )  {
-        let commandEncoder =  kernel.commandEncoder(from: commandBuffer)
-        
-        commandEncoder.setTexture(input, index:0)
-        commandEncoder.setTexture(output, index:1)
-        
+    )  {
         if let handler = kernel.optionsHandler {
+            
+            let commandEncoder =  kernel.commandEncoder(from: commandBuffer)
+            
+            commandEncoder.setTexture(input, index:0)
+            commandEncoder.setTexture(output, index:1)
+            
             handler(kernel, commandEncoder, input, output)
+                        
+            commandEncoder.dispatchThreadgroups(threadgroups, threadsPerThreadgroup:threadsPerThreadgroup)
+            commandEncoder.endEncoding()
         }
-        
-        commandEncoder.dispatchThreadgroups(threadgroups, threadsPerThreadgroup:threadsPerThreadgroup)
-        commandEncoder.endEncoding()
+        else if let handler = kernel.stagesHandler {
+            
+            handler(kernel, commandBuffer, input, output)
+            
+        }
     }
     
     @available(iOS 10.0, *)

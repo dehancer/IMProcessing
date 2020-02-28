@@ -10,7 +10,11 @@ import Foundation
 
 public class IMPGaussianDerivativeEdges: IMPFilter{
     
-    var pitch:Int = 1
+    public var pitch:Int = 1 {
+        didSet {
+            dirty = true
+        }
+    }
     
     public override func configure(complete:CompleteHandler?) {
         extendName(suffix: "GaussianDerivativeEdges")

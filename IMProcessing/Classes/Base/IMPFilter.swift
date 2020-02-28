@@ -96,11 +96,12 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
         return handler        
     }() 
     
-    public var destination: IMPImageProvider {
+    open var destination: IMPImageProvider {
         guard dirty || (_destination.texture == nil) else {
             return _destination
         }
         return apply(result: _destination, resampleSize: nil)
+        //return self.process()._destination
     }
     
     public var destinationSize: NSSize?
@@ -200,7 +201,7 @@ open class IMPFilter: IMPFilterProtocol, /*IMPDestinationSizeProvider,*/ Equatab
         }
     }
     
-    @discardableResult public func process<T:IMPFilter>() -> T {
+    @discardableResult open func process<T:IMPFilter>() -> T {
         guard dirty || (_destination.texture == nil) else {
             return  self as! T
         }

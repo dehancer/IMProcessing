@@ -29,8 +29,6 @@ kernel void kernel_erosion(texture2d<float, access::sample> source      [[textur
                            constant uint                   &dimensions  [[buffer(1)]],
                            uint2 gid [[thread_position_in_grid]]){
     
-    //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
-
     float3 center = IMProcessing::sampledColor(source,destination,gid).rgb;
     
     float2 texCoord = float2(gid)/float2(source.get_width(),source.get_height());
@@ -53,14 +51,12 @@ kernel void kernel_erosion(texture2d<float, access::sample> source      [[textur
 }
 
 
-kernel void kernel_dilation(texture2d<float, access::sample> source      [[texture(0)]],
+kernel void kernel_dilation(texture2d<float, access::sample> source     [[texture(0)]],
                            texture2d<float, access::write>  destination [[texture(1)]],
                            constant float2                 &texelSize   [[buffer(0)]],
                            constant uint                   &dimensions  [[buffer(1)]],
                            uint2 gid [[thread_position_in_grid]])
 {
-    //constexpr sampler s(address::clamp_to_edge, filter::linear, coord::normalized);
-    
     float3 center = IMProcessing::sampledColor(source,destination,gid).rgb;
     
     float2 texCoord = float2(gid)/float2(destination.get_width(),destination.get_height());
